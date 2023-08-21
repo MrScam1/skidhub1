@@ -558,7 +558,7 @@ function OrionLib:MakeWindow(WindowConfig)
 				Size = UDim2.new(0, 32, 0, 32),
 				Position = UDim2.new(0, 10, 0.5, 0)
 			}), {
-				SetProps(MakeElement("Image", "https://discord.com/channels/1138601332048146472/1139179493790060544/1143008372237533245"), {
+				SetProps(MakeElement("Image", "https://media.discordapp.net/attachments/1139179493790060544/1143008371964923964/received_1047866209989917.jpg?width=549&height=549"), {
 					Size = UDim2.new(1, 0, 1, 0)
 				}),
 				AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://4031889928"), {
