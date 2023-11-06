@@ -191,8 +191,8 @@ if _G.Auto_Seabest then
 				
 				if not game:GetService("Workspace").Boats:FindFirstChild("PirateGrandBrigade") then
 
-					sex_tween = TP1(npcboatpos)
-					sex_tween:Play()
+					topos(npcboatpos)
+					
 					print("dang mua")
 					wait(1)
 						if (npcboatpos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 5 then
