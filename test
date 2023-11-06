@@ -209,9 +209,9 @@ if _G.Auto_Seabest then
 					for i,v in pairs(game.workspace.Boats:GetChildren()) do
 						print("dang lam")
 							if (CFrame.new(-33080, 0, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude < 50 then
-								if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == false then
+								repeat wait()
 									Sex_Tween = topos(v.VehicleSeat.CFrame * CFrame.new(1,1,0))
-								end
+								until game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true
 							else
 								
 								game.workspace.Boats[v.name]:MoveTo(cframtpboat)
