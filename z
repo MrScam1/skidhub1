@@ -4643,11 +4643,11 @@ end
 							end
 						end
 					else
-						if _G.questkata then
+					--[[	if _G.questkata then
 							if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
 								game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", "CakeQuest2", 2)
 							end
-						end
+						end]]
 						if game:GetService("Workspace").Enemies:FindFirstChild("Cookie Crafter") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Guard") or game:GetService("Workspace").Enemies:FindFirstChild("Baking Staff") or game:GetService("Workspace").Enemies:FindFirstChild("Head Baker") then
 							
 							for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
