@@ -3322,12 +3322,12 @@ end
 				spawn(function()
 					while wait(0.5) do
 							if _G.SuperFastAttack and SFastAttack then
-								if i <= 40 then
+								if i <= 30 then
 									pcall(function()
 										repeat task.wait()
 											AttackNoCD()
 											i = i + 1
-										until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack) or i >= 40
+										until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack) or i >= 30
 									end)
 								else i = 0
 									print("reset hit")
@@ -6012,11 +6012,11 @@ end)
 			while _G.AutoSeaBest do wait()
 				pcall(function()
 					if _G.AutoSeaBest then
-							if not game.workspace.SeaBeasts:FindFirstChild("SeaBeast1") then
-								if not game.workspace.Enemies:FindFirstChild("PirateBrigade") then 
-									if not game.workspace.Enemies:FindFirstChild("PirateGrandBrigade") then
-										if not game.workspace.Enemies:FindFirstChild("Piranha") or not game.workspace.Enemies:FindFirstChild("Shark") then
-											if game.workspace.Enemies:FindFirstChild("Terrorshark") then
+							if not game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") then
+								if not game:GetService("Workspace").Enemies:FindFirstChild("PirateBrigade") then 
+									if not game:GetService("Workspace").Enemies:FindFirstChild("PirateGrandBrigade") then
+										if not game:GetService("Workspace").Enemies:FindFirstChild("Piranha") or not game.workspace.Enemies:FindFirstChild("Shark") then
+											if game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") then
 												if not game:GetService("Workspace").Boats:FindFirstChild("PirateGrandBrigade") then
 
 													sex_tween = TP1(npcboatpos)
