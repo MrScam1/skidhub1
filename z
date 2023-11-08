@@ -6033,6 +6033,7 @@ end)
 														else
 															for i,v in pairs(game.workspace.Boats:GetChildren()) do
 																print("dang lam")
+																	repeat wait()
 																	if (CFrame.new(-33080, 0, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude < 50 then
 																		repeat wait()
 																			Sex_Tween = topos(v.VehicleSeat.CFrame * CFrame.new(1,1,0))
@@ -6044,7 +6045,9 @@ end)
 																	if (v.VehicleSeat.CFrame.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 5 then
 																		Sex_Tween:Cancel()
 																	end
+																	until  _G.AutoSeaBest == false
 															end
+														
 														end
 													elseif game.workspace.Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") then
 														for i,v in pairs(game.workspace.Enemies:GetChildren()) do
