@@ -190,6 +190,7 @@ if _G.Auto_Seabest then
 		while _G.Auto_Seabest do wait(1)
 			
 			if not game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") then
+				print("deo co sb")
 				if not game:GetService("Workspace").Boats:FindFirstChild("PirateGrandBrigade") then
 
 					topos(npcboatpos)
