@@ -4212,13 +4212,14 @@ end
 					if _G.Auto_Bone and World3 then
 						pcall(function()
 							if _G.questbone then
-								
-                                if  QuestC.Visible == true then
-                                    if not string.find(QuestTitle, "Posessed Mummy") then
-                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                                    end
-								elseif QuestC.Visible == false then
-										game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", "HauntedQuest2", 2)
+								if  game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+									if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Demonic Soul") then
+										game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+										print("sai")
+									end
+								elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+										game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", "HauntedQuest2", 1)
+										print("nhan nv")
 								end
 							end
 							Sex_Tween = TP1(boneframe)
