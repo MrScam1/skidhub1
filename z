@@ -4203,6 +4203,8 @@ end
 		Callback = function(Value)
 			_G.Auto_Bone = Value
 			local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
+            local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
+
 			SaveSetting()
 			spawn(function()
 				while wait() do 
@@ -4212,6 +4214,10 @@ end
 							if _G.questbone then
 								if QuestC.Visible == false then
 									game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", "HauntedQuest2", 2)
+                                elseif QuestC.Visible == true then
+                                    if not string.find(QuestTitle, "Posessed Mummy") then
+                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                    end
 								end
 							end
 							Sex_Tween = TP1(boneframe)
