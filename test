@@ -183,7 +183,7 @@ spawn(function()
 	end)
 	_G.Auto_Seabest = true
 	_G.lBypassTP = true
-local cframtpboat = Vector3.new(-33080, 0, 26077)
+local cframtpboat = Vector3.new(-33080, 15, 26077)
 local npcboatpos = CFrame.new(-16210, 9, 476)
 if _G.Auto_Seabest then
 	pcall(function()
