@@ -4940,7 +4940,7 @@ end
 									end	
 								end
 							else
-								if _G.AutoAllBossHop then
+								if _G.AutoAllBossHop and _G.AutoAllBoss then
 									Hop()
 								end
 							end
@@ -5996,179 +5996,180 @@ end)
 				SaveSetting()
 			end    
 		})
+		local cframtpboat = Vector3.new(-33080, 0, 26077)
+	local npcboatpos = CFrame.new(-16210, 9, 476)
+		
 		M:AddToggle({
 			Name = "Auto Sea Event",
 			Default = _G.AutoSeaBest or false,
 			Callback = function(Value)
 				_G.AutoSeaBest = Value
 				SaveSetting()
-				
-			end    
-		})
-	local cframtpboat = Vector3.new(-33080, 0, 26077)
-	local npcboatpos = CFrame.new(-16210, 9, 476)
-		
-		spawn(function()
-			while _G.AutoSeaBest do wait()
-				pcall(function()
-					if _G.AutoSeaBest then
-							if not game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") then
-								if not game:GetService("Workspace").Enemies:FindFirstChild("PirateBrigade") then 
-									if not game:GetService("Workspace").Enemies:FindFirstChild("PirateGrandBrigade") then
-										if not game:GetService("Workspace").Enemies:FindFirstChild("Piranha") or not game.workspace.Enemies:FindFirstChild("Shark") then
-											if game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") then
-												if not game:GetService("Workspace").Boats:FindFirstChild("PirateGrandBrigade") then
+				spawn(function()
+					while _G.AutoSeaBest do wait(1)
+						pcall(function()
+							if _G.AutoSeaBest then
+									if not game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") then
+										if not game:GetService("Workspace").Enemies:FindFirstChild("PirateBrigade") then 
+											if not game:GetService("Workspace").Enemies:FindFirstChild("PirateGrandBrigade") then
+												if not game:GetService("Workspace").Enemies:FindFirstChild("Piranha") or not game.workspace.Enemies:FindFirstChild("Shark") then
+													if not game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") then
+														if not game:GetService("Workspace").Boats:FindFirstChild("PirateGrandBrigade") then
 
-													sex_tween = TP1(npcboatpos)
-													sex_tween:Play()
-													print("dang mua")
-													wait(1)
-														if (npcboatpos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 5 then
-															if sex_tween then sex_tween:Cancel() end
-																local args = {
-																	[1] = "BuyBoat",
-																	[2] = "PirateGrandBrigade"
-																}
-																game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
+															topos(npcboatpos)
 															
-														end
-														wait(1)
-												else
-													for i,v in pairs(game.workspace.Boats:GetChildren()) do
-														print("dang lam")
-															if (CFrame.new(-33080, 0, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude < 50 then
-																repeat wait()
-																	Sex_Tween = topos(v.VehicleSeat.CFrame * CFrame.new(1,1,0))
-																until game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true
-															else
-																
-																game.workspace.Boats[v.name]:MoveTo(cframtpboat)
+															print("dang mua")
+															wait(1)
+																if (npcboatpos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 5 then
+																	if sex_tween then sex_tween:Cancel() end
+																		local args = {
+																			[1] = "BuyBoat",
+																			[2] = "PirateGrandBrigade"
+																		}
+																		game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
+																	
+																end
+																wait(1)
+														else
+															for i,v in pairs(game.workspace.Boats:GetChildren()) do
+																print("dang lam")
+																	if (CFrame.new(-33080, 0, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude < 50 then
+																		repeat wait()
+																			Sex_Tween = topos(v.VehicleSeat.CFrame * CFrame.new(1,1,0))
+																		until game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true
+																	else
+																		
+																		game.workspace.Boats[v.name]:MoveTo(cframtpboat)
+																	end
+																	if (v.VehicleSeat.CFrame.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 5 then
+																		Sex_Tween:Cancel()
+																	end
 															end
-															if (v.VehicleSeat.CFrame.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 5 then
-																Sex_Tween:Cancel()
-															end
-													end
-												end
-											elseif game.workspace.Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") then
-												for i,v in pairs(game.workspace.Enemies:GetChildren()) do
-													if v.name == "Terrorshark" then
-														if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-															repeat task.wait()
-																
-																if _G.FastAttack then
-																	FastAttack = true
-																	elseif _G.SuperFastAttack then
-																	SFastAttack = true
-																end	
-																topos(v.HumanoidRootPart.CFrame * CFrame.new(0,20,0))
-																AutoHaki()
-																EquipWeapon(_G.SelectWeapon);
-																if (game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") and (game.Players.LocalPlayer.Character:FindFirstChild("Black Leg").Level.Value>=150)) then 
-																	game:service("VirtualInputManager"):SendKeyEvent(true,"V",false,game);
-																	game:service("VirtualInputManager"):SendKeyEvent(false,"V",false,game);
-																end 
-															until not _G.AutoSeaBest or not v.Parent or v.Humanoid.Health <= 0
 														end
-													end
-												end
-											end
-										elseif game.workspace.Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") then
-											for i,v in pairs(game.workspace.Enemies:GetChildren()) do
-												if v.name == "Piranha" or v.name == "Shark" then
-													if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-														repeat task.wait()
-															for v4,v5 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do 
-																if (v5.Name==v.Name) then 
-																	spawn(function()
-																		if InMyNetWork(v5.HumanoidRootPart) then 
-																			v5.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame;
-																			v5.Humanoid.JumpPower=0;
-																			v5.Humanoid.WalkSpeed=0;
-																			v5.HumanoidRootPart.CanCollide=false;
-																			v5.Humanoid:ChangeState(14);
-																			v5.Humanoid:ChangeState(11);
-																			v5.Head.CanCollide = false
-																			v5.HumanoidRootPart.Size=Vector3.new(55,55,55);
-																			
+													elseif game.workspace.Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") then
+														for i,v in pairs(game.workspace.Enemies:GetChildren()) do
+															if v.name == "Terrorshark" then
+																if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+																	repeat task.wait()
+																		
+																		if _G.FastAttack then
+																			FastAttack = true
+																			elseif _G.SuperFastAttack then
+																			SFastAttack = true
+																		end	
+																		topos(v.HumanoidRootPart.CFrame * CFrame.new(0,20,0))
+																		AutoHaki()
+																		EquipWeapon(_G.SelectWeapon);
+																		if (game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") and (game.Players.LocalPlayer.Character:FindFirstChild("Black Leg").Level.Value>=150)) then 
+																			game:service("VirtualInputManager"):SendKeyEvent(true,"V",false,game);
+																			game:service("VirtualInputManager"):SendKeyEvent(false,"V",false,game);
 																		end 
-																	end);
-																end 
-															end 
-															if _G.FastAttack then
-																FastAttack = true
-																elseif _G.SuperFastAttack then
-																SFastAttack = true
-															end	
-															topos(v.HumanoidRootPart.CFrame * CFrame.new(0,20,0))
-															AutoHaki()
-															EquipWeapon(_G.SelectWeapon);
-															if (game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") and (game.Players.LocalPlayer.Character:FindFirstChild("Black Leg").Level.Value>=150)) then 
-																game:service("VirtualInputManager"):SendKeyEvent(true,"V",false,game);
-																game:service("VirtualInputManager"):SendKeyEvent(false,"V",false,game);
-															end 
-														until not _G.AutoSeaBest or not v.Parent or v.Humanoid.Health <= 0
+																	until not _G.AutoSeaBest or not v.Parent or v.Humanoid.Health <= 0
+																end
+															end
+														end
+													end
+												elseif game.workspace.Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") then
+													for i,v in pairs(game.workspace.Enemies:GetChildren()) do
+														if v.name == "Piranha" or v.name == "Shark" then
+															if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+																repeat task.wait()
+																	for v4,v5 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do 
+																		if (v5.Name==v.Name) then 
+																			spawn(function()
+																				if InMyNetWork(v5.HumanoidRootPart) then 
+																					v5.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame;
+																					v5.Humanoid.JumpPower=0;
+																					v5.Humanoid.WalkSpeed=0;
+																					v5.HumanoidRootPart.CanCollide=false;
+																					v5.Humanoid:ChangeState(14);
+																					v5.Humanoid:ChangeState(11);
+																					v5.Head.CanCollide = false
+																					v5.HumanoidRootPart.Size=Vector3.new(55,55,55);
+																					
+																				end 
+																			end);
+																		end 
+																	end 
+																	if _G.FastAttack then
+																		FastAttack = true
+																		elseif _G.SuperFastAttack then
+																		SFastAttack = true
+																	end	
+																	topos(v.HumanoidRootPart.CFrame * CFrame.new(0,20,0))
+																	AutoHaki()
+																	EquipWeapon(_G.SelectWeapon);
+																	if (game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") and (game.Players.LocalPlayer.Character:FindFirstChild("Black Leg").Level.Value>=150)) then 
+																		game:service("VirtualInputManager"):SendKeyEvent(true,"V",false,game);
+																		game:service("VirtualInputManager"):SendKeyEvent(false,"V",false,game);
+																	end 
+																until not _G.AutoSeaBest or not v.Parent or v.Humanoid.Health <= 0
+															end
+														end
+													end
+												end
+											elseif game.workspace.Enemies:FindFirstChild("PirateGrandBrigade") then
+												for is,vs in pairs(game.workspace.Enemies:GetChildren()) do
+													if vs.Name == "PirateGrandBrigade" then
+														if v:FindFirstChild("VehicleSeat") then
+															repeat wait()
+																game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
+																topos(vs.VehicleSeat.CFrame * CFrame.new(0,15,0))
+																EquipAllWeapon()  
+																AutoSkill = true
+																AimBotSkillPosition = vs.VehicleSeat
+																Skillaimbot = true
+															until not game:GetService("Workspace").Boats:FindFirstChild("PirateBrigade") or _G.AutoSeaBest == false
+															AutoSkill = false
+															Skillaimbot = false
+														end
+													end
+												end
+											end
+										elseif game.workspace.Enemies:FindFirstChild("PirateBrigade") then
+											for iss,vss in pairs(game.workspace.Enemies:GetChildren()) do
+												if vss.Name == "PirateBrigade" then
+													if v:FindFirstChild("VehicleSeat") then
+														repeat wait()
+															game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
+															topos(vss.VehicleSeat.CFrame * CFrame.new(0,15,0))
+															EquipAllWeapon()  
+															AutoSkill = true
+															AimBotSkillPosition = vss.VehicleSeat
+															Skillaimbot = true
+														until not game:GetService("Workspace").Boats:FindFirstChild("PirateBrigade") or _G.AutoSeaBest == false
+														AutoSkill = false
+														Skillaimbot = false
 													end
 												end
 											end
 										end
-									elseif game.workspace.Enemies:FindFirstChild("PirateGrandBrigade") then
-										for is,vs in pairs(game.workspace.Enemies:GetChildren()) do
-											if vs.Name == "PirateGrandBrigade" then
-												if v:FindFirstChild("VehicleSeat") then
-													repeat wait()
-														game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
-														topos(vs.VehicleSeat.CFrame * CFrame.new(0,15,0))
-														EquipAllWeapon()  
-														AutoSkill = true
-														AimBotSkillPosition = vs.VehicleSeat
-														Skillaimbot = true
-													until not game:GetService("Workspace").Boats:FindFirstChild("PirateBrigade") or _G.AutoSeaBest == false
-													AutoSkill = false
-													Skillaimbot = false
-												end
-											end
-										end
-									end
-								elseif game.workspace.Enemies:FindFirstChild("PirateBrigade") then
-									for iss,vss in pairs(game.workspace.Enemies:GetChildren()) do
-										if vss.Name == "PirateBrigade" then
-											if v:FindFirstChild("VehicleSeat") then
+									elseif game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") then  
+										for i,v in pairs(game:GetService("Workspace").SeaBeasts:GetChildren()) do
+											if v:FindFirstChild("HumanoidRootPart") then
 												repeat wait()
 													game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
-													topos(vss.VehicleSeat.CFrame * CFrame.new(0,15,0))
-													EquipAllWeapon()  
+													topos(v.HumanoidRootPart.CFrame * CFrame.new(0,500,0))
+													
+													EquipAllWeapon() 
+													
 													AutoSkill = true
-													AimBotSkillPosition = vss.VehicleSeat
+													AimBotSkillPosition = v.HumanoidRootPart
 													Skillaimbot = true
-												until not game:GetService("Workspace").Boats:FindFirstChild("PirateBrigade") or _G.AutoSeaBest == false
+												until not v:FindFirstChild("HumanoidRootPart") or _G.AutoSeaBest == false
 												AutoSkill = false
 												Skillaimbot = false
 											end
 										end
 									end
-								end
-							elseif game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") then  
-								for i,v in pairs(game:GetService("Workspace").SeaBeasts:GetChildren()) do
-									if v:FindFirstChild("HumanoidRootPart") then
-										repeat wait()
-											game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
-											topos(v.HumanoidRootPart.CFrame * CFrame.new(0,500,0))
-											
-											EquipAllWeapon() 
-											
-											AutoSkill = true
-											AimBotSkillPosition = v.HumanoidRootPart
-											Skillaimbot = true
-										until not v:FindFirstChild("HumanoidRootPart") or _G.AutoSeaBest == false
-										AutoSkill = false
-										Skillaimbot = false
-									end
-								end
 							end
+						end)
 					end
 				end)
-			end
-		end)
+			end    
+		})
+	
+		
 		
 	
 	local S = Window:MakeTab({
