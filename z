@@ -2165,7 +2165,7 @@ function SourceCode()
 		elseif Distance < 50 then
 			Speed = 5000
 		elseif Distance < 150 then
-			Speed = 350
+			Speed = 500
 		elseif Distance < 250 then
 			Speed = 350
 		elseif Distance < 500 then
@@ -4200,25 +4200,25 @@ end
 		Default = _G.Auto_Bone or false,
 		Callback = function(Value)
 			_G.Auto_Bone = Value
+			local boneframe = CFrame.new(-9514, 164, 5787)
 			local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
             local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
 
 			SaveSetting()
 			spawn(function()
 				while wait() do 
-				local boneframe = CFrame.new(-9514, 164, 5787)
+				
 					if _G.Auto_Bone and World3 then
 						pcall(function()
 							repeat task.wait()
 							if _G.questbone then
-								if  game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+								if  game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+									game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", "HauntedQuest2", 1)
+										print("nhan nv")
+								elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
 									if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Demonic Soul") then
 										game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-										print("sai")
 									end
-								elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-										game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", "HauntedQuest2", 1)
-										print("nhan nv")
 								end
 							end
 							Sex_Tween = TP1(boneframe)
