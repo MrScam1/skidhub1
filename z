@@ -4204,11 +4204,11 @@ end
             local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
 
 			SaveSetting()
-			
+			if _G.Auto_Bone and World3 then
 				while wait() do 
 					repeat task.wait()
 					local boneframe = CFrame.new(-9514, 164, 5787)
-					if _G.Auto_Bone and World3 then
+					
 						pcall(function()
 							if _G.questbone then
 								if  game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
@@ -4277,11 +4277,11 @@ end
 								end
 							end
 					end)
-				end
+				
 				until not _G.Auto_Bone or not v.Parent or v.Humanoid.Health <= 0
 				end
 			       
-			
+			end
 			SaveSetting()
 			StopTween(_G.Auto_Bone)
 		end    
