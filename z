@@ -3322,12 +3322,12 @@ end
 				spawn(function()
 					while wait(0.5) do
 							if _G.SuperFastAttack and SFastAttack then
-								if i <= 20 then
+								if i <= 15 then
 									pcall(function()
 										repeat task.wait(0.00000000000000002)
 											AttackNoCD()
 											i = i + 1
-										until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack) or i >= 20
+										until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack)
 									end)
 								else i = 0
 									game:GetService'VirtualUser':CaptureController()
@@ -4263,17 +4263,17 @@ end
 									if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy"  then
 										if not CFrameMon1111 then
 											pcall(function()
-												CFrameMon1111 = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild(v.name).WorldPivot.Position) * CFrame.new(0, 30, 0)
+												CFrameMon1111 = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild(v.name).WorldPivot.Position) * CFrame.new(0, 15, 0)
 											end)
 										end
 										if not CFrameMon then
 											pcall(function()
-												CFrameMon1111 = game.Workspace.Enemies:FindFirstChild(v.name):FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0, 30, 0)
+												CFrameMon1111 = game.Workspace.Enemies:FindFirstChild(v.name):FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0, 15, 0)
 											end)
 										end
 										if not CFrameMon then
 											pcall(function()
-												CFrameMon1111 = game.Workspace._WorldOrigin:FindFirstChild("EnemySpawns"):FindFirstChild(v.name).CFrame * CFrame.new(0, 30, 0)
+												CFrameMon1111 = game.Workspace._WorldOrigin:FindFirstChild("EnemySpawns"):FindFirstChild("Living Zombie [Lv. 2000]" or "Reborn Skeleton [Lv. 1975]" or "Demonic Soul [Lv. 2025]" or "Posessed Mummy [Lv. 2050]").CFrame * CFrame.new(0, 15, 0)
 											end)
 										end
 										Sex_Tween = TP1(CFrameMon1111)
