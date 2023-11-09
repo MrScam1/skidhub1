@@ -3322,12 +3322,12 @@ end
 				spawn(function()
 					while wait(0.5) do
 							if _G.SuperFastAttack and SFastAttack then
-								if i <= 30 then
+								if i <= 25 then
 									pcall(function()
 										repeat task.wait()
 											AttackNoCD()
 											i = i + 1
-										until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack) or i >= 30
+										until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack) or i >= 25
 									end)
 								else i = 0
 									print("reset hit")
