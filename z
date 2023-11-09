@@ -2165,9 +2165,9 @@ function SourceCode()
 		elseif Distance < 50 then
 			Speed = 5000
 		elseif Distance < 150 then
-			Speed = 500
+			Speed = 1000
 		elseif Distance < 250 then
-			Speed = 350
+			Speed = 500
 		elseif Distance < 500 then
 			Speed = 300
 		elseif Distance < 750 then
@@ -2760,7 +2760,7 @@ end
 										if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
 											repeat task.wait()
 												
-												if not string.find(QuestTitle, QuestCheck()[6]) then
+												if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, QuestCheck()[6]) then
 													game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
 												else
 													
