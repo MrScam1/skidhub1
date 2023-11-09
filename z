@@ -4213,6 +4213,7 @@ end
 					if _G.Auto_Bone and World3 then
 						pcall(function()
 							repeat task.wait()
+								local CFrameMon1111 = nil
 							if _G.questbone then
 								if  game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
 									game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", "HauntedQuest2", 1)
@@ -4259,22 +4260,24 @@ end
 								Sex_Tween = TP1(CFrame.new(-9506.234375, 172.130615234375, 6117.0771484375))
 								Sex_Tween:Play()
 								for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do 
-									if v.Name == "Reborn Skeleton" then
-										Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+									if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy"  then
+										if not CFrameMon1111 then
+											pcall(function()
+												CFrameMon1111 = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild(v.name).WorldPivot.Position) * CFrame.new(0, 30, 0)
+											end)
+										end
+										if not CFrameMon then
+											pcall(function()
+												CFrameMon1111 = game.Workspace.Enemies:FindFirstChild(v.name):FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0, 30, 0)
+											end)
+										end
+										if not CFrameMon then
+											pcall(function()
+												CFrameMon1111 = game.Workspace._WorldOrigin:FindFirstChild("EnemySpawns"):FindFirstChild(v.name).CFrame * CFrame.new(0, 30, 0)
+											end)
+										end
+										Sex_Tween = TP1(CFrameMon1111)
 										Sex_Tween:Play()
-										wait(0.5)
-									elseif v.Name == "Living Zombie" then
-										Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-										Sex_Tween:Play()
-										wait(0.5)
-									elseif v.Name == "Demonic Soul" then
-										Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-										Sex_Tween:Play()
-										wait(0.5)
-									elseif v.Name == "Posessed Mummy" then
-										Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-										Sex_Tween:Play()
-										wait(0.5)
 									end
 								end
 							end
