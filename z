@@ -2867,7 +2867,7 @@ end
 			for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 				if _G.AutoFarmFruitMastery and v.Name == Mon and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
 					repeat wait()
-						FarmtoTarget = TP1(v.HumanoidRootPart.Position,v.HumanoidRootPart.CFrame * CFrame.new(0,15,0))
+						FarmtoTarget = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,15,0))
 						FarmtoTarget:Play()
 						if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 150 then
 							if FarmtoTarget then FarmtoTarget:Cancel() end
@@ -2957,6 +2957,7 @@ end
 									end
 								end
 							else
+								AutoHaki()
 								game:GetService('VirtualUser'):CaptureController()
 								game:GetService('VirtualUser'):ClickButton1(Vector2.new(851, 158), game:GetService("Workspace").Camera.CFrame)
 								UseSkillMasteryDevilFruit = false
@@ -4203,11 +4204,12 @@ end
             local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
 
 			SaveSetting()
-			spawn(function()
+			pcall(function()
 				while wait() do 
-				local boneframe = CFrame.new(-9514, 164, 5787)
+					repeat task.wait()
+					local boneframe = CFrame.new(-9514, 164, 5787)
 					if _G.Auto_Bone and World3 then
-						pcall(function()
+						
 							if _G.questbone then
 								if  game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
 									if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Demonic Soul") then
@@ -4225,7 +4227,7 @@ end
 								for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 									if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
 									if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-										repeat task.wait()
+										
 												AutoHaki()
 												EquipWeapon(_G.SelectWeapon)
 												v.HumanoidRootPart.CanCollide = false
@@ -4241,7 +4243,7 @@ end
 												Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
 												Sex_Tween:Play()
 												
-											until not _G.Auto_Bone or not v.Parent or v.Humanoid.Health <= 0
+											
 										end
 									end
 								end
@@ -4274,9 +4276,8 @@ end
 									end
 								end
 							end
-						end)
-					
 					end
+				until not _G.Auto_Bone or not v.Parent or v.Humanoid.Health <= 0
 				end
 			end)        
 			
@@ -4612,6 +4613,11 @@ end
 		pcall(function()
 			while task.wait() do
 				if _G.cakeprince then
+					if _G.questkata then
+						if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+							game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", "CakeQuest2", 2)
+						end
+					end
 					game.ReplicatedStorage.Remotes.CommF_:InvokeServer("CakePrinceSpawner")
 					if game.ReplicatedStorage:FindFirstChild("Cake Prince") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
 						if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
@@ -4650,11 +4656,7 @@ end
 							end
 						end
 					else
-					--[[	if _G.questkata then
-							if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-								game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", "CakeQuest2", 2)
-							end
-						end]]
+						
 						if game:GetService("Workspace").Enemies:FindFirstChild("Cookie Crafter") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Guard") or game:GetService("Workspace").Enemies:FindFirstChild("Baking Staff") or game:GetService("Workspace").Enemies:FindFirstChild("Head Baker") then
 							
 							for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
