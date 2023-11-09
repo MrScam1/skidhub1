@@ -3324,12 +3324,14 @@ end
 							if _G.SuperFastAttack and SFastAttack then
 								if i <= 25 then
 									pcall(function()
-										repeat task.wait(0.00000000000000001)
+										repeat task.wait(0.00000000000000002)
 											AttackNoCD()
 											i = i + 1
-										until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack)
+										until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack) or i >= 25
 									end)
 								else i = 0
+									game:GetService'VirtualUser':CaptureController()
+									game:GetService'VirtualUser':Button1Down(Vector2.new(0,1,0,1))
 									print("reset hit")
 								end
 							end
