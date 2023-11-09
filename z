@@ -2760,7 +2760,7 @@ end
 										if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
 											repeat task.wait()
 												
-												if not string.find(QuestTitle, QuestCheck()[3]) then
+												if not string.find(QuestTitle, QuestCheck()[6]) then
 													game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
 												else
 													
