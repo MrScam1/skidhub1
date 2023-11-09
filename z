@@ -4204,11 +4204,11 @@ end
             local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
 
 			SaveSetting()
-			pcall(function()
+			spawn(function()
 				while wait() do 
 				local boneframe = CFrame.new(-9514, 164, 5787)
 					if _G.Auto_Bone and World3 then
-						
+						pcall(function()
 							if _G.questbone then
 								if  game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
 									if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Demonic Soul") then
@@ -4226,7 +4226,7 @@ end
 								for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 									if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
 									if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-										repeat task.wait()
+										
 												AutoHaki()
 												EquipWeapon(_G.SelectWeapon)
 												v.HumanoidRootPart.CanCollide = false
@@ -4242,7 +4242,7 @@ end
 												Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
 												Sex_Tween:Play()
 												
-											until not _G.Auto_Bone or not v.Parent or v.Humanoid.Health <= 0
+											
 										end
 									end
 								end
@@ -4275,7 +4275,7 @@ end
 									end
 								end
 							end
-						
+						end)
 					
 					end
 				end
