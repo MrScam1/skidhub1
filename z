@@ -3320,7 +3320,7 @@ end
 			
 			coroutine.wrap(function()
 				spawn(function()
-					while wait(0.3) do
+					while wait(0.5) do
 							if _G.SuperFastAttack and SFastAttack then
 								if i <= 10 then
 									pcall(function()
