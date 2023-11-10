@@ -4625,11 +4625,11 @@ end
 		pcall(function()
 			while task.wait() do
 				if _G.cakeprince then
-					if _G.questkata then
+					--[[if _G.questkata then
 						if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
 							game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", "CakeQuest2", 2)
 						end
-					end
+					end]]
 					game.ReplicatedStorage.Remotes.CommF_:InvokeServer("CakePrinceSpawner")
 					if game.ReplicatedStorage:FindFirstChild("Cake Prince") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
 						if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
@@ -4700,9 +4700,24 @@ end
 								end
 							end
 						else
-							local cakepos = CFrame.new(-2077, 252, -12373)
-							Sex_Tween = TP1(cakepos)
-							Sex_Tween:Play()
+							for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do 
+								if (v.Name == "Cookie Crafter" or v.Name == "Cake Guard" or v.Name == "Baking Staff" or v.Name == "Head Baker") then
+									if not cakepos then
+										pcall(function()
+											cakepos = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild(v.name).WorldPivot.Position) * CFrame.new(0, 15, 0)
+										end)
+									end
+									if not cakepos then
+										pcall(function()
+											cakepos = game.Workspace.Enemies:FindFirstChild(v.name):FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0, 15, 0)
+										end)
+									end
+									
+									Sex_Tween = TP1(cakepos)
+									Sex_Tween:Play()
+								end
+							end
+							
 						end
 					end
 				end
