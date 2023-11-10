@@ -3327,7 +3327,7 @@ end
 										repeat task.wait(0.05)
 											AttackNoCD()
 											i = i + 1
-										until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack)
+										until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack) or i >= 10
 									end)
 								else i = 0
 									game:GetService'VirtualUser':CaptureController()
