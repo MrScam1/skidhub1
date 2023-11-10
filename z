@@ -1,4 +1,4 @@
-_G.Team = "Pirate" -- Pirates/Marines
+_G.Team = "Pirates" -- Pirates/Marines
 function SourceCode()
 	if game.PlaceId == 2753915549 then
 		World1 = true
