@@ -3322,9 +3322,9 @@ end
 				spawn(function()
 					while wait(0.5) do
 							if _G.SuperFastAttack and SFastAttack then
-								if i <= 15 then
+								if i <= 25 then
 									pcall(function()
-										repeat task.wait(0.00000000000000002)
+										repeat task.wait(0.02)
 											AttackNoCD()
 											i = i + 1
 										until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack)
