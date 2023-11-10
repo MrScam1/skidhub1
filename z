@@ -4668,7 +4668,7 @@ end
 							end
 						end
 					else
-						
+						local cakepos = nil
 						if game:GetService("Workspace").Enemies:FindFirstChild("Cookie Crafter") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Guard") or game:GetService("Workspace").Enemies:FindFirstChild("Baking Staff") or game:GetService("Workspace").Enemies:FindFirstChild("Head Baker") then
 							
 							for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
