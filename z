@@ -2165,7 +2165,7 @@ function SourceCode()
 		elseif Distance < 50 then
 			Speed = 5000
 		elseif Distance < 150 then
-			Speed = 1000
+			Speed = 700
 		elseif Distance < 250 then
 			Speed = 700
 		elseif Distance < 500 then
@@ -4697,9 +4697,23 @@ end
 							end
 						end
 					else
-						local cakepos = CFrame.new(-2077, 252, -12373)
-						Sex_Tween = TP1(cakepos)
-						Sex_Tween:Play()
+						for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do 
+							if (v.Name == "Cookie Crafter" or v.Name == "Cake Guard" or v.Name == "Baking Staff" or v.Name == "Head Baker") then
+								if not cakepos111 then
+									pcall(function()
+										cakepos111 = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild(v.name).WorldPivot.Position) * CFrame.new(0, 30, 0)
+									end)
+								end
+								if not cakepos111 then
+									pcall(function()
+										cakepos111 = game.Workspace.Enemies:FindFirstChild(v.name):FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0, 30, 0)
+									end)
+								end
+								
+								Sex_Tween = TP1(cakepos111)
+								Sex_Tween:Play()
+							end
+						end
 					end
 				end
 			end
