@@ -4685,6 +4685,7 @@ end
 									repeat
 										task.wait()
 										EquipWeapon(_G.SelectWeapon)
+										AutoHaki()
 										Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
 										Sex_Tween:Play()
 										if _G.FastAttack then
