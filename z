@@ -4667,6 +4667,17 @@ end
 						end
 					end
 				else
+					if _G.questkata then
+						if  game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+							game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", "CakeQuest2", 2)
+								print("nhan nv")
+						elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+							if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Head Baker") then
+								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+							end
+						end
+					end
+					local cakepos111 = nil
 					if game:GetService("Workspace").Enemies:FindFirstChild("Cookie Crafter") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Guard") or game:GetService("Workspace").Enemies:FindFirstChild("Baking Staff") or game:GetService("Workspace").Enemies:FindFirstChild("Head Baker") then
 						for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
 							if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
