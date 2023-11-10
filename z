@@ -4621,20 +4621,56 @@ end
 			
 		end    
 	})
-	spawn(function()
-		pcall(function()
-			while task.wait() do
-				if _G.cakeprince then
 					--[[if _G.questkata then
 						if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
 							game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", "CakeQuest2", 2)
 						end
 					end]]
-					game.ReplicatedStorage.Remotes.CommF_:InvokeServer("CakePrinceSpawner")
-					if game.ReplicatedStorage:FindFirstChild("Cake Prince") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
-						if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
-							for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
-								if _G.cakeprince and v.Name == "Cake Prince" and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+	spawn(function()
+		while task.wait() do
+			if _G.cakeprince then
+				game.ReplicatedStorage.Remotes.CommF_:InvokeServer("CakePrinceSpawner")
+				if game.ReplicatedStorage:FindFirstChild("Cake Prince") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
+					if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
+						for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+							if _G.cakeprince and v.Name == "Cake Prince" and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+								repeat
+									task.wait()
+									EquipWeapon(_G.SelectWeapon)
+									Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+									Sex_Tween:Play()
+									if _G.FastAttack then
+										FastAttack = true
+										elseif _G.SuperFastAttack then
+										SFastAttack = true
+									end	
+									AutoHaki()
+									v.HumanoidRootPart.Transparency = 1
+									MagnetDought = true
+									PosMonDoughtOpenDoor = v.HumanoidRootPart.CFrame
+									
+									game:GetService 'VirtualUser':CaptureController()
+									game:GetService 'VirtualUser':Button1Down(Vector2.new(1280, 672),
+										workspace.CurrentCamera.CFrame)
+								until not _G.cakeprince or not v.Parent or v.Humanoid.Health <= 0
+								if _G.FastAttack then
+									FastAttack = false
+									elseif _G.SuperFastAttack then
+									SFastAttack = false
+								end	
+							end
+						end
+					else
+						if game:GetService("Workspace").Map.CakeLoaf.BigMirror.Other.Transparency == 0 and (CFrame.new(-1990.672607421875, 4532.99951171875, -14973.6748046875).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude >= 2000 then
+							Sex_Tween = TP1(CFrame.new(-2151.82153, 149.315704, -12404.9053))
+							Sex_Tween:Play()
+						end
+					end
+				else
+					if game:GetService("Workspace").Enemies:FindFirstChild("Cookie Crafter") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Guard") or game:GetService("Workspace").Enemies:FindFirstChild("Baking Staff") or game:GetService("Workspace").Enemies:FindFirstChild("Head Baker") then
+						for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+							if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+								if (v.Name == "Cookie Crafter" or v.Name == "Cake Guard" or v.Name == "Baking Staff" or v.Name == "Head Baker") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
 									repeat
 										task.wait()
 										EquipWeapon(_G.SelectWeapon)
@@ -4645,14 +4681,12 @@ end
 											elseif _G.SuperFastAttack then
 											SFastAttack = true
 										end	
-										AutoHaki()
-										v.HumanoidRootPart.Transparency = 1
-										MagnetDought = true
-										PosMonDoughtOpenDoor = v.HumanoidRootPart.CFrame
 										
-										game:GetService 'VirtualUser':CaptureController()
-										game:GetService 'VirtualUser':Button1Down(Vector2.new(1280, 672),
-											workspace.CurrentCamera.CFrame)
+										v.HumanoidRootPart.Transparency = 1
+										
+										MagnetDought = true
+									PosMonDoughtOpenDoor = v.HumanoidRootPart.CFrame
+										
 									until not _G.cakeprince or not v.Parent or v.Humanoid.Health <= 0
 									if _G.FastAttack then
 										FastAttack = false
@@ -4661,73 +4695,16 @@ end
 									end	
 								end
 							end
-						else
-							if game:GetService("Workspace").Map.CakeLoaf.BigMirror.Other.Transparency == 0 and (CFrame.new(-1990.672607421875, 4532.99951171875, -14973.6748046875).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude >= 2000 then
-								Sex_Tween = TP1(CFrame.new(-2151.82153, 149.315704, -12404.9053))
-								Sex_Tween:Play()
-							end
 						end
 					else
-						local cakepos = nil
-						if game:GetService("Workspace").Enemies:FindFirstChild("Cookie Crafter") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Guard") or game:GetService("Workspace").Enemies:FindFirstChild("Baking Staff") or game:GetService("Workspace").Enemies:FindFirstChild("Head Baker") then
-							
-							for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
-								if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-									if (v.Name == "Cookie Crafter" or v.Name == "Cake Guard" or v.Name == "Baking Staff" or v.Name == "Head Baker") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-										repeat
-											task.wait()
-											EquipWeapon(_G.SelectWeapon)
-											Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
-											Sex_Tween:Play()
-											if _G.FastAttack then
-												FastAttack = true
-												elseif _G.SuperFastAttack then
-												SFastAttack = true
-											end	
-											AutoHaki()
-											v.HumanoidRootPart.Transparency = 1
-											
-											MagnetDought = true
-										PosMonDoughtOpenDoor = v.HumanoidRootPart.CFrame
-											
-										until not _G.cakeprince or not v.Parent or v.Humanoid.Health <= 0
-										if _G.FastAttack then
-											FastAttack = false
-											elseif _G.SuperFastAttack then
-											SFastAttack = false
-										end	
-									end
-								end
-							end
-						else
-							for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do 
-								if (v.Name == "Cookie Crafter" or v.Name == "Cake Guard" or v.Name == "Baking Staff" or v.Name == "Head Baker") then
-									if not cakepos then
-										pcall(function()
-											cakepos = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild(v.name).WorldPivot.Position) * CFrame.new(0, 15, 0)
-										end)
-									end
-									if not cakepos then
-										pcall(function()
-											cakepos = game.Workspace.Enemies:FindFirstChild(v.name):FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0, 15, 0)
-										end)
-									end
-									
-									Sex_Tween = TP1(cakepos)
-									Sex_Tween:Play()
-								end
-							end
-							
-						end
+						local cakepos = CFrame.new(-2077, 252, -12373)
+						Sex_Tween = TP1(cakepos)
+						Sex_Tween:Play()
 					end
 				end
 			end
-		end)
+		end
 	end)
-			
-		
-			
-			
 	M:AddSection({
 		Name = "Farm Material"
 	})
