@@ -2169,7 +2169,7 @@ function SourceCode()
 		elseif Distance < 250 then
 			Speed = 700
 		elseif Distance < 500 then
-			Speed = 300
+			Speed = 500
 		elseif Distance < 750 then
 			Speed = 250
 		elseif Distance >= 1000 then
@@ -3320,7 +3320,7 @@ end
 			
 			coroutine.wrap(function()
 				spawn(function()
-					while wait(0.5) do
+					while wait(0.3) do
 							if _G.SuperFastAttack and SFastAttack then
 								if i <= 10 then
 									pcall(function()
