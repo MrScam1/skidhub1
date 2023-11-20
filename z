@@ -832,8 +832,6 @@ Tab:AddToggle({
                                 Plr.Character.Humanoid:EquipTool(tool)
                             end
                         
-                            
-                        
                         until Config.cannonfarmboth == false
                         
                     end
