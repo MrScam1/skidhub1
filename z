@@ -844,37 +844,15 @@ Tab:AddToggle({
             while task.wait(0) do
                 pcall(function()
                     if Config.cannonfarmboth then
-                        if game.Players.LocalPlayer.Character.Humanoid.Health > 0 and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 100 then
-                           wait(5)
-                            for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                                if v.ClassName == "Tool" then
-                                    v:Destroy()
-                                end
-                            end
-                            wait(1)
-                            if not game.Players.LocalPlayer.Backpack:FindFirstChild("Cannon Ball")  then
-                                for i=1,4 do
-                                    game:GetService("Players").LocalPlayer.Character.Weapons:FireServer()
-                                end
-                            end
-                        repeat wait(0.25)
-                            local toolname = "Cannon Ball"
-                            local Plr = game:GetService("Players").LocalPlayer
-                            wait()
-                            if Plr.Backpack:FindFirstChild(toolname) and not Plr.Character:FindFirstChild(toolname) and not Plr.Character:FindFirstChildOfClass("Tool") then
-                                local tool = Plr.Backpack:FindFirstChild(toolname)
-                                Plr.Character.Humanoid:EquipTool(tool)
-                            end
-                            wait(2)
-                            game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
-                            wait(1)
+                      local toolname = "Cannon Ball"
+                        local Plr = game:GetService("Players").LocalPlayer
+                        wait(0.5)
+                        if Plr.Backpack:FindFirstChild(toolname) and not Plr.Character:FindFirstChild(toolname) and not Plr.Character:FindFirstChildOfClass("Tool") then
+                            local tool = Plr.Backpack:FindFirstChild(toolname)
                             Plr.Character.Humanoid:EquipTool(tool)
-                            
-                        
-                        until Config.cannonfarmboth == false
-                        
+                        end  
                     end
-                end
+                
                 end)
             end
         end)
