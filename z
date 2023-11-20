@@ -150,8 +150,29 @@ spawn(function()
 
 end);
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-
-local Window = OrionLib:MakeWindow({Name = "Title of the library", HidePremium = false, SaveConfig = false, ConfigFolder = ""})
+local FolderName = "OPL";
+local ConfigFile = game.Players.LocalPlayer.Name..".txt";
+local function Load()
+    return (game:GetService("HttpService")):JSONDecode(readfile(FolderName .. "/" .. ConfigFile));
+end;
+local Config = {};
+local function Save()
+    writefile(FolderName .. "/" .. ConfigFile, (game:GetService("HttpService")):JSONEncode(Config));
+end;
+if isfile(FolderName .. "/" .. ConfigFile) then
+    local Decode = Load();
+    for i, v in pairs(Decode) do
+        Config[i] = v;
+    end;
+elseif not isfile((FolderName .. "/" .. ConfigFile)) then
+    writefile(FolderName .. "/" .. ConfigFile, (game:GetService("HttpService")):JSONEncode(Config));
+end;
+local function SaveSetting()
+if Config.SaveSetting then
+Save()
+end
+end
+local Window = OrionLib:MakeWindow({Name = "Title of the library", HidePremium = false, SaveConfig = true, ConfigFolder = FolderName})
 
 local Tab = Window:MakeTab({
 	Name = "Main",
@@ -192,7 +213,7 @@ Tab:AddToggle({
     Default = Config.safezone or false,
     Callback = function(Value)
         Config.safezone = Value
-        
+        SaveSetting()
         spawn(function()
             while true do wait()
                 if Config.safezone then
@@ -220,7 +241,7 @@ Name = "Auto Stats Farm",
 Default = Config.mixer or false,
 Callback = function(Value)
 	Config.mixer = Value
-    
+    SaveSetting()
 	if Config.mixer then
         getgenv().drinkcheck = true
 
@@ -241,6 +262,7 @@ Callback = function(Value)
                 end
             end)
         end)
+        
         spawn(function()
             pcall(function()
                 while true do wait()
@@ -650,7 +672,7 @@ local Section = Tab:AddSection({
 		Callback = function(Value)
 	    Config.cannonfarm = Value
 	
-            
+            SaveSetting()
 
         spawn(function()
             pcall(function()
@@ -815,14 +837,26 @@ Tab:AddToggle({
     Callback = function(Value)
     Config.cannonfarmboth = Value
 
-        
+        SaveSetting()
 
     spawn(function()
         pcall(function()
             while task.wait(0) do
                 pcall(function()
                     if Config.cannonfarmboth then
-                      
+                        if game.Players.LocalPlayer.Character.Humanoid.Health > 0 and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 100 then
+                           wait(5)
+                            for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                                if v.ClassName == "Tool" then
+                                    v:Destroy()
+                                end
+                            end
+                            wait(1)
+                            if not game.Players.LocalPlayer.Backpack:FindFirstChild("Cannon Ball")  then
+                                for i=1,4 do
+                                    game:GetService("Players").LocalPlayer.Character.Weapons:FireServer()
+                                end
+                            end
                         repeat wait(0.25)
                             local toolname = "Cannon Ball"
                             local Plr = game:GetService("Players").LocalPlayer
@@ -831,6 +865,11 @@ Tab:AddToggle({
                                 local tool = Plr.Backpack:FindFirstChild(toolname)
                                 Plr.Character.Humanoid:EquipTool(tool)
                             end
+                            wait(1)
+                            game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+                            wait(0.3)
+                            Plr.Character.Humanoid:EquipTool(tool)
+                            
                         
                         until Config.cannonfarmboth == false
                         
@@ -986,7 +1025,7 @@ Tab:AddToggle({
 	Default = Config.cannonslow or false,
 	Callback = function(Value)
         Config.cannonslow = Value
-        
+        SaveSetting()
         spawn(function()
             while task.wait(0) do
                 pcall(function()
@@ -1101,7 +1140,7 @@ Tab:AddToggle({
 	Default = Config.autocannonplr or false,
 	Callback = function(Value)
     Config.autocannonplr = Value
-    
+    SaveSetting()
  
 spawn(function() -- autofarm teleport cannon
     while wait(0) do
@@ -1266,7 +1305,7 @@ Tab:AddSlider({
 	ValueName = "hits",
 	Callback = function(Value)
 		Config.yoruhits = Value
-        
+        SaveSetting()
 	end    
 })
 Tab:AddToggle({
@@ -1275,7 +1314,7 @@ Tab:AddToggle({
 	Callback = function(Value)
 
     Config.Yoru = Value
-    
+    SaveSetting()
 
 local Yoru = plr.Character:FindFirstChild("Yoru")
 local Environment
@@ -1310,7 +1349,7 @@ Tab:AddSlider({
 	ValueName = "seconds",
 	Callback = function(Value)
 		Config.cdyoru = Value
-        
+        SaveSetting()
     end    
 })
 
@@ -1319,7 +1358,7 @@ Tab2:AddToggle({
 	Default = Config.antispam or false,
 	Callback = function(Value)
 	Config.antispam = Value
-    
+    SaveSetting()
 	if Config.antispam then
 spawn(function() --
     while true do wait()
@@ -1345,7 +1384,7 @@ Tab2:AddToggle({
 	Callback = function(Value)
     Config.autoskillvip = Value
     _G.autoskillvip = Value
-    
+    SaveSetting()
     end
 })
 local Section = Tab3:AddSection({
@@ -1440,7 +1479,7 @@ Tab3:AddDropdown({
     Default = getgenv().selectdrink or false,
 	Callback = function(Value)
         getgenv().selectdrink = Value
-        
+        SaveSetting()
     end
 })
 
@@ -1454,7 +1493,7 @@ Tab3:AddSlider({
 	ValueName = "drink",
 	Callback = function(amount)
 		getgenv().amountdrink = amount
-        
+        SaveSetting()
 	end    
 })
 
@@ -1507,7 +1546,7 @@ Tab3:AddButton({
     Default = Config.instdrink or false,
 	Callback = function(Value)
         Config.instdrink = Value
-        
+        SaveSetting()
         spawn(function()
         
             for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
@@ -1531,7 +1570,7 @@ Tab2:AddToggle({
 	Callback = function(Value)
 		Config.respawn = Value
         _G.respawn = Value
-        
+        SaveSetting()
         
         spawn(function()--autorespawn
             while wait() do
@@ -1557,7 +1596,7 @@ Tab2:AddToggle({
 	Callback = function(Value)
 		Config.fixspam = Value
 		_G.fixspam = Value
-        
+        SaveSetting()
 		if Value then
 					OrionLib:MakeNotification({
 			Name = "Auto Fix Spam",
@@ -1592,7 +1631,7 @@ Tab:AddDropdown({
     Default = Config.choosefruit or false,
 	Callback = function(Value)
 		Config.choosefruit = Value
-        
+        SaveSetting()
 	end    
 })
 Tab:AddToggle({
@@ -1600,7 +1639,7 @@ Tab:AddToggle({
 	Default = Config.tpmob or false,
 	Callback = function(Value)
 	Config.tpmob = Value
-    
+    SaveSetting()
 	spawn(function()
     pcall(function()
         while true do wait()
@@ -1646,7 +1685,7 @@ Tab2:AddToggle({
 	Callback = function(Value)
 	Config.noclip = Value
 	_G.noclip = Value
-    
+    SaveSetting()
 	spawn(function()
     pcall(function()
         while true do wait()
@@ -1679,7 +1718,7 @@ Tab:AddTextbox({
 	TextDisappear = true,
 	Callback = function(Value)
 		Config.timespam = Value
-        
+        SaveSetting()
 	end	  
 })
 Tab:AddToggle({
@@ -1687,7 +1726,7 @@ Tab:AddToggle({
 	Default = Config.spamskill or false,
 	Callback = function(Value)
 	Config.spamskill = Value
-    
+    SaveSetting()
 	spawn(function()
 	if Config.spamskill then
 	_G.noclip = true
@@ -1981,7 +2020,7 @@ local haha = Tab4:AddDropdown({
 	Options = findplr(),
 	Callback = function(Value)
 		_G.playerr = Value
-       
+       SaveSetting()
 		Config.Players = _G.playerr
 	end    
 })
@@ -2000,7 +2039,7 @@ Tab4:AddDropdown({
     Default = Config.methodtp or false,
 	Callback = function(Value)
 		Config.methodtp = Value
-        
+        SaveSetting()
 	end    
 })
 
@@ -2009,7 +2048,7 @@ Tab4:AddToggle({
 	Default = Config.tpplayer or false,
 	Callback = function(Value)
 	Config.tpplayer = Value
-    
+    SaveSetting()
 	
 spawn(function()
     pcall(function()
@@ -2062,7 +2101,7 @@ Tab4:AddToggle({
 	Default = Config.Light or false,
 	Callback = function(Value)
 	Config.Light = Value
-    
+    SaveSetting()
 	
 	
 spawn(function()
@@ -2132,7 +2171,7 @@ Tab4:AddToggle({
 	Default = Config.Quake or false,
 	Callback = function(Value)
 	Config.Quake = Value
-    
+    SaveSetting()
 	spawn(function()
     pcall(function()
         while true do wait()
@@ -2197,7 +2236,7 @@ Tab4:AddToggle({
 	Default = Config.Quakeall or false,
 	Callback = function(Value)
         Config.Quakeall = Value
-        
+        SaveSetting()
 spawn(function() -- auto farm quake
     while task.wait(0) do
         pcall(function()
@@ -2238,7 +2277,7 @@ Tab4:AddToggle({
 	Default = Config.Gas or false,
 	Callback = function(Value)
         Config.Gas = Value
-        
+        SaveSetting()
         spawn(function()
             pcall(function()
                 while true do wait()
@@ -2309,7 +2348,7 @@ Tab4:AddToggle({
 	Callback = function(Value)
 
     Config.Magma = Value
-    
+    SaveSetting()
     spawn(function()
         pcall(function()
             while true do wait()
@@ -2369,7 +2408,7 @@ Tab4:AddToggle({
 	Default = Config.bringplr or false,
 	Callback = function(Value)
         Config.bringplr = Value
-        
+        SaveSetting()
         spawn(function() -- autofarm teleport cannon
             while wait(0) do
                 pcall(function()
@@ -2398,7 +2437,7 @@ Tab4:AddToggle({
 	Default = Config.cannonkillplr or false,
 	Callback = function(Value)
         Config.cannonkillplr = Value
-        
+        SaveSetting()
         
     
         spawn(function()
@@ -2536,7 +2575,7 @@ Tab4:AddTextbox({
 	TextDisappear = true,
 	Callback = function(Value)
 		Config.sizehitboxes = Value
-        
+        SaveSetting()
 	end	  
 })
 
@@ -2546,7 +2585,7 @@ Tab4:AddToggle({
 	Default = Config.hitboxplrs or false,
 	Callback = function(Value)
 	Config.hitboxplrs = Value
-    
+    SaveSetting()
     spawn(function()
         game:GetService('RunService').RenderStepped:connect(function()
         if Config.hitboxplrs then
@@ -2578,7 +2617,7 @@ Tab5:AddToggle({
     Default = Config.getsam or false,
     Callback = function(Value)
         Config.getsam = Value
-        
+        SaveSetting()
         spawn(function()
             pcall(function()
                 while true do wait()
@@ -2620,7 +2659,7 @@ Tab5:AddToggle({
     Default = Config.findsam or false,
     Callback = function(Value)
         Config.findsam = Value
-        
+        SaveSetting()
         spawn(function()
             pcall(function()
                 while true do wait()
@@ -2650,7 +2689,7 @@ Tab:AddToggle({
     Default = Config.fish or false,
     Callback = function(Value)
         Config.fish = Value
-        
+        SaveSetting()
         _G.fish = Value
        spawn(function()
         if Config.fish then
@@ -2722,7 +2761,7 @@ Tab:AddToggle({
     Default = Config.sellfish or false,
     Callback = function(Value)
         Config.sellfish = Value
-        
+        SaveSetting()
         if Config.sellfish then
         while true do wait()
         for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
@@ -2759,7 +2798,7 @@ Tab6:AddToggle({
 	Default = Config.quest or false,
 	Callback = function(Value)
 		Config.quest = Value
-        
+        SaveSetting()
 	end    
 })
 
@@ -2779,7 +2818,7 @@ Tab6:AddToggle({
 	Default = Config.package or false,
 	Callback = function(Value)
         Config.package = Value
-        
+        SaveSetting()
 spawn(function()--auto package
     while wait() do
         pcall(function()
@@ -2892,7 +2931,7 @@ Tab5:AddToggle({
 	Default = Config.bringfruit or false,
 	Callback = function(Value)
         Config.bringfruit = Value
-        
+        SaveSetting()
         spawn(function()
             pcall(function()
                     while true do wait(0.1)
@@ -2950,7 +2989,7 @@ Tab7:AddToggle({
     Default = Config.tpss or false,
     Callback = function(Value)
         Config.tpss = Value
-        
+        SaveSetting()
         if Config.tpss then
             _G.respawn = true
         end
@@ -2986,7 +3025,7 @@ Tab8:AddToggle({
     Default = Config.autorejoin or false,
     Callback = function(Value)
         Config.autorejoin = Value
-        
+        SaveSetting()
         if Config.autorejoin then
             spawn(function()
                 pcall(function()
@@ -3015,7 +3054,7 @@ Tab8:AddToggle({
     Default = Config.SaveSetting or false,
     Callback = function(Value)
         Config.SaveSetting = Value
-        
+        Save()
 
     end
 })
