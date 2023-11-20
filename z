@@ -839,27 +839,22 @@ Tab:AddToggle({
 
         SaveSetting()
 
+   
     spawn(function()
-        pcall(function()
             while task.wait(0) do
                 pcall(function()
                     if Config.cannonfarmboth then
-                      local toolname = "Cannon Ball"
+                        local toolname = "Cannon Ball"
                         local Plr = game:GetService("Players").LocalPlayer
                         wait(0.5)
                         if Plr.Backpack:FindFirstChild(toolname) and not Plr.Character:FindFirstChild(toolname) and not Plr.Character:FindFirstChildOfClass("Tool") then
                             local tool = Plr.Backpack:FindFirstChild(toolname)
                             Plr.Character.Humanoid:EquipTool(tool)
-                        end  
+                        end
                     end
-                
                 end)
             end
         end)
-    end)
-
-    
-    
     
     spawn(function()
     while task.wait(0) do
