@@ -901,29 +901,6 @@ Tab:AddToggle({
     end)
     end
     end)
-    
-    
-    
-    
-    
-    spawn(function()
-    while task.wait(0) do
-    pcall(function()
-        if Config.cannonfarmboth then
-            task.wait(0.1)
-            if game.Players.LocalPlayer.Backpack:FindFirstChild("Cannon Ball") then
-                for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v.Name ~= "Cannon" and v.Name ~= "Cannon Ball" then
-                        v:Destroy()
-                    end
-                end
-            end
-        end
-    end)
-    end
-    end)
-    
-    
     spawn(function()
     while wait(0) do
     pcall(function()
