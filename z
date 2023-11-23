@@ -3,7 +3,7 @@ repeat task.wait() until game.Players
 repeat task.wait() until game.Players.LocalPlayer
 spawn(function()
     pcall(function()
-        while task.wait(1800) do 
+        while task.wait(2000) do 
             local PlaceID = game.PlaceId
             local AllIDs = {}
             local foundAnything = ""
