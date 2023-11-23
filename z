@@ -171,24 +171,28 @@ local BlacklistedPlayers = {
     "Natsudragn331",
 
 }
+spawn(function()
+    pcall(function()
+        while true do wait()
+            for i, v in pairs(Players:GetPlayers()) do 
+                if table.find(BlacklistedPlayers, v.Name) then 
+                    Players.LocalPlayer:Kick(v.Namw)
+                end
+            end
 
-for i, v in pairs(Players:GetPlayers()) do 
-    if table.find(BlacklistedPlayers, v.Name) then 
-        Players.LocalPlayer:Kick(v.Namw)
-    end
-end
+            Players.PlayerAdded:Connect(function(v)
+                if table.find(BlacklistedPlayers, v.Name) then 
+                    Players.LocalPlayer:Kick(v.name)
+                end
+            end)
 
-Players.PlayerAdded:Connect(function(v)
-    if table.find(BlacklistedPlayers, v.Name) then 
-        Players.LocalPlayer:Kick(v.name)
-    end
+            local GC = getconnections
+            for i, v in pairs(GC(game.Players.LocalPlayer.Idled)) do
+                v:Disable()
+            end
+        end
+    end)
 end)
-
-local GC = getconnections
-for i, v in pairs(GC(game.Players.LocalPlayer.Idled)) do
-    v:Disable()
-end
-
 
 Config = {};
 function EquipWeapon(Tool)
