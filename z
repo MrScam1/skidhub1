@@ -176,7 +176,7 @@ spawn(function()
         while true do wait()
             for i, v in pairs(Players:GetPlayers()) do 
                 if table.find(BlacklistedPlayers, v.Name) then 
-                    Players.LocalPlayer:Kick(v.Namw)
+                    Players.LocalPlayer:Kick(v.Name)
                 end
             end
 
