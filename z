@@ -977,7 +977,7 @@ Tab:AddToggle({
             fireclickdetector(workspace.Island11.CentralBuilding.Doors.Button.Button.ClickDetector)
             task.wait(0)
             if not game.Players.LocalPlayer.PlayerGui.HealthBar.Frame.Status:FindFirstChild("BusoHaki") then
-                wait(5)
+                wait(2)
                 game.workspace.UserData["User_" .. game.Players.LocalPlayer.UserId].UpdateHaki:FireServer()
             end
             if game.Players.LocalPlayer.PlayerGui.HealthBar.Frame.Status:FindFirstChild("BusoHaki") then
