@@ -2706,8 +2706,9 @@ Tab:AddToggle({
         _G.fish = Value
        spawn(function()
         if Config.fish then
+			while true do wait(0.1)
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(188679, 216, 176128)
-        while true do wait(0.1)
+        
             
        end
     end
