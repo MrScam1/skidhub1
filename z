@@ -1602,9 +1602,11 @@ Tab2:AddToggle({
             while wait() do
                 if Config.respawn or _G.respawn then
                     pcall(function()
-                        if game:GetService("Players").LocalPlayer.PlayerGui.Load.Frame.Visible == true then
-                            for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Load.Frame.Load.MouseButton1Click)) do
-                                v.Function()
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 1000 then
+                            if game:GetService("Players").LocalPlayer.PlayerGui.Load.Frame.Visible == true then
+                                for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Load.Frame.Load.MouseButton1Click)) do
+                                    v.Function()
+                                end
                             end
                         end
                     end)
