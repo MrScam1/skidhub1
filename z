@@ -918,9 +918,9 @@ Tab:AddToggle({
                         wait(0.5)
                         if Plr.Backpack:FindFirstChild(toolname) and not Plr.Character:FindFirstChild(toolname) and not Plr.Character:FindFirstChildOfClass("Tool") then
                             local tool = Plr.Backpack:FindFirstChild(toolname)
-                            repeat wait()
+                           
                                 Plr.Character.Humanoid:EquipTool(tool)
-                            until game.Players.LocalPlayer.Character.Humanoid.Health < 0 
+
                         end
                     end
                 end)
