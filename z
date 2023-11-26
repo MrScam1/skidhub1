@@ -284,22 +284,21 @@ Tab:AddToggle({
         Config.safezone = Value
         SaveSetting()
         spawn(function()
-            while true do wait()
-                if Config.safezone then
-                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 100 then
-                    
-                   
-                        for i,v in pairs(game:GetService("Workspace").ISLAND:GetChildren()) do
-                            if v.Name == "Base1" then
-                                repeat wait()
-                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0,6,0)
-                                until Config.safezone == false or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 100 or game.Players.LocalPlayer.Character.Humanoid.Health <= 0
+            pcall(function()
+                while true do wait()
+                    if Config.safezone then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 100 then
+                            for i,v in pairs(game:GetService("Workspace").ISLAND:GetChildren()) do
+                                if v.Name == "Base1" then
+                                    repeat wait(5)
+                                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0,6,0)
+                                    until Config.safezone == false or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 100 or game.Players.LocalPlayer.Character.Humanoid.Health <= 0
+                                end
                             end
                         end
-                    end
+                    end   
                 end
-            wait(5)    
-            end
+            end)
         end)
     end
 })
@@ -1391,12 +1390,12 @@ Tab2:AddToggle({
 spawn(function() --
     while true do wait()
         if Config.antispam then
-        pcall(function()
-            repeat wait()
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new((math.random(-1000000, 1000000)), (math.random(500000, 1000000)), (math.random(-1000000, 1000000)))
-            until Config.antispam == false or game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 100  
-        end)
-    end
+            pcall(function()
+                repeat wait(1)
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new((math.random(-1000000, 1000000)), (math.random(500000, 1000000)), (math.random(-1000000, 1000000)))
+                until Config.antispam == false or game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 100  
+            end)
+        end
     end
 end)
 	end
