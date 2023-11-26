@@ -936,9 +936,9 @@ Tab:AddToggle({
                                     Plr.Character.Humanoid:EquipTool(tool)
                                 end
                                 
-                                wait(1.3)
-                                Plr.Character.Humanoid:EquipTool(tool)
                                 wait(0.5)
+                                Plr.Character.Humanoid:EquipTool(tool)
+                                wait(1.3)
                                 game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
                             
                             until Config.cannonfarmboth == false
