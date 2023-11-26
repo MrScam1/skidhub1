@@ -291,7 +291,9 @@ Tab:AddToggle({
                    
                         for i,v in pairs(game:GetService("Workspace").ISLAND:GetChildren()) do
                             if v.Name == "Base1" then
+                                repeat wait()
                                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0,6,0)
+                                until Config.safezone == false or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 100 or game.Players.LocalPlayer.Character.Humanoid.Health <= 0
                             end
                         end
                     end
@@ -966,7 +968,7 @@ Tab:AddToggle({
                             end
                         end
                     end
-                until Config.cannonfarmboth == false or game.Players.LocalPlayer.Character.Humanoid.Health == 0
+                until Config.cannonfarmboth == false or game.Players.LocalPlayer.Character.Humanoid.Health <= 0
             end
         end)
         end
@@ -1107,7 +1109,7 @@ Tab:AddToggle({
                                     end
                                 end
                             end
-                        until Config.cannonslow == false or game.Players.LocalPlayer.Character.Humanoid.Health == 0
+                        until Config.cannonslow == false or game.Players.LocalPlayer.Character.Humanoid.Health <= 0
                     end
                 end)
             end
@@ -1268,7 +1270,7 @@ pcall(function()
                     end
                 end
             end
-        until Config.autocannonplr == false or game.Players.LocalPlayer.Character.Humanoid.Health == 0
+        until Config.autocannonplr == false or game.Players.LocalPlayer.Character.Humanoid.Health <= 0
     end
 end)
 end
@@ -1385,22 +1387,18 @@ Tab2:AddToggle({
 	Callback = function(Value)
 	Config.antispam = Value
     SaveSetting()
-	if Config.antispam then
+	
 spawn(function() --
     while true do wait()
-   
+        if Config.antispam then
         pcall(function()
-            
-                repeat wait()
+            repeat wait()
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new((math.random(-1000000, 1000000)), (math.random(500000, 1000000)), (math.random(-1000000, 1000000)))
             until Config.antispam == false or game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 100  
-            
-           
         end)
     end
+    end
 end)
-
-end
 	end
 })
 Tab2:AddToggle({
@@ -1603,7 +1601,7 @@ Tab2:AddToggle({
                 if Config.respawn or _G.respawn then
                     pcall(function()
                         if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 1000 then
-                            wait(10)
+                            wait(20)
                             if game:GetService("Players").LocalPlayer.PlayerGui.Load.Frame.Visible == true then
                                 for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Load.Frame.Load.MouseButton1Click)) do
                                     v.Function()
@@ -2164,29 +2162,7 @@ spawn(function()
                         }
                         
                         game:GetService("Players").LocalPlayer.Character.Powers.Light.RemoteEvent:FireServer(unpack(args))
-                        --2
-                        local args = {
-                            [1] = tonumber(serializeTable(remotes)),
-                            [2] = "LightPower2",
-                            [3] = "StartCharging",
-                            [4] = CFrame.new(plr2.Character.HumanoidRootPart.Position),
-                            [5] = plr2.Character.HumanoidRootPart,
-                            [6] = "Right"
-                        }
-                        
-                        game:GetService("Players").LocalPlayer.Character.Powers.Light.RemoteEvent:FireServer(unpack(args))
-                        
-                        
-                        local args = {
-                            [1] = tonumber(serializeTable(remotes)),
-                            [2] = "LightPower2",
-                            [3] = "StopCharging",
-                            [4] = CFrame.new(plr2.Character.HumanoidRootPart.Position),
-                            [5] = plr2.Character.HumanoidRootPart,
-                            [6] = 100
-                        }
-                        
-                        game:GetService("Players").LocalPlayer.Character.Powers.Light.RemoteEvent:FireServer(unpack(args))
+                       
                     end
                 end
             end)
@@ -2230,28 +2206,7 @@ Tab4:AddToggle({
                     }
             
                     game:GetService("Players").LocalPlayer.Character.Powers.Quake.RemoteEvent:FireServer(unpack(args))
-                    --2
-                    local args = {
-                        [1] = tonumber(serializeTable(remotes)),
-                        [2] = "QuakePower10",
-                        [3] = "StartCharging",
-                        [5] = "Right"
-                    }
-            
-                    game:GetService("Players").LocalPlayer.Character.Powers.Quake.RemoteEvent:FireServer(unpack(args))
                     
-            
-                    local args = {
-                        [1] = tonumber(serializeTable(remotes)),
-                        [2] = "QuakePower10",
-                        [3] = "StopCharging",
-                        [4] = plr2.Character.HumanoidRootPart,
-                        [5] = CFrame.new(plr2.Character.HumanoidRootPart.Position),
-                        [6] = 100,
-                        [7] = plr2.Character.HumanoidRootPart.Position
-                    }
-            
-                    game:GetService("Players").LocalPlayer.Character.Powers.Quake.RemoteEvent:FireServer(unpack(args))
                 end
             end)
         end
