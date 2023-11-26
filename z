@@ -935,9 +935,9 @@ Tab:AddToggle({
                                     local tool = Plr.Backpack:FindFirstChild(toolname)
                                     Plr.Character.Humanoid:EquipTool(tool)
                                 end
-                                wait(0.6)
+                                wait(1)
                                 game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
-                                wait(0.3)
+                                wait(0.5)
                                 Plr.Character.Humanoid:EquipTool(tool)
                                 
                             
