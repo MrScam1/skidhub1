@@ -935,11 +935,11 @@ Tab:AddToggle({
                                     local tool = Plr.Backpack:FindFirstChild(toolname)
                                     Plr.Character.Humanoid:EquipTool(tool)
                                 end
-                                wait(1)
-                                game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+                                
                                 wait(0.5)
                                 Plr.Character.Humanoid:EquipTool(tool)
-                                
+                                wait(1)
+                                game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
                             
                             until Config.cannonfarmboth == false
                             
