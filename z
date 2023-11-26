@@ -1047,9 +1047,11 @@ Tab:AddToggle({
                         
                         for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
                             if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
-                                
-                           
+                                v.HumanoidRootPart.Transparency = 1
+                                v.Humanoid:ChangeState(11)
+								v.Humanoid:ChangeState(14)
                                 v.HumanoidRootPart.CanCollide = false
+								v.Head.CanCollide = false
                                 v.HumanoidRootPart.Size = Vector3.new(30, 30, 30)
                                 v:FindFirstChild("HumanoidRootPart").Anchored = true
                                 v:FindFirstChild("HumanoidRootPart").CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame*CFrame.new(0,20,-30)
@@ -1057,7 +1059,11 @@ Tab:AddToggle({
                                     v.HumanoidRootPart.Size = Vector3.new(0, 0, 0)
                                     v:Destroy()
                                 end
-                             
+                                if v.Humanoid:FindFirstChild("Animator") then
+									v.Humanoid.Animator:Destroy()
+								end
+								v.Humanoid:ChangeState(11)
+								v.Humanoid:ChangeState(14)
                             end
                         end
                     end
@@ -1071,14 +1077,14 @@ Tab:AddToggle({
                 if Config.cannonfarmboth then
                     for i,v in pairs(game.Players:GetChildren()) do
                         if v.Name ~= game.Players.LocalPlayer.Name then
-                            v.Character.HumanoidRootPart.Transparency = 0.9
+                            v.Character.HumanoidRootPart.Transparency = 1
                             v.Character.HumanoidRootPart.Color = Color3.fromRGB(255, 255, 255)
                             v.Character.HumanoidRootPart.CanCollide = false
                             v.Character.HumanoidRootPart.Size = Vector3.new(10, 10, 10)
                             v.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame*CFrame.new(0,20,-30)
                             if v.Character.Humanoid.Health == 0 then
                                 v.Character.HumanoidRootPart.Size = Vector3.new(2, 2, 1)
-                                v.Character.HumanoidRootPart.Transparency = 1
+                                
                             end
                         end
                     end
