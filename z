@@ -910,33 +910,22 @@ Tab:AddToggle({
 
    
         spawn(function()
-            pcall(function()
-                while task.wait(0) do
-                    pcall(function()
-                        if Config.cannonfarmboth then
-                            if game.Players.LocalPlayer.Character.Humanoid.Health > 0 and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 100 then
-                               
-                            repeat wait(0.25)
-                                local toolname = "Cannon Ball"
-                                local Plr = game:GetService("Players").LocalPlayer
-                                wait()
-                                if Plr.Backpack:FindFirstChild(toolname) and not Plr.Character:FindFirstChild(toolname) and not Plr.Character:FindFirstChildOfClass("Tool") then
-                                    local tool = Plr.Backpack:FindFirstChild(toolname)
-                                    Plr.Character.Humanoid:EquipTool(tool)
-                                end
- 
-                            until Config.cannonfarmboth == false
-                            
+            while task.wait(0) do
+                pcall(function()
+                    if Config.cannonfarmboth then
+                        local toolname = "Cannon Ball"
+                        local Plr = game:GetService("Players").LocalPlayer
+                        wait(0.5)
+                        if Plr.Backpack:FindFirstChild(toolname) and not Plr.Character:FindFirstChild(toolname) and not Plr.Character:FindFirstChildOfClass("Tool") then
+                            local tool = Plr.Backpack:FindFirstChild(toolname)
+                            repeat wait()
+                                Plr.Character.Humanoid:EquipTool(tool)
+                            until game.Players.LocalPlayer.Character.Humanoid.Health < 0 
                         end
                     end
-                    end)
-                end
-            end)
+                end)
+            end
         end)
-    
-        
-        
-        
         spawn(function()
         while task.wait(0) do
         pcall(function()
