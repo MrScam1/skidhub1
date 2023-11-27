@@ -3002,7 +3002,7 @@ Tab7:AddToggle({
     end
 })
 
-Tab8:AddToggle({
+chitchit = Tab8:AddToggle({
     Name = "Auto Rejoin(when kick)",
     
     Default = Config.autorejoin or false,
@@ -3045,12 +3045,14 @@ spawn(function()
     pcall(function()
         while task.wait(0) do
             pcall(function()
-                if not Config.safezone and not Config.respawn and not Config.cannonfarmboth then
+                if not Config.safezone and not Config.respawn and not Config.cannonfarmboth and not Config.autorejoin then
                 cooltoggle1:Set(true)
                 wait(1)
                 cooltoggle2:Set(true)
                 wait(1)
                 cooltoggle:Set(true)
+                wait(1)
+                chitchit:Set(true)
                 end
             end)
         end
