@@ -3045,11 +3045,13 @@ spawn(function()
     pcall(function()
         while task.wait(0) do
             pcall(function()
+                if not Config.safezone and not Config.respawn and not Config.cannonfarmboth then
                 cooltoggle1:Set(true)
                 wait(1)
                 cooltoggle2:Set(true)
                 wait(1)
                 cooltoggle:Set(true)
+                end
             end)
         end
     end)
