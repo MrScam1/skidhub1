@@ -3046,6 +3046,7 @@ spawn(function()
         while task.wait(0) do
             pcall(function()
                 if not _G.respawn and not Config.safezone and not Config.cannonfarmboth and not Config.autorejoin then
+                    wait(5)
                     cooltoggle1:Set(true)
                     
                     cooltoggle2:Set(true)
