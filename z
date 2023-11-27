@@ -276,7 +276,7 @@ OrionLib:MakeNotification({
 })
 
 
-Tab:AddToggle({
+cooltoggle2 = Tab:AddToggle({
     Name = "Safe Zone",
     
     Default = Config.safezone or false,
@@ -900,7 +900,7 @@ local Section = Tab:AddSection({
 	end
 })
 --cannon and plr
-Tab:AddToggle({
+cooltoggle = Tab:AddToggle({
     Name = "Cannon Ball Farm Mobs and Players (Fast)",
     
     Default = Config.cannonfarmboth or false,
@@ -1587,7 +1587,7 @@ end
 
 
 
-Tab2:AddToggle({
+cooltoggle1 = Tab2:AddToggle({
 	Name = "Auto Spawn",
 	Default = _G.respawn or Config.respawn or false,
 	Callback = function(Value)
@@ -3041,3 +3041,16 @@ Tab8:AddToggle({
 
     end
 })
+spawn(function()
+    pcall(function()
+        while task.wait(0) do
+            pcall(function()
+                cooltoggle1:Set(true)
+                wait(1)
+                cooltoggle2:Set(true)
+                wait(1)
+                cooltoggle:Set(true)
+            end)
+        end
+    end)
+end)
