@@ -3045,15 +3045,13 @@ spawn(function()
     pcall(function()
         while task.wait(0) do
             pcall(function()
-                if not Config.respawn then
                 cooltoggle1:Set(true)
-                elseif not Config.safezone then
+                wait(1)
                 cooltoggle2:Set(true)
-                elseif not Config.cannonfarmboth then
+                wait(1)
                 cooltoggle:Set(true)
-                elseif not Config.autorejoin then
+                wait(1)
                 chitchit:Set(true)
-                end
             end)
         end
     end)
