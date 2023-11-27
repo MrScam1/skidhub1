@@ -3046,11 +3046,11 @@ spawn(function()
         while task.wait(0) do
             pcall(function()
                 cooltoggle1:Set(true)
-                wait(1)
+                
                 cooltoggle2:Set(true)
-                wait(1)
+                
                 cooltoggle:Set(true)
-                wait(1)
+                
                 chitchit:Set(true)
             end)
         end
