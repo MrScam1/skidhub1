@@ -1926,7 +1926,7 @@ function findplr()
 	local players = {};
 	for i, v in pairs(game.Players:GetChildren()) do
         
-            if not table.find(players, v.Name)  then
+            if not table.find(players, v.Name) and v.name ~= game.Players.LocalPlayer.Name  then
                 table.insert(players, v.Name);
             end;
         
@@ -1979,7 +1979,7 @@ spawn(function()
                 if Config.tpplayer then
                 if Config.tpplayer and Config.methodtp ~= "" then
                     repeat wait()
-                        if (plr2.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 1000 then
+                        if (plr2.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 1000 and plr2.Character.Humanoid.Health > 0 then
                             if Config.methodtp == "Normal" then
                                 plr1.HumanoidRootPart.CFrame = plr2.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,3)
                             end
@@ -1989,7 +1989,7 @@ spawn(function()
                             
                         else
                             for i,v in pairs(game:GetService("Workspace").ISLAND:GetChildren()) do
-                                if v.Name == "Part" then
+                                if v.Name == "Base1" then
                                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0,10,0)
                                 end
                             end
