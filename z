@@ -2913,21 +2913,3 @@ Tab8:AddToggle({
 
     end
 })
-spawn(function()
-    pcall(function()
-        while task.wait(0) do
-            pcall(function()
-                if not _G.respawn and not Config.safezone and not Config.cannonfarmboth and not Config.autorejoin then
-                    wait(5)
-                    cooltoggle1:Set(true)
-                    
-                    cooltoggle2:Set(true)
-                    
-                    cooltoggle:Set(true)
-                    
-                    chitchit:Set(true)
-                end
-            end)
-        end
-    end)
-end)
