@@ -1803,29 +1803,7 @@ Tab:AddToggle({
                                         }
                                         
                                         game:GetService("Players").LocalPlayer.Character.Powers.Gas.RemoteEvent:FireServer(unpack(args))
-                                    --2
-                                    local args = {
-                                        [1] = tonumber(serializeTable(remotes)),
-                                        [2] = "GasPower10",
-                                        [3] = "StartCharging",
-                                        [4] = CFrame.new(v.HumanoidRootPart.Position),
-                                        [5] = v.HumanoidRootPart,
-                                        [6] = "Right"
-                                    }
                                     
-                                    game:GetService("Players").LocalPlayer.Character.Powers.Gas.RemoteEvent:FireServer(unpack(args))
-                                    
-                                    
-                                    local args = {
-                                        [1] = tonumber(serializeTable(remotes)),
-                                        [2] = "GasPower10",
-                                        [3] = "StopCharging",
-                                        [4] = CFrame.new(v.HumanoidRootPart.Position),
-                                        [5] = v.HumanoidRootPart,
-                                        [6] = 100
-                                    }
-                                    
-                                    game:GetService("Players").LocalPlayer.Character.Powers.Gas.RemoteEvent:FireServer(unpack(args))    
                                     end
                                          if v.Humanoid.Health > 0 and Config.choosefruit == "Light" and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude < 100 then
                                         wait(Config.timespam)
@@ -1851,29 +1829,7 @@ Tab:AddToggle({
                                         }
                                         
                                         game:GetService("Players").LocalPlayer.Character.Powers.Light.RemoteEvent:FireServer(unpack(args))
-                                    --2
-                                    local args = {
-                                        [1] = tonumber(serializeTable(remotes)),
-                                        [2] = "LightPower2",
-                                        [3] = "StartCharging",
-                                        [4] = CFrame.new(v.HumanoidRootPart.Position),
-                                        [5] = v.HumanoidRootPart,
-                                        [6] = "Right"
-                                    }
                                     
-                                    game:GetService("Players").LocalPlayer.Character.Powers.Light.RemoteEvent:FireServer(unpack(args))
-                                    
-                                    
-                                    local args = {
-                                        [1] = tonumber(serializeTable(remotes)),
-                                        [2] = "LightPower2",
-                                        [3] = "StopCharging",
-                                        [4] = CFrame.new(v.HumanoidRootPart.Position),
-                                        [5] = v.HumanoidRootPart,
-                                        [6] = 100
-                                    }
-                                    
-                                    game:GetService("Players").LocalPlayer.Character.Powers.Light.RemoteEvent:FireServer(unpack(args))
                                     end
                                     if v.Humanoid.Health > 0 and Config.choosefruit == "Quake" then
                                             wait(Config.timespam)
@@ -1898,28 +1854,7 @@ Tab:AddToggle({
                                             }
                                     
                                             game:GetService("Players").LocalPlayer.Character.Powers.Quake.RemoteEvent:FireServer(unpack(args))
-                                        --2
-                                        local args = {
-                                            [1] = tonumber(serializeTable(remotes)),
-                                            [2] = "QuakePower10",
-                                            [3] = "StartCharging",
-                                            [5] = "Right"
-                                        }
-                                
-                                        game:GetService("Players").LocalPlayer.Character.Powers.Quake.RemoteEvent:FireServer(unpack(args))
                                         
-                                
-                                        local args = {
-                                            [1] = tonumber(serializeTable(remotes)),
-                                            [2] = "QuakePower10",
-                                            [3] = "StopCharging",
-                                            [4] = v.HumanoidRootPart,
-                                            [5] = CFrame.new(v.HumanoidRootPart.Position),
-                                            [6] = 100,
-                                            [7] = v.HumanoidRootPart.Position
-                                        }
-                                
-                                        game:GetService("Players").LocalPlayer.Character.Powers.Quake.RemoteEvent:FireServer(unpack(args))
                                         end
                                         if v.Humanoid.Health > 0 and Config.choosefruit == "Magma" and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude < 100 then
                                             wait(Config.timespam)
@@ -1964,48 +1899,7 @@ Tab:AddToggle({
                                             }
             
                                             game:GetService("Players").LocalPlayer.Character.Powers.Magma.RemoteEvent:FireServer(unpack(args))
-                                        --2
-                                        local args = {
-                                            [1] = tonumber(serializeTable(remotes)),
-                                            [2] = "MagmaPower1",
-                                            [3] = "StartCharging",
-                                            [4] = CFrame.new(v.HumanoidRootPart.Position),
-                                            [5] = v.HumanoidRootPart,
-                                            [6] = "Right"
-                                        }
                                         
-                                        game:GetService("Players").LocalPlayer.Character.Powers.Magma.RemoteEvent:FireServer(unpack(args))
-                
-                                        local args = {
-                                            [1] = tonumber(serializeTable(remotes)),
-                                            [2] = "MagmaPower1",
-                                            [3] = "StopCharging",
-                                            [4] = CFrame.new(v.HumanoidRootPart.Position),
-                                            [6] = 100
-                                        }
-                                        
-                                        game:GetService("Players").LocalPlayer.Character.Powers.Magma.RemoteEvent:FireServer(unpack(args))
-        
-                                        local args = {
-                                            [1] = tonumber(serializeTable(remotes)),
-                                            [2] = "MagmaPower1",
-                                            [3] = "StopCharging",
-                                            [4] = CFrame.new(v.HumanoidRootPart.Position),
-                                            [5] = v.HumanoidRootPart,
-                                            [6] = 100
-                                        }
-        
-                                        game:GetService("Players").LocalPlayer.Character.Powers.Magma.RemoteEvent:FireServer(unpack(args))
-                                        local args = {
-                                            [1] = tonumber(serializeTable(remotes)),
-                                            [2] = "MagmaPower1",
-                                            [3] = "StartCharging",
-                                            [4] = CFrame.new(v.HumanoidRootPart.Position),
-                                            [5] = v.HumanoidRootPart,
-                                            [6] = "Left"
-                                        }
-        
-                                        game:GetService("Players").LocalPlayer.Character.Powers.Magma.RemoteEvent:FireServer(unpack(args))
                                         end 
 if v.Humanoid.MaxHealth - v.Humanoid.Health >= 5000 then
                                         v.Humanoid.Health = 0
@@ -2292,29 +2186,7 @@ Tab4:AddToggle({
                                 }
                                 
                                 game:GetService("Players").LocalPlayer.Character.Powers.Gas.RemoteEvent:FireServer(unpack(args))
-                                --2
-                                local args = {
-                                    [1] = tonumber(serializeTable(remotes)),
-                                    [2] = "GasPower10",
-                                    [3] = "StartCharging",
-                                    [4] = CFrame.new(plr2.Character.HumanoidRootPart.Position),
-                                    [5] = plr2.Character.HumanoidRootPart,
-                                    [6] = "Right"
-                                }
                                 
-                                game:GetService("Players").LocalPlayer.Character.Powers.Gas.RemoteEvent:FireServer(unpack(args))
-                                
-                                
-                                local args = {
-                                    [1] = tonumber(serializeTable(remotes)),
-                                    [2] = "GasPower10",
-                                    [3] = "StopCharging",
-                                    [4] = CFrame.new(plr2.Character.HumanoidRootPart.Position),
-                                    [5] = plr2.Character.HumanoidRootPart,
-                                    [6] = 100
-                                }
-                                
-                                game:GetService("Players").LocalPlayer.Character.Powers.Gas.RemoteEvent:FireServer(unpack(args))
                             end
                         end
                     end)
