@@ -4626,8 +4626,6 @@ end
                                         v.HumanoidRootPart.CanCollide = false
                                         v.Humanoid.WalkSpeed = 0
                                         v.HumanoidRootPart.Size = Vector3.new(80,80,80)
-                                        Sex_Tween = TP1(CFrame.new(-2151.82153, 149.315704, -12404.9053))
-								        Sex_Tween:Play()
                                         topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
                                         sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
                                     until not _G.cakeprince or not v.Parent or v.Humanoid.Health <= 0
@@ -4636,8 +4634,7 @@ end
                         end
                     else
                         if game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince") then
-                            Sex_Tween = TP1(CFrame.new(-2151.82153, 149.315704, -12404.9053))
-							Sex_Tween:Play()
+                            
                             topos(game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
                         else
                             if KillMob == 0 then
@@ -4688,13 +4685,9 @@ end
                                 end
                             else
                                 if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
-                                    Sex_Tween = TP1(CFrame.new(-2151.82153, 149.315704, -12404.9053))
-								        Sex_Tween:Play()
                                     topos(game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
                                 else
                                     if game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince") then
-                                        Sex_Tween = TP1(CFrame.new(-2151.82153, 149.315704, -12404.9053))
-								        Sex_Tween:Play()
                                         topos(game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
                                     end
                                 end
