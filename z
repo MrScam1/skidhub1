@@ -137,7 +137,7 @@ end
 accfarm = {"vutttc", "Fixloz023"}
 spawn(function()
     pcall(function()
-        while true do wait()
+        while true do task.wait(600)
             for i, v in pairs(game.Players:GetPlayers()) do 
                 if table.find(accfarm, v.Name) and v.name ~= game.Players.LocalPlayer.name then 
                     Hop()
