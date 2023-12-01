@@ -1,14 +1,17 @@
 _G.Team = "Marine"
 function SourceCode()
-	if game.PlaceId == 2753915549 then
-		World1 = true
-	elseif game.PlaceId == 4442272183 then
-		World2 = true
-	elseif game.PlaceId == 7449423635 then
-		World3 = true
-	
-	end
-
+	local clickevent = {
+		"MouseButton1Click",
+		"MouseButton1Down",
+		"Activated"
+	};
+	function clickUI(path)
+		for i, v in pairs(clickevent) do
+			for i, v in pairs(getconnections(path[v])) do
+				v:Function();
+			end;
+		end;
+	end;
 	pcall(function()
 			repeat wait()
 				game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
@@ -19,22 +22,15 @@ function SourceCode()
 		repeat wait()
 			if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Main").ChooseTeam.Visible == true then
 				if _G.Team == "Pirate" then
-					for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.ViewportFrame.TextButton.Activated)) do                                                                                                
-						v.Function()
-					end
+					clickUI(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.TextButton)
 				elseif _G.Team == "Marine" then
-					for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.ViewportFrame.TextButton.Activated)) do                                                                                                
-						v.Function()
-					end
+					clickUI(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.TextButton)
 				else
-					for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.ViewportFrame.TextButton.Activated)) do                                                                                                
-						v.Function()
-					end
+					clickUI(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.TextButton)
 				end
 			end
 		until game.Players.LocalPlayer.Team ~= nil and game:IsLoaded()
 		end
-	
 	function CheckQuest() 
 		MyLevel = game:GetService("Players").LocalPlayer.Data.Level.Value
 		if World1 then
