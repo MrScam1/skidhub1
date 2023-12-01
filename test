@@ -71,8 +71,7 @@ spawn(function()
         while true do wait()
             for i, v in pairs(game.Players:GetPlayers()) do 
                 if table.find(accfarm, v.Name) then 
-                    game.Players.LocalPlayer:Kick("Alt acc")
-                    wait(1)
+                    
                     Hop()
                 end
             end
