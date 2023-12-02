@@ -54,7 +54,7 @@ getgenv().Setting = {
         },
         ["Blox Fruit"] = {
             ["Enable"] = true,
-            ["Delay"] = 3,
+            ["Delay"] = 4,
             ["Skills"] = {
                 ["Z"] = {
                     ["Enable"] = true,
