@@ -20,7 +20,7 @@ getgenv().Setting = {
     ["Panel"] = false,
     ["FpsBoost"] = {
         Enable = true,
-        Mode = "Full",--Lite: Just Lower Graphics, Full: Completely Make All Objects Transparent
+        Mode = "Lite",--Lite: Just Lower Graphics, Full: Completely Make All Objects Transparent
     },
     ["In Combat Reset"] = true, -- Shouldn't Cause Much False Resets, Enable This Make Farming Much Faster
     ["Hide Theme"] = false,
@@ -161,7 +161,7 @@ getgenv().Setting = {
         },
         ["Blox Fruit"] = {
             ["Enable"] = true,
-            ["Delay"] = 0.5,
+            ["Delay"] = 2,
             ["Skills"] = {
                 ["Z"] = {
                     ["Enable"] = true,
