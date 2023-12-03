@@ -2166,9 +2166,9 @@ function SourceCode()
 		elseif Distance < 150 then
 			Speed = 700
 		elseif Distance < 250 then
-			Speed = 700
-		elseif Distance < 500 then
 			Speed = 500
+		elseif Distance < 500 then
+			Speed = 350
 		elseif Distance < 750 then
 			Speed = 250
 		elseif Distance >= 1000 then
