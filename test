@@ -10901,5 +10901,3 @@ end)
 		end)
 end
 SourceCode()
-
-OrionLib:Destroy()
