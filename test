@@ -3321,12 +3321,12 @@ end
 				spawn(function()
 					while wait(0.5) do
 							if _G.SuperFastAttack and SFastAttack then
-								if i <= 5 then
+								if i <= 10 then
 									pcall(function()
-										repeat task.wait()
+										repeat task.wait(0.05)
 											AttackNoCD()
 											i = i + 1
-										until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack) or i >= 5
+										until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack) or i >= 10
 									end)
 								else i = 0
 									game:GetService'VirtualUser':CaptureController()
@@ -4688,7 +4688,6 @@ end
 											if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
 												repeat task.wait()
 													AutoHaki()
-													local CFrameMon = nil
 													EquipWeapon(_G.SelectWeapon)
 													v.HumanoidRootPart.CanCollide = false
 													v.Humanoid.WalkSpeed = 0
@@ -4696,7 +4695,7 @@ end
 													v.HumanoidRootPart.Size = Vector3.new(80,80,80)
 													MagnetDought = true
 													PosMonDoughtOpenDoor = v.HumanoidRootPart.CFrame
-													Sex_tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+													Sex_tween = TP1(v.HumanoidRootPart.CFrame * Pos)
 													Sex_tween:Play()
 													if _G.FastAttack then
 														FastAttack = true
@@ -4717,30 +4716,23 @@ end
 									Sex_tween = TP1(CFrame.new(-2091.911865234375, 70.00884246826172, -12142.8359375))
 									Sex_tween:Play()
 									if game:GetService("ReplicatedStorage"):FindFirstChild("Cookie Crafter") then
-										if not CFrameMon then
-											CFrameMon = game:GetService("ReplicatedStorage"):FindFirstChild("Cookie Crafter").HumanoidRootPart.CFrame * CFrame.new(2,20,2)
-										end
+										Sex_tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Cookie Crafter").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+										Sex_tween:Play() 
 									else
-										
 										if game:GetService("ReplicatedStorage"):FindFirstChild("Cake Guard") then
-											if not CFrameMon then
-												CFrameMon = game:GetService("ReplicatedStorage"):FindFirstChild("Cake Guard").HumanoidRootPart.CFrame * CFrame.new(2,20,2)
-											end
+											Sex_tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Cake Guard").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+											Sex_tween:Play() 
 										else
 											if game:GetService("ReplicatedStorage"):FindFirstChild("Baking Staff") then
-												if not CFrameMon then
-													CFrameMon = game:GetService("ReplicatedStorage"):FindFirstChild("Baking Staff").HumanoidRootPart.CFrame * CFrame.new(2,20,2)
-												end
+												Sex_tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Baking Staff").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+												Sex_tween:Play()
 											else
 												if game:GetService("ReplicatedStorage"):FindFirstChild("Head Baker") then
-													if not CFrameMon then
-														CFrameMon = game:GetService("ReplicatedStorage"):FindFirstChild("Head Baker").HumanoidRootPart.CFrame * CFrame.new(2,20,2)
-													end
+													Sex_tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Head Baker").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+													Sex_tween:Play()
 												end
 											end
 										end
-										Sex_Tween = TP1(CFrameMon)
-                                        Sex_Tween:Play()
 									end                       
 								end
 							else
