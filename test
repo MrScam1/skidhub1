@@ -4695,7 +4695,7 @@ end
 													v.HumanoidRootPart.Size = Vector3.new(80,80,80)
 													MagnetDought = true
 													PosMonDoughtOpenDoor = v.HumanoidRootPart.CFrame
-													Sex_tween = TP1(v.HumanoidRootPart.CFrame * Pos)
+													Sex_tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
 													Sex_tween:Play()
 													if _G.FastAttack then
 														FastAttack = true
