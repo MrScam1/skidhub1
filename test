@@ -3306,7 +3306,7 @@ end
 			Name = "Health Mob",
 			Min = 0,
 			Max = 100,
-			Default = 30,
+			Default = 25,
 			Color = Color3.fromRGB(255,255,255),
 			Increment = 1,
 			ValueName = "Health",
@@ -6231,7 +6231,7 @@ end)
 		local cframtpboat = Vector3.new(-33080, 0, 26077)
 	local npcboatpos = CFrame.new(-16210, 9, 476)
 		
-		IQ:AddToggle({
+		M:AddToggle({
 			Name = "Auto Sea Event",
 			Default = _G.AutoSeaBest or false,
 			Callback = function(Value)
