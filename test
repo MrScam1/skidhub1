@@ -3306,7 +3306,7 @@ end
 			Name = "Health Mob",
 			Min = 0,
 			Max = 100,
-			Default = 20,
+			Default = 30,
 			Color = Color3.fromRGB(255,255,255),
 			Increment = 1,
 			ValueName = "Health",
