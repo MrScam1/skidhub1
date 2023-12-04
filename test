@@ -6268,7 +6268,7 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 																if (CFrame.new(-33080, 0, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude < 50 then
 																	repeat wait()
 																		Sex_Tween = topos(v.VehicleSeat.CFrame * CFrame.new(1,1,0))
-																	until game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true
+																	until not _G.AutoSeaBest or v.Humanoid.Health <= 0 or not v.Parent
 																else
 																	
 																	game.workspace.Boats[v.name]:MoveTo(cframtpboat)
