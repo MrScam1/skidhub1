@@ -6231,7 +6231,7 @@ end)
 		local cframtpboat = Vector3.new(-33080, 0, 26077)
 	local npcboatpos = CFrame.new(-16210, 9, 476)
 		
-		S:AddToggle({
+		W:AddToggle({
 			Name = "Auto Sea Event",
 			Default = _G.AutoSeaBest or false,
 			Callback = function(Value)
