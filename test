@@ -3105,7 +3105,7 @@ end
 															game:service('VirtualInputManager'):SendKeyEvent(false, "V", false, game)
 														end
 													end
-													Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+													Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,15,0))
 													Sex_Tween:Play()
 													PosMonMasteryFruit = v.HumanoidRootPart.CFrame
 													PositionSkillMasteryDevilFruit = v.HumanoidRootPart.Position
@@ -3123,7 +3123,7 @@ end
 													StartMasteryFruitMagnet = true
 													EquipWeapon(_G.SelectWeapon)
 													v.HumanoidRootPart.Transparency = 1
-													Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+													Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,15,0))
 													Sex_Tween:Play()
 													AutoHaki()
 													if (v.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
