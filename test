@@ -2864,7 +2864,7 @@ end
 						CheckQuest()
 		if game:GetService("Workspace").Enemies:FindFirstChild(QuestCheck()[3]) then
 			for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-				if _G.AutoFarmFruitMastery and v.Name == Mon and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+				if _G.AutoFarmFruitMastery and v.Name == QuestCheck()[3] and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
 					repeat wait()
 						FarmtoTarget = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,15,0))
 						FarmtoTarget:Play()
@@ -2962,7 +2962,7 @@ end
 								UseSkillMasteryDevilFruit = false
 								EquipWeapon(_G.SelectWeapon)
 								v.HumanoidRootPart.Size = Vector3.new(60,60,60)
-								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 30, 0)
+								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 15, 0)
 							end
 						end
 					until not game:GetService("Workspace").Enemies:FindFirstChild(QuestCheck()[3]) or not _G.AutoFarmFruitMastery or v.Humanoid.Health <= 0 or not v.Parent
@@ -3057,7 +3057,7 @@ end
 						CheckQuest()
 				if game:GetService("Workspace").Enemies:FindFirstChild(QuestCheck()[3]) then
 					for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-						if _G.AutoFarmGunMastery and v.Name == Mon and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+						if _G.AutoFarmGunMastery and v.Name == QuestCheck()[3] and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
 							repeat wait()
 								FarmtoTarget = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,15,0))
 								FarmtoTarget:Play()
@@ -10901,3 +10901,5 @@ end)
 		end)
 end
 SourceCode()
+
+OrionLib:Destroy()
