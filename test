@@ -3489,7 +3489,7 @@ M:AddToggle({
 		_G.SuperFastAttack = Value
 	local i = 0
 		SaveSetting()
-		CameraShakerR:Cancel()
+		CameraShakerR:Stop()
 		
 		coroutine.wrap(function()
 			spawn(function()
@@ -3523,7 +3523,7 @@ M:AddToggle({
 	_G.FastAttack = Value
 	local n = 0
 	SaveSetting()
-	CameraShakerR:Cancel()
+	CameraShakerR:Stop()
 		
 		coroutine.wrap(function()
 			spawn(function()
