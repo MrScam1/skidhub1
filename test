@@ -4786,6 +4786,25 @@ M:AddToggle({
 		
 	end    
 })
+Tabel = {}
+function GetCake_CFrame_Mon()
+    local targetMonsters = {"Baking Staff [Lv. 2250]", "Head Baker [Lv. 2275]", "Cake Guard [Lv. 2225]", "Cookie Crafter [Lv. 2200]"}
+    local enemySpawns = workspace.EnemySpawns:GetChildren()
+    local randomSpawnIndex = math.random(1, #enemySpawns)
+    local selectedSpawn = enemySpawns[randomSpawnIndex]
+    
+    for _,_v1 in pairs(targetMonsters) do
+        local result = string.gsub(_v1, "Lv. ", "")
+        local result2 = string.gsub(result, "[%[%]]", "")
+        local result3 = string.gsub(result2, "%d+", "")
+        local result4 = string.gsub(result3, "%s+", "")
+        local monQName = result4
+        
+        if selectedSpawn.Name == result4 then
+            return selectedSpawn.CFrame
+        end
+    end
+end
 M:AddToggle({
 	Name = "Auto Cake Prince",
 	Default = _G.cakeprince,
@@ -4893,20 +4912,8 @@ spawn(function()
 									Sex_tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Cookie Crafter").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
 									Sex_tween:Play() 
 								else
-									if game:GetService("ReplicatedStorage"):FindFirstChild("Cake Guard") then
-										Sex_tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Cake Guard").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-										Sex_tween:Play() 
-									else
-										if game:GetService("ReplicatedStorage"):FindFirstChild("Baking Staff") then
-											Sex_tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Baking Staff").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-											Sex_tween:Play()
-										else
-											if game:GetService("ReplicatedStorage"):FindFirstChild("Head Baker") then
-												Sex_tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Head Baker").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-												Sex_tween:Play()
-											end
-										end
-									end
+									Sex_Tween = TP1(GetCake_CFrame_Mon() * CFrame.new(0, 15, 5))
+									Sex_Tween:Play()
 								end                       
 							end
 						else
@@ -6263,17 +6270,16 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 													else
 														for i,v in pairs(game.workspace.Boats:GetChildren()) do
 															print("dang lam")
-																if (CFrame.new(-33080, 0, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude <= 50 then
+																if (CFrame.new(-33080, 0, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude < 50 then
 																	repeat wait()
-																		if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.VehicleSeat.CFrame.Position).magnitude >= 50 then
-																			Sex_Tween = topos(v.VehicleSeat.CFrame * CFrame.new(1,0.111111,0))
-																		elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.VehicleSeat.CFrame.Position).magnitude <= 50 then
-																			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.VehicleSeat.CFrame * CFrame.new(1,0.111111,0)
-																		end
-																	until not _G.AutoSeaBest or game:GetService("Workspace").Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") or game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") or game:GetService("Workspace").Enemies:FindFirstChild("PirateBrigade") or game:GetService("Workspace").Enemies:FindFirstChild("PirateGrandBrigade") or game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark")
-																
-																elseif (CFrame.new(-33080, 0, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude >= 50 then
+																		Sex_Tween = topos(v.VehicleSeat.CFrame * CFrame.new(1,1,0))
+																	until not _G.AutoSeaBest or v.Humanoid.Health <= 0 or not v.Parent
+																else
+																	
 																	game.workspace.Boats[v.name]:MoveTo(cframtpboat)
+																end
+																if (v.VehicleSeat.CFrame.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 5 then
+																	Sex_Tween:Cancel()
 																end
 														end
 													
