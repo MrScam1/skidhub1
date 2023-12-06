@@ -212,16 +212,22 @@ local remotes = {}
     return tmp
  end
 --- ANTI AFK
-local Players = game:GetService("Players")
-local VirtualUser = game:GetService("VirtualUser")
-
-repeat
-    wait()
-until game:IsLoaded()
-
-game:GetService("Players").LocalPlayer.Idled:connect(function()
-    game:GetService("VirtualUser"):ClickButton2(Vector2.new())
-end)
+local GC = getconnections or get_signal_cons
+	if GC then
+		for i,v in pairs(GC(game.Players.LocalPlayer.Idled)) do
+			if v["Disable"] then
+				v["Disable"](v)
+			elseif v["Disconnect"] then
+				v["Disconnect"](v)
+			end
+		end
+	else
+		game.Players.LocalPlayer.Idled:Connect(function()
+			local VirtualUser = game:GetService("VirtualUser")
+			VirtualUser:CaptureController()
+			VirtualUser:ClickButton2(Vector2.new())
+		end)
+	end
     local a
     a=hookmetamethod(game,"__namecall",function(self,...)
     local args = {...}
