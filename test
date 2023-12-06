@@ -6270,7 +6270,7 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 																		elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.VehicleSeat.CFrame.Position).magnitude <= 50 then
 																			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.VehicleSeat.CFrame * CFrame.new(1,0.111111,0)
 																		end
-																	until not _G.AutoSeaBest or not v.Parent
+																	until not _G.AutoSeaBest or game:GetService("Workspace").Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") or game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") or game:GetService("Workspace").Enemies:FindFirstChild("PirateBrigade") or game:GetService("Workspace").Enemies:FindFirstChild("PirateGrandBrigade") or game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark")
 																
 																elseif (CFrame.new(-33080, 0, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude >= 50 then
 																	game.workspace.Boats[v.name]:MoveTo(cframtpboat)
