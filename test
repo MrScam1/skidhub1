@@ -6283,9 +6283,9 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 														if v.name == "Terrorshark" then
 															if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
 																repeat task.wait()
-																	if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true then
-																		game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
-																	end
+
+																	game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
+	
 																	if _G.FastAttack then
 																		FastAttack = true
 																		elseif _G.SuperFastAttack then
@@ -6308,9 +6308,8 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 												if vs.Name == "PirateGrandBrigade" then
 													if v:FindFirstChild("VehicleSeat") then
 														repeat wait()
-															if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true then
 																game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
-															end
+															
 															topos(vs.VehicleSeat.CFrame * CFrame.new(0,15,0))
 															EquipAllWeapon()  
 															AutoSkill = true
@@ -6328,9 +6327,8 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 											if vss.Name == "PirateBrigade" then
 												if v:FindFirstChild("VehicleSeat") then
 													repeat wait()
-														if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true then
 															game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
-														end
+														
 														game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
 														topos(vss.VehicleSeat.CFrame * CFrame.new(0,15,0))
 														EquipAllWeapon()  
@@ -6348,9 +6346,8 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 									for i,v in pairs(game:GetService("Workspace").SeaBeasts:GetChildren()) do
 										if v:FindFirstChild("HumanoidRootPart") then
 											repeat wait()
-												if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true then
 													game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
-												end
+												
 												topos(v.HumanoidRootPart.CFrame * CFrame.new(0,500,0))
 												
 												EquipAllWeapon() 
@@ -6369,9 +6366,8 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 									if v.name == "Piranha" or v.name == "Shark" then
 										if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
 											repeat task.wait()
-												if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true then
 													game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
-												end
+												
 												for v4,v5 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do 
 													if (v5.Name==v.Name) then 
 														spawn(function()
