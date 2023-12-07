@@ -6260,7 +6260,7 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 													elseif game:GetService("Workspace").Boats:FindFirstChild("PirateGrandBrigade") then
 														for i,v in pairs(game.workspace.Boats:GetChildren()) do
 															print("dang lam")
-																if (CFrame.new(-33080, 0, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude < 50 then
+																if (CFrame.new(-33080, 10, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude < 50 then
 																	repeat wait()
 																		if (game.Players.LocalPlayer.Charater.HumanoidRootPart.Position - v.VehicleSeat.CFrame.Position).magnitude >= 25 then
 																			print("tween to boat")
