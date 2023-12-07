@@ -6270,13 +6270,11 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 																			if Sex_Tween then Sex_Tween:Cancel() end
 																			game.Players.LocalPlayer.Charater.HumanoidRootPart.CFrame = v.VehicleSeat.CFrame
 																		end
-																	until not _G.AutoSeaBest or game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true or not v.Parent
+																	until not _G.AutoSeaBest or game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") or game:GetService("Workspace").Enemies:FindFirstChild("PirateGrandBrigade") or game:GetService("Workspace").Enemies:FindFirstChild("PirateBrigade")  or game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") or game:GetService("Workspace").Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") or game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true or not v.Parent
 																else	
 																	game.workspace.Boats[v.name]:MoveTo(cframtpboat)
 																end
-																if (v.VehicleSeat.CFrame.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 5 then
-																	Sex_Tween:Cancel()
-																end
+																
 														end
 													
 													end
