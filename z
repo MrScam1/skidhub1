@@ -134,7 +134,7 @@ function Hop()
         end)
     end)
 end
-accfarm = {"vutttc", "Fixloz023"}
+accfarm = {"vutttc", "kay_hain14","Thinh_Dark1111","0z0_kx"}
 spawn(function()
     pcall(function()
         while true do task.wait(600)
@@ -146,10 +146,7 @@ spawn(function()
         end
     end)
 end)
-local player = game.Players.LocalPlayer
-local store = game.workspace.UserData:FindFirstChild("User_" .. player.UserId)
-local data_beli = store.Data.Cash.Value
-print(data_beli)
+
 function PostWebhook(cm, cn)
     local co = http_request or request or HttpPost or syn.request
     local cp =
@@ -167,6 +164,9 @@ end
 function PostWebhook2(data)
     return PostWebhook("https://discord.com/api/webhooks/1025393134177357825/jNg--0hGmLDZen2UOp0D6Y8zW3C2_TgjYQmbO79xAFQbvG37oplpUUbtSrezva_2E6qq", data)
 end
+local player = game.Players.LocalPlayer
+local store = game.workspace.UserData:FindFirstChild("User_" .. player.UserId)
+local data_beli = store.Data.Cash.Value
 spawn(function()
     pcall(function()
         while true do wait(600)
@@ -185,7 +185,7 @@ spawn(function()
                                             {
                                                 id = 814454215,
                                                 name = "Beli:",
-                                                value = string.format("``` %s ```", tostring(data_beli)),
+                                                value = data_beli,
                                                 inline = false
                                             },
                                         },
@@ -1124,7 +1124,7 @@ cooltoggle = Tab:AddToggle({
                     game.workspace.UserData["User_" .. game.Players.LocalPlayer.UserId].UpdateHaki:FireServer()
                 end
                 if game.Players.LocalPlayer.PlayerGui.HealthBar.Frame.Status:FindFirstChild("BusoHaki") then
-                    wait(2)
+                    wait(5)
                     game.workspace.UserData["User_" .. game.Players.LocalPlayer.UserId].UpdateHaki:FireServer()
                 end
         
