@@ -166,7 +166,6 @@ function PostWebhook2(data)
 end
 local player = game.Players.LocalPlayer
 local store = game.workspace.UserData:FindFirstChild("User_" .. player.UserId)
-local data_beli = store.Data.Cash.Value
 spawn(function()
     pcall(function()
         while true do wait(600)
@@ -185,7 +184,7 @@ spawn(function()
                                             {
                                                 id = 814454215,
                                                 name = "Beli:",
-                                                value = data_beli,
+                                                value = store.Data.Cash.Value,
                                                 inline = false
                                             },
                                         },
