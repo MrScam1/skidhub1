@@ -6262,10 +6262,16 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 															print("dang lam")
 																if (CFrame.new(-33080, 0, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude < 50 then
 																	repeat wait()
+																		if (game.Players.LocalPlayer.Charater.HumanoidRootPart.Position - v.VehicleSeat.CFrame.Position).magnitude >= 25 then
+																			print("tween to boat")
 																		Sex_Tween = topos(v.VehicleSeat.CFrame * CFrame.new(1,1,0))
+																		elseif (game.Players.LocalPlayer.Charater.HumanoidRootPart.Position - v.VehicleSeat.CFrame.Position).magnitude <= 25 then
+																			print("tp to boat")
+																			if Sex_Tween then Sex_Tween:Cancel() end
+																			game.Players.LocalPlayer.Charater.HumanoidRootPart.CFrame = v.VehicleSeat.CFrame
+																		end
 																	until not _G.AutoSeaBest or game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true or not v.Parent
-																else
-																	
+																else	
 																	game.workspace.Boats[v.name]:MoveTo(cframtpboat)
 																end
 																if (v.VehicleSeat.CFrame.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 5 then
