@@ -6257,25 +6257,21 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 																
 															end
 															wait(1)
-													elseif game:GetService("Workspace").Boats:FindFirstChild("PirateGrandBrigade") then
-														for i,v in pairs(game.workspace.Boats:GetChildren()) do
-															print("dang lam")
-																if (CFrame.new(-33080, 10, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude < 50 then
-																	repeat wait()
-																		if (game.Players.LocalPlayer.Charater.HumanoidRootPart.Position - v.VehicleSeat.CFrame.Position).magnitude >= 25 then
-																			print("tween to boat")
-																		Sex_Tween = topos(v.VehicleSeat.CFrame * CFrame.new(1,1,0))
-																		elseif (game.Players.LocalPlayer.Charater.HumanoidRootPart.Position - v.VehicleSeat.CFrame.Position).magnitude <= 25 then
-																			print("tp to boat")
-																			game.Players.LocalPlayer.Charater.HumanoidRootPart.CFrame = v.VehicleSeat.CFrame
-																		end
-																	until not _G.AutoSeaBest or game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") or game:GetService("Workspace").Enemies:FindFirstChild("PirateGrandBrigade") or game:GetService("Workspace").Enemies:FindFirstChild("PirateBrigade")  or game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") or game:GetService("Workspace").Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") or game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true or not v.Parent
-																else	
-																	game.workspace.Boats[v.name]:MoveTo(cframtpboat)
-																end
-																
-														end
-													
+														else
+															for i,v in pairs(game.workspace.Boats:GetChildren()) do
+																print("dang lam")
+																	if (CFrame.new(-33080, 0, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude < 50 then
+																		repeat wait()
+																			Sex_Tween = topos(v.VehicleSeat.CFrame * CFrame.new(1,1,0))
+																		until not _G.AutoSeaBest or game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") or game:GetService("Workspace").Enemies:FindFirstChild("PirateGrandBrigade") or game:GetService("Workspace").Enemies:FindFirstChild("PirateBrigade")  or game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") or game:GetService("Workspace").Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") or game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true or not v.Parent
+																	else
+																		
+																		game.workspace.Boats[v.name]:MoveTo(cframtpboat)
+																	end
+																	if (v.VehicleSeat.CFrame.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 5 then
+																		Sex_Tween:Cancel()
+																	end
+															end
 													end
 												elseif game.workspace.Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") then
 													for i,v in pairs(game.workspace.Enemies:GetChildren()) do
