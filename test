@@ -168,7 +168,7 @@ local player = game.Players.LocalPlayer
 local store = game.workspace.UserData:FindFirstChild("User_" .. player.UserId)
 spawn(function()
     pcall(function()
-        while true do wait(600)
+        while true do wait(1)
             PostWebhook2(
                             {
                                 content = "**Mr.Scam Toi Choi**",
