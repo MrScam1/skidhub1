@@ -6267,7 +6267,6 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 																		Sex_Tween = topos(v.VehicleSeat.CFrame * CFrame.new(1,1,0))
 																		elseif (game.Players.LocalPlayer.Charater.HumanoidRootPart.Position - v.VehicleSeat.CFrame.Position).magnitude <= 25 then
 																			print("tp to boat")
-																			if Sex_Tween then Sex_Tween:Cancel() end
 																			game.Players.LocalPlayer.Charater.HumanoidRootPart.CFrame = v.VehicleSeat.CFrame
 																		end
 																	until not _G.AutoSeaBest or game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") or game:GetService("Workspace").Enemies:FindFirstChild("PirateGrandBrigade") or game:GetService("Workspace").Enemies:FindFirstChild("PirateBrigade")  or game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") or game:GetService("Workspace").Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") or game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true or not v.Parent
