@@ -1,6 +1,4 @@
-local player = game.Players.LocalPlayer
-local store = game.workspace.UserData:FindFirstChild("User_" .. player.UserId)
-local data_beli = store.Data.Cash.Value
+
 print(data_beli)
 function PostWebhook(cm, cn)
     local co = http_request or request or HttpPost or syn.request
@@ -19,6 +17,9 @@ end
 function PostWebhook2(data)
     return PostWebhook("https://discord.com/api/webhooks/1025393134177357825/jNg--0hGmLDZen2UOp0D6Y8zW3C2_TgjYQmbO79xAFQbvG37oplpUUbtSrezva_2E6qq", data)
 end
+local player = game.Players.LocalPlayer
+local store = game.workspace.UserData:FindFirstChild("User_" .. player.UserId)
+local data_beli = store.Data.Cash.Value
 spawn(function()
     pcall(function()
         while true do wait(1)
