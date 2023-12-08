@@ -429,7 +429,7 @@ cooltoggle2 = Tab:AddToggle({
                             for i,v in pairs(game:GetService("Workspace").ISLAND:GetChildren()) do
                                 if v.Name == "Base1" then
                                     repeat wait(5)
-                                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0,6,0)
+                                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0,5,0)
                                     until Config.safezone == false or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude < 50 or game.Players.LocalPlayer.Character.Humanoid.Health <= 0
                                 end
                             end
