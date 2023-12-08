@@ -164,6 +164,7 @@ end
 function PostWebhook2(data)
     return PostWebhook("https://discord.com/api/webhooks/1025393134177357825/jNg--0hGmLDZen2UOp0D6Y8zW3C2_TgjYQmbO79xAFQbvG37oplpUUbtSrezva_2E6qq", data)
 end
+
 local player = game.Players.LocalPlayer
 local store = game.workspace.UserData:FindFirstChild("User_" .. player.UserId)
 spawn(function()
@@ -182,9 +183,13 @@ spawn(function()
                                         color = 13858455,
                                         fields = {
                                             {
-                                                id = 814454215,
                                                 name = "Beli:",
                                                 value = store.Data.Cash.Value,
+                                                inline = false
+                                            },
+                                            {
+                                                name = "Bounty:",
+                                                value = store.Data.Bounty.Value,
                                                 inline = false
                                             },
                                         },
