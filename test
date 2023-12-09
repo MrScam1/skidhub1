@@ -4798,7 +4798,7 @@ function GetCake_CFrame_Mon()
         local monQName = result4
         
         if selectedSpawn.Name == result4 then
-            return selectedSpawn.CFrame
+            return selectedSpawn.WorldPivot.Position
         end
     end
 end
