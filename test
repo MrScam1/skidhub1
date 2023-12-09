@@ -4903,8 +4903,22 @@ spawn(function()
 								end
 							else
 								MagnetDought = false
-									Sex_Tween = TP1(GetCake_CFrame_Mon() * CFrame.new(0, 15, 5))
-									Sex_Tween:Play()
+								if game:GetService("ReplicatedStorage"):FindFirstChild("Cookie Crafter") then
+                                    Sex_Tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Cookie Crafter").WorldPivot.Position * CFrame.new(2,20,2)) 
+                                else
+                                    if game:GetService("ReplicatedStorage"):FindFirstChild("Cake Guard") then
+                                        Sex_Tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Cake Guard").WorldPivot.Position * CFrame.new(2,20,2)) 
+                                    else
+                                        if game:GetService("ReplicatedStorage"):FindFirstChild("Baking Staff") then
+                                            Sex_Tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Baking Staff").WorldPivot.Position * CFrame.new(2,20,2))
+                                        else
+                                            if game:GetService("ReplicatedStorage"):FindFirstChild("Head Baker") then
+                                                Sex_Tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Head Baker").WorldPivot.Position * CFrame.new(2,20,2))
+                                            end
+                                        end
+                                    end
+                                end 
+								Sex_Tween:Play()
 							end
 						else
 							if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
