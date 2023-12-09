@@ -4436,16 +4436,7 @@ M:AddToggle({
 											CFrameMon1111 = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild(v.name).WorldPivot.Position) * CFrame.new(0, 15, 0)
 										end)
 									end
-									if not CFrameMon then
-										pcall(function()
-											CFrameMon1111 = game.Workspace.Enemies:FindFirstChild(v.name):FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0, 15, 0)
-										end)
-									end
-									if not CFrameMon then
-										pcall(function()
-											CFrameMon1111 = game.Workspace._WorldOrigin:FindFirstChild("EnemySpawns"):FindFirstChild("Living Zombie [Lv. 2000]" or "Reborn Skeleton [Lv. 1975]" or "Demonic Soul [Lv. 2025]" or "Posessed Mummy [Lv. 2050]").CFrame * CFrame.new(0, 15, 0)
-										end)
-									end
+									
 									Sex_Tween = TP1(CFrameMon1111)
 									Sex_Tween:Play()
 								end
@@ -4877,6 +4868,7 @@ spawn(function()
 									if v.Name == "Cookie Crafter" or v.Name == "Cake Guard" or v.Name == "Baking Staff" or v.Name == "Head Baker" then
 										if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
 											repeat task.wait()
+												local CFramecake = nil
 												AutoHaki()
 												EquipWeapon(_G.SelectWeapon)
 												v.HumanoidRootPart.CanCollide = false
@@ -4885,7 +4877,7 @@ spawn(function()
 												v.HumanoidRootPart.Size = Vector3.new(80,80,80)
 												MagnetDought = true
 												PosMonDoughtOpenDoor = v.HumanoidRootPart.CFrame
-												Sex_tween = TP1(v.HumanoidRootPart.CFrame * Pos)
+												Sex_tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
 												Sex_tween:Play()
 												if _G.FastAttack then
 													FastAttack = true
