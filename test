@@ -4905,23 +4905,37 @@ spawn(function()
 								TP1(CFrame.new(-2091.911865234375, 70.00884246826172, -12142.8359375))
 								TP1:Play()
 								MagnetDought = false
-								if game:GetService("ReplicatedStorage"):FindFirstChild("Cookie Crafter") then
-                                    CFramecake = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild("Cookie Crafter").WorldPivot.Position) * CFrame.new(2,20,2)
-									
-                                if game:GetService("ReplicatedStorage"):FindFirstChild("Cake Guard") then
-									CFramecake = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild("Cake Guard").WorldPivot.Position) * CFrame.new(2,20,2)
-								if game:GetService("ReplicatedStorage"):FindFirstChild("Baking Staff") then
-									CFramecake = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild("Baking Staff").WorldPivot.Position) * CFrame.new(2,20,2)
-								if game:GetService("ReplicatedStorage"):FindFirstChild("Head Baker") then
-									CFramecake = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild("Head Baker").WorldPivot.Position) * CFrame.new(2,20,2)
-									
-                                end 	
+								if not CFramecake then
+									pcall(function()
+										if game:GetService("ReplicatedStorage"):FindFirstChild("Cookie Crafter") then
+											CFramecake = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild("Cookie Crafter").WorldPivot.Position) * CFrame.new(2,20,2)
+										end
+									end)
 								end
+								if not CFramecake then
+									pcall(function()
+										if game:GetService("ReplicatedStorage"):FindFirstChild("Cake Guard") then
+											CFramecake = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild("Cake Guard").WorldPivot.Position) * CFrame.new(2,20,2)
+										end
+									end)
+								end
+								if not CFramecake then
+									pcall(function()
+										if game:GetService("ReplicatedStorage"):FindFirstChild("Baking Staff") then
+											CFramecake = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild("Baking Staff").WorldPivot.Position) * CFrame.new(2,20,2)
+										end
+									end)
+								end
+								if not CFramecake then
+									pcall(function()
+										if game:GetService("ReplicatedStorage"):FindFirstChild("Head Baker") then
+											CFramecake = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild("Head Baker").WorldPivot.Position) * CFrame.new(2,20,2)
+										end
+									end)
 								end
 								Sex_tween = TP1(CFramecake)
-								Sex_tween:Play()
-							end						
-								end
+								Sex_tween:Play()						
+							end
 						else
 							if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
 								topos(game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
