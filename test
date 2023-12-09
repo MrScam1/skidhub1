@@ -4429,7 +4429,27 @@ M:AddToggle({
 							StartMagnetBoneMon = false
 							Sex_Tween = TP1(CFrame.new(-9506.234375, 172.130615234375, 6117.0771484375))
 							Sex_Tween:Play()
-							
+							for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do 
+								if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy"  then
+									if not CFrameMon1111 then
+										pcall(function()
+											CFrameMon1111 = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild(v.name).WorldPivot.Position) * CFrame.new(0, 15, 0)
+										end)
+									end
+									if not CFrameMon then
+										pcall(function()
+											CFrameMon1111 = game.Workspace.Enemies:FindFirstChild(v.name):FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0, 15, 0)
+										end)
+									end
+									if not CFrameMon then
+										pcall(function()
+											CFrameMon1111 = game.Workspace._WorldOrigin:FindFirstChild("EnemySpawns"):FindFirstChild("Living Zombie [Lv. 2000]" or "Reborn Skeleton [Lv. 1975]" or "Demonic Soul [Lv. 2025]" or "Posessed Mummy [Lv. 2050]").CFrame * CFrame.new(0, 15, 0)
+										end)
+									end
+									Sex_Tween = TP1(CFrameMon1111)
+									Sex_Tween:Play()
+								end
+							end
 						end
 					until not _G.Auto_Bone or not v.Parent or v.Humanoid.Health <= 0
 					end)
@@ -6242,10 +6262,9 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 																print("dang lam")
 																	if (CFrame.new(-33080, 0, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude < 50 then
 																		repeat wait()
-																			Sex_Tween = topos(v.VehicleSeat.CFrame * CFrame.new(0,0.1,0)
+																			Sex_Tween = topos(v.VehicleSeat.CFrame * CFrame.new(0,0.1,0))
 																		until not _G.AutoSeaBest or game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") or game:GetService("Workspace").Enemies:FindFirstChild("PirateGrandBrigade") or game:GetService("Workspace").Enemies:FindFirstChild("PirateBrigade")  or game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") or game:GetService("Workspace").Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") or game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true or not v.Parent
 																	else
-																		
 																		game.workspace.Boats[v.name]:MoveTo(cframtpboat)
 																	end
 															end
