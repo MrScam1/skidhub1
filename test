@@ -4904,16 +4904,16 @@ spawn(function()
 							else
 								MagnetDought = false
 								if game:GetService("ReplicatedStorage"):FindFirstChild("Cookie Crafter") then
-                                    Sex_Tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Cookie Crafter").WorldPivot.Position * CFrame.new(2,20,2)) 
+                                    Sex_Tween = TP1(CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild("Cookie Crafter").WorldPivot.Position) * CFrame.new(2,20,2)) 
                                 else
                                     if game:GetService("ReplicatedStorage"):FindFirstChild("Cake Guard") then
-                                        Sex_Tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Cake Guard").WorldPivot.Position * CFrame.new(2,20,2)) 
+                                        Sex_Tween = TP1(CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild("Cake Guard").WorldPivot.Position) * CFrame.new(2,20,2)) 
                                     else
                                         if game:GetService("ReplicatedStorage"):FindFirstChild("Baking Staff") then
-                                            Sex_Tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Baking Staff").WorldPivot.Position * CFrame.new(2,20,2))
+                                            Sex_Tween = TP1(CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild("Baking Staff").WorldPivot.Position) * CFrame.new(2,20,2))
                                         else
                                             if game:GetService("ReplicatedStorage"):FindFirstChild("Head Baker") then
-                                                Sex_Tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Head Baker").WorldPivot.Position * CFrame.new(2,20,2))
+                                                Sex_Tween = TP1(CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild("Head Baker").WorldPivot.Position) * CFrame.new(2,20,2))
                                             end
                                         end
                                     end
