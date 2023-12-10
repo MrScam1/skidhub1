@@ -4841,7 +4841,13 @@ spawn(function()
                                         Sex_Tween:Play()
                                         return
                                     end
+									AutoHaki()
                                     EquipWeapon(_G.SelectWeapon)
+									if _G.FastAttack then
+										FastAttack = true
+										elseif _G.SuperFastAttack then
+										SFastAttack = true
+									end	
                                     v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)  
                                     MagnetDought = true
                                     Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0, 30, 5))
@@ -4852,6 +4858,11 @@ spawn(function()
                                     end
                                     sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
                                 until not _G.cakeprince or not v.Parent or v.Humanoid.Health <= 0
+								if _G.FastAttack then
+									FastAttack = false
+									elseif _G.SuperFastAttack then
+									SFastAttack = false
+								end	
                             end
                         else
                             for _,x in pairs(game.ReplicatedStorage:GetChildren()) do 
@@ -4883,6 +4894,12 @@ spawn(function()
                                     repeat wait()
                                         PosMonDoughtOpenDoor = v.HumanoidRootPart.CFrame
                                         EquipWeapon(_G.SelectWeapon)
+										AutoHaki()
+										if _G.FastAttack then
+											FastAttack = true
+											elseif _G.SuperFastAttack then
+											SFastAttack = true
+										end	
                                         v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)  
                                         MagnetDought = true
                                         Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0, 15, 5))
@@ -4892,7 +4909,12 @@ spawn(function()
                                             game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
                                         end
                                     until _G.cakeprince == false or game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince") or not v.Parent or v.Humanoid.Health <= 0
-                                end
+									if _G.FastAttack then
+										FastAttack = false
+										elseif _G.SuperFastAttack then
+										SFastAttack = false
+									end	
+								end
                             end
                         else
                             MagnetDought = false
