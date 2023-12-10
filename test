@@ -3015,14 +3015,14 @@ Tab7:AddToggle({
                             if Config.tpss then
                                 pcall(function()
                                     if Config.tpss then
+                                        game.Players.LocalPlayer.Character.CamScript.ClientServerClient:FireServer()
+                                        game.Players.LocalPlayer.Character.Weapons:FireServer()
+                                        game.Players.LocalPlayer.Character.CharacterTrait.ClothingTrigger:FireServer()
                                         pcall(function()
-                                            if (plr.Character.HumanoidRootPart.Position - StringToCFrame(getgenv().setspawn).Position).Magnitude > 5 and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
-                                                repeat wait()
-													game.Players.LocalPlayer.Character.CamScript.ClientServerClient:FireServer()
-													game.Players.LocalPlayer.Character.Weapons:FireServer()
-													game.Players.LocalPlayer.Character.CharacterTrait.ClothingTrigger:FireServer()
+                                            if (plr.Character.HumanoidRootPart.Position - StringToCFrame(getgenv().setspawn).Position).Magnitude > 50 and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
+                                                repeat wait(5)
                                                     plr.Character.HumanoidRootPart.CFrame = StringToCFrame(getgenv().setspawn)
-                                                until Config.tpss == false
+                                                until Config.tpss == false or (plr.Character.HumanoidRootPart.Position - StringToCFrame(getgenv().setspawn).Position).Magnitude < 10 or game.Players.LocalPlayer.Character.Humanoid.Health <= 0
                                             end
                                         end)
                                     end
