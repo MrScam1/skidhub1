@@ -7,11 +7,6 @@ setfflag("CrashUploadToBacktraceWindowsPlayerToken", "")
 
 local Global_V = {}
 
--- Global_V = {
---     Version_script = "Testing",
---     Script_enabled = true
--- }
-
 
 local Ui_Tab = {};
 local Cache = {
