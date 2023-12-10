@@ -4919,6 +4919,8 @@ spawn(function()
                         else
                             MagnetDought = false
                             UnEquipWeapon(_G.SelectWeapon)
+							Sex_Tween = TP1(CFrame.new(-2091.911865234375, 70.00884246826172, -12142.8359375))
+							Sex_Tween:Play()
                             Sex_Tween = TP1(GetCake_CFrame_Mon() * CFrame.new(0, 15, 5))
                             Sex_Tween:Play()
                             wait(0.5)
