@@ -2164,9 +2164,9 @@ local function TP1(...)
 	elseif Distance < 50 then
 		Speed = 5000
 	elseif Distance < 150 then
-		Speed = 700
+		Speed = 1000
 	elseif Distance < 250 then
-		Speed = 500
+		Speed = 700
 	elseif Distance < 500 then
 		Speed = 350
 	elseif Distance < 750 then
@@ -2308,7 +2308,7 @@ tween:Play()
 
 local tweenfunc = {}
 
-function tweenfunc:Stop()
+function tweenfunc:Cancel()
 	tween:Cancel()
 end
 
@@ -2782,7 +2782,7 @@ spawn(function()
 								end
 							end
 						else
-							UnEquipWeapon(_G.Select_Weapon)
+							UnEquipWeapon(_G.SelectWeapon)
 							if _G.FastAttack then
 								FastAttack = false
 								elseif _G.SuperFastAttack then
@@ -2791,9 +2791,6 @@ spawn(function()
 							if _G.AutoFarm then
 								Sex_Tween(QuestCheck()[7][1] * CFrame.new(0,15,5))
 								Sex_Tween:Play()
-								
-							
-								
 							end
 						end
 					else
@@ -3164,7 +3161,7 @@ spawn(function()
 						StartMasteryFruitMagnet = false
 						wait(0.2)
 						game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", QuestCheck()[4], QuestCheck()[1]) wait(0.5) 
-						Sex_Tween = TP1(QuestCheck()[7][1] * CFrame.new(0,10000,5))
+						Sex_Tween = TP1(QuestCheck()[7][1] * CFrame.new(0,15,5))
 						Sex_Tween:Play()
 					end
 				end
@@ -4439,16 +4436,7 @@ M:AddToggle({
 											CFrameMon1111 = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild(v.name).WorldPivot.Position) * CFrame.new(0, 15, 0)
 										end)
 									end
-									if not CFrameMon then
-										pcall(function()
-											CFrameMon1111 = game.Workspace.Enemies:FindFirstChild(v.name):FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0, 15, 0)
-										end)
-									end
-									if not CFrameMon then
-										pcall(function()
-											CFrameMon1111 = game.Workspace._WorldOrigin:FindFirstChild("EnemySpawns"):FindFirstChild("Living Zombie [Lv. 2000]" or "Reborn Skeleton [Lv. 1975]" or "Demonic Soul [Lv. 2025]" or "Posessed Mummy [Lv. 2050]").CFrame * CFrame.new(0, 15, 0)
-										end)
-									end
+									
 									Sex_Tween = TP1(CFrameMon1111)
 									Sex_Tween:Play()
 								end
@@ -4778,6 +4766,7 @@ local EliteProgress = M:AddLabel("")
 				end)
 			end
 		end)
+        
 M:AddToggle({
 	Name = "Auto Quest(Cake Prince)",
 	Default = _G.questkata,
@@ -4786,6 +4775,25 @@ M:AddToggle({
 		
 	end    
 })
+Tabel = {}
+function GetCake_CFrame_Mon()
+    local targetMonsters = {"Baking Staff [Lv. 2250]", "Head Baker [Lv. 2275]", "Cake Guard [Lv. 2225]", "Cookie Crafter [Lv. 2200]"}
+    local enemySpawns = workspace.EnemySpawns:GetChildren()
+    local randomSpawnIndex = math.random(1, #enemySpawns)
+    local selectedSpawn = enemySpawns[randomSpawnIndex]
+    
+    for _,_v1 in pairs(targetMonsters) do
+        local result = string.gsub(_v1, "Lv. ", "")
+        local result2 = string.gsub(result, "[%[%]]", "")
+        local result3 = string.gsub(result2, "%d+", "")
+        local result4 = string.gsub(result3, "%s+", "")
+        local monQName = result4
+        
+        if selectedSpawn.Name == result4 then
+            return selectedSpawn.CFrame
+        end
+    end
+end
 M:AddToggle({
 	Name = "Auto Cake Prince",
 	Default = _G.cakeprince,
@@ -4804,126 +4812,142 @@ M:AddToggle({
 							end
 						end
 					end]]
-spawn(function()
-	while wait() do
-		pcall(function()
-			if string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 88 then
-				KillMob = (tonumber(string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,41)) - 500)
-			elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 87 then
-				KillMob = (tonumber(string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),40,41)) - 500)
-			elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 86 then
-				KillMob = (tonumber(string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),41,41)) - 500)
-			end
-		end)
-	end
-end)
 
+--2
 spawn(function()
-	while wait() do
-		if _G.cakeprince then
-			pcall(function()
-				if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
-					for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-						if v.Name == "Cake Prince" then
-							if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-								repeat task.wait()
+    while wait() do
+        if _G.cakeprince then
+            pcall(function()
+                if game.ReplicatedStorage:FindFirstChild("Cake Prince") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") or  game.ReplicatedStorage:FindFirstChild("Dough King") then   
+                    if not game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
+                        for _,x in pairs(game.ReplicatedStorage:GetChildren()) do 
+                            if x.Name == "Cake Prince" or x.Name == "Dough King" then
+                                if (CFrame.new(x.WorldPivot.Position).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 1000 then
+                                    wait(1.5)
+                                    Sex_Tween = TP1(CFrame.new(-2145.89722, 70.0088272, -12399.6016, 0.99999702, 1.58276379e-08, 0.00245277886, -1.57982978e-08, 1, -1.19813057e-08, -0.00245277886, 1.19425199e-08, 0.99999702))
+                                    Sex_Tween:Play()
+                                    return
+                                end
+                            end
+                        end
+                    end
+
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Cake Prince" then
+                            if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                repeat task.wait()
+                                    if (v.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 1000 then
+                                        Sex_Tween = TP1(CFrame.new(-2145.89722, 70.0088272, -12399.6016, 0.99999702, 1.58276379e-08, 0.00245277886, -1.57982978e-08, 1, -1.19813057e-08, -0.00245277886, 1.19425199e-08, 0.99999702))
+                                        Sex_Tween:Play()
+                                        return
+                                    end
 									AutoHaki()
-									EquipWeapon(_G.SelectWeapon)
-									v.HumanoidRootPart.CanCollide = false
-									v.Humanoid.WalkSpeed = 0
-									v.HumanoidRootPart.Size = Vector3.new(80,80,80)
+                                    EquipWeapon(_G.SelectWeapon)
 									if _G.FastAttack then
 										FastAttack = true
 										elseif _G.SuperFastAttack then
 										SFastAttack = true
 									end	
-									topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
-									sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
-								until not _G.cakeprince or not v.Parent or v.Humanoid.Health <= 0
+                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)  
+                                    MagnetDought = true
+                                    Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0, 30, 5))
+                                    Sex_Tween:Play()
+                                    if (v.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+                                        game:GetService("VirtualUser"):CaptureController()
+                                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                    end
+                                until not _G.cakeprince or not v.Parent or v.Humanoid.Health <= 0
 								if _G.FastAttack then
 									FastAttack = false
 									elseif _G.SuperFastAttack then
 									SFastAttack = false
 								end	
-							end
-						end
-					end
-				else
-					if game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince") then
-						
-						topos(game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-					else
-						if KillMob == 0 then
-						end                    
-						if game:GetService("Workspace").Map.CakeLoaf.BigMirror.Other.Transparency == 1 then
-							if game:GetService("Workspace").Enemies:FindFirstChild("Cookie Crafter") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Guard") or game:GetService("Workspace").Enemies:FindFirstChild("Baking Staff") or game:GetService("Workspace").Enemies:FindFirstChild("Head Baker") then
-								for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-									if v.Name == "Cookie Crafter" or v.Name == "Cake Guard" or v.Name == "Baking Staff" or v.Name == "Head Baker" then
-										if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-											repeat task.wait()
-												AutoHaki()
-												EquipWeapon(_G.SelectWeapon)
-												v.HumanoidRootPart.CanCollide = false
-												v.Humanoid.WalkSpeed = 0
-												v.Head.CanCollide = false 
-												v.HumanoidRootPart.Size = Vector3.new(80,80,80)
-												MagnetDought = true
-												PosMonDoughtOpenDoor = v.HumanoidRootPart.CFrame
-												Sex_tween = TP1(v.HumanoidRootPart.CFrame * Pos)
-												Sex_tween:Play()
-												if _G.FastAttack then
-													FastAttack = true
-													elseif _G.SuperFastAttack then
-													SFastAttack = true
-												end	
-											until not _G.cakeprince or not v.Parent or v.Humanoid.Health <= 0 or game:GetService("Workspace").Map.CakeLoaf.BigMirror.Other.Transparency == 0 or game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") or KillMob == 0
-											if _G.FastAttack then
-												FastAttack = false
-												elseif _G.SuperFastAttack then
-												SFastAttack = false
-											end	
-										end
-									end
+                            end
+                        else
+                            for _,x in pairs(game.ReplicatedStorage:GetChildren()) do 
+                                if x.Name == "Cake Prince" or x.Name == "Dough King" then
+                                    if (CFrame.new(x.WorldPivot.Position).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 1000 then
+                                        Sex_Tween = TP1(CFrame.new(-2145.89722, 70.0088272, -12399.6016, 0.99999702, 1.58276379e-08, 0.00245277886, -1.57982978e-08, 1, -1.19813057e-08, -0.00245277886, 1.19425199e-08, 0.99999702))
+                                        Sex_Tween:Play()
+                                        return
+                                    end
+                                end
+                            end
+                        end
+                    end
+                else 
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") or game.ReplicatedStorage:FindFirstChild("Cake Prince") then
+                        for _,x in pairs(game.ReplicatedStorage:GetChildren()) do 
+                            if x.Name == "Cake Prince" or x.Name == "Dough King" then
+                                if (CFrame.new(x.WorldPivot.Position).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 1000 then
+                                    Sex_Tween = TP1(CFrame.new(-2145.89722, 70.0088272, -12399.6016, 0.99999702, 1.58276379e-08, 0.00245277886, -1.57982978e-08, 1, -1.19813057e-08, -0.00245277886, 1.19425199e-08, 0.99999702))
+                                    Sex_Tween:Play()
+                                    return
+                                end
+                            end
+                        end
+                    else
+                        if game.Workspace.Enemies:FindFirstChild("Baking Staff") or game.Workspace.Enemies:FindFirstChild("Head Baker") or game.Workspace.Enemies:FindFirstChild("Cake Guard") or game.Workspace.Enemies:FindFirstChild("Cookie Crafter")  then
+                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do  
+                                if (v.Name == "Baking Staff" or v.Name == "Head Baker" or v.Name == "Cake Guard" or v.Name == "Cookie Crafter") and v.Humanoid.Health > 0 then
+                                    repeat wait()
+                                        PosMonDoughtOpenDoor = v.HumanoidRootPart.CFrame
+                                        EquipWeapon(_G.SelectWeapon)
+										AutoHaki()
+										if _G.FastAttack then
+											FastAttack = true
+											elseif _G.SuperFastAttack then
+											SFastAttack = true
+										end	
+                                        v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)  
+                                        MagnetDought = true
+                                        Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0, 15, 5))
+                                        Sex_Tween:Play()
+                                        if (v.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+                                            game:GetService("VirtualUser"):CaptureController()
+                                            game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                        end
+                                    until _G.cakeprince == false or game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince") or not v.Parent or v.Humanoid.Health <= 0
+									if _G.FastAttack then
+										FastAttack = false
+										elseif _G.SuperFastAttack then
+										SFastAttack = false
+									end	
 								end
-							else
-								MagnetDought = false
-								Sex_tween = TP1(CFrame.new(-2091.911865234375, 70.00884246826172, -12142.8359375))
-								Sex_tween:Play()
-								if game:GetService("ReplicatedStorage"):FindFirstChild("Cookie Crafter") then
-									Sex_tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Cookie Crafter").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-									Sex_tween:Play() 
-								else
-									if game:GetService("ReplicatedStorage"):FindFirstChild("Cake Guard") then
-										Sex_tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Cake Guard").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-										Sex_tween:Play() 
-									else
-										if game:GetService("ReplicatedStorage"):FindFirstChild("Baking Staff") then
-											Sex_tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Baking Staff").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-											Sex_tween:Play()
-										else
-											if game:GetService("ReplicatedStorage"):FindFirstChild("Head Baker") then
-												Sex_tween = TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Head Baker").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-												Sex_tween:Play()
-											end
-										end
-									end
-								end                       
+                            end
+                        else
+                            MagnetDought = false
+                            UnEquipWeapon(_G.SelectWeapon)
+							if not CFrameMon then
+								pcall(function()
+									CFrameMon = game.Workspace._WorldOrigin:FindFirstChild("EnemySpawns"):FindFirstChild("Baking Staff [Lv. 2250]").CFrame * CFrame.new(0, 15, 0)
+								end)
 							end
-						else
-							if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
-								topos(game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-							else
-								if game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince") then
-									topos(game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-								end
+							if not CFrameMon then
+								pcall(function()
+									CFrameMon = game.Workspace._WorldOrigin:FindFirstChild("EnemySpawns"):FindFirstChild("Head Baker [Lv. 2275]").CFrame * CFrame.new(0, 15, 0)
+								end)
 							end
-						end
-					end
-				end
-			end)
-		end
-	end
-end)		
+							if not CFrameMon then
+								pcall(function()
+									CFrameMon = game.Workspace._WorldOrigin:FindFirstChild("EnemySpawns"):FindFirstChild("Cake Guard [Lv. 2225]").CFrame * CFrame.new(0, 15, 0)
+								end)
+							end
+							if not CFrameMon then
+								pcall(function()
+									CFrameMon = game.Workspace._WorldOrigin:FindFirstChild("EnemySpawns"):FindFirstChild("Cookie Crafter [Lv. 2200]").CFrame * CFrame.new(0, 15, 0)
+								end)
+							end
+							Sex_Tween = TP1(CFrameMon)
+							Sex_Tween:Play()
+                            wait(0.5)
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)	
 M:AddSection({
 	Name = "Farm Material"
 })
@@ -5943,7 +5967,7 @@ end
 													repeat wait()
 														FarmtoTarget = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,15,1))
 														if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 150 then
-															if FarmtoTarget then FarmtoTarget:Stop() end
+															if FarmtoTarget then FarmtoTarget:Cancel() end
 															FastAttack = true
 															EquipWeapon(_G.SelectWeapon)
 															spawn(function()
@@ -5979,13 +6003,13 @@ end
 												if Modstween then Modstween:Cancel() end wait(.5)
 												game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
 											elseif World1 and not (table.find(MaterialMob,"Fishman Commando")) and (CFrameMon.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
-												if Modstween then Modstween:Stop() end wait(.5)
+												if Modstween then Modstween:Cancel() end wait(.5)
 												game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(3864.8515625, 6.6796875, -1926.7841796875))
 											elseif World1 and (table.find(MaterialMob,"God's Guard")) and (CFrameMon.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 3000 then
-												if Modstween then Modstween:Stop() end wait(.5)
+												if Modstween then Modstween:Cancel() end wait(.5)
 												game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(-4607.8227539063, 872.54248046875, -1667.5568847656))
 											elseif (CFrameMon.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 150 then
-												if Modstween then Modstween:Stop() end
+												if Modstween then Modstween:Cancel() end
 												game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrameMon
 											end 
 										end
@@ -6001,7 +6025,7 @@ end
 												repeat wait()
 													FarmtoTarget = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
 													if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 150 then
-														if FarmtoTarget then FarmtoTarget:Stop() end
+														if FarmtoTarget then FarmtoTarget:Cancel() end
 														FastAttack = true
 														EquipWeapon(_G.SelectWeapon)
 														spawn(function()
@@ -6034,16 +6058,16 @@ end
 										FastAttack = false
 										Modstween = TP1(CFrameMon.Position,CFrameMon)
 										if World1 and (table.find(MaterialMob,"Fishman Commando")) and (CFrameMon.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
-											if Modstween then Modstween:Stop() end wait(.5)
+											if Modstween then Modstween:Cancel() end wait(.5)
 											game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
 										elseif World1 and not (table.find(MaterialMob,"Fishman Commando")) and (CFrameMon.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
-											if Modstween then Modstween:Stop() end wait(.5)
+											if Modstween then Modstween:Cancel() end wait(.5)
 											game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(3864.8515625, 6.6796875, -1926.7841796875))
 										elseif World1 and (table.find(MaterialMob,"God's Guard")) and (CFrameMon.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 3000 then
-											if Modstween then Modstween:Stop() end wait(.5)
+											if Modstween then Modstween:Cancel() end wait(.5)
 											game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(-4607.8227539063, 872.54248046875, -1667.5568847656))
 										elseif (CFrameMon.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 150 then
-											if Modstween then Modstween:Stop() end
+											if Modstween then Modstween:Cancel() end
 											game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrameMon
 										end 
 									end
@@ -6059,7 +6083,7 @@ end
 											repeat wait()
 												FarmtoTarget = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
 												if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 150 then
-													if FarmtoTarget then FarmtoTarget:Stop() end
+													if FarmtoTarget then FarmtoTarget:Cancel() end
 													FastAttack = true
 													EquipWeapon(_G.SelectWeapon)
 													spawn(function()
@@ -6092,16 +6116,16 @@ end
 									FastAttack = false
 									Modstween = TP1(CFrameMon.Position,CFrameMon)
 									if World1 and (table.find(MaterialMob,"Fishman Commando")) and (CFrameMon.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
-										if Modstween then Modstween:Stop() end wait(.5)
+										if Modstween then Modstween:Cancel() end wait(.5)
 										game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
 									elseif World1 and not (table.find(MaterialMob,"Fishman Commando")) and (CFrameMon.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
-										if Modstween then Modstween:Stop() end wait(.5)
+										if Modstween then Modstween:Cancel() end wait(.5)
 										game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(3864.8515625, 6.6796875, -1926.7841796875))
 									elseif World1 and (table.find(MaterialMob,"God's Guard")) and (CFrameMon.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 3000 then
-										if Modstween then Modstween:Stop() end wait(.5)
+										if Modstween then Modstween:Cancel() end wait(.5)
 										game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(-4607.8227539063, 872.54248046875, -1667.5568847656))
 									elseif (CFrameMon.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 150 then
-										if Modstween then Modstween:Stop() end
+										if Modstween then Modstween:Cancel() end
 										game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrameMon
 									end 
 								end
@@ -6117,7 +6141,7 @@ end
 										repeat wait()
 											FarmtoTarget = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
 											if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 150 then
-												if FarmtoTarget then FarmtoTarget:Stop() end
+												if FarmtoTarget then FarmtoTarget:Cancel() end
 												FastAttack = true
 												EquipWeapon(_G.SelectWeapon)
 												spawn(function()
@@ -6150,16 +6174,16 @@ end
 								FastAttack = false
 								Modstween = TP1(CFrameMon.Position,CFrameMon)
 								if World1 and (table.find(MaterialMob,"Fishman Commando")) and (CFrameMon.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
-									if Modstween then Modstween:Stop() end wait(.5)
+									if Modstween then Modstween:Cancel() end wait(.5)
 									game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
 								elseif World1 and not (table.find(MaterialMob,"Fishman Commando")) and (CFrameMon.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 50000 then
-									if Modstween then Modstween:Stop() end wait(.5)
+									if Modstween then Modstween:Cancel() end wait(.5)
 									game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(3864.8515625, 6.6796875, -1926.7841796875))
 								elseif World1 and (table.find(MaterialMob,"God's Guard")) and (CFrameMon.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude > 3000 then
-									if Modstween then Modstween:Stop() end wait(.5)
+									if Modstween then Modstween:Cancel() end wait(.5)
 									game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(-4607.8227539063, 872.54248046875, -1667.5568847656))
 								elseif (CFrameMon.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 150 then
-									if Modstween then Modstween:Stop() end
+									if Modstween then Modstween:Cancel() end
 									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrameMon
 								end 
 							end
@@ -6177,7 +6201,7 @@ while wait() do
 		if _G.Auto_God_Human and World2 then
 			if game.Workspace.Enemies:FindFirstChild("Tide Keeper") or game.ReplicatedStorage:FindFirstChild("Tide Keeper") then
 				if (KillSharkMan == true and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true) == "I lost my house keys, could you help me find them? Thanks.") then
-					if KillFish then KillFish:Stop() end
+					if KillFish then KillFish:Cancel() end
 					Com("F_","SetSpawnPoint")
 					for i,v in pairs(game.Workspace.Enemies:GetChildren()) do 
 						if v.Name == "Tide Keeper" then
@@ -6186,7 +6210,7 @@ while wait() do
 									if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > 200 then
 										Farmtween = TP1(v.HumanoidRootPart.CFrame)
 									elseif (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 200 then
-										if Farmtween then Farmtween:Stop() end
+										if Farmtween then Farmtween:Cancel() end
 										FastAttack = true
 										AutoHaki()
 										if not game.Players.LocalPlayer.Character:FindFirstChild(_G.SelectWeapon) then
@@ -6230,7 +6254,7 @@ end)
 	})
 	local cframtpboat = Vector3.new(-33080, 10, 26077)
 local npcboatpos = CFrame.new(-16210, 9, 476)
-	
+	-- bật hack + vô game đi
 	M:AddToggle({
 		Name = "Auto Sea Event",
 		Default = _G.AutoSeaBest or false,
@@ -6241,15 +6265,13 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 				while _G.AutoSeaBest do wait(1)
 					pcall(function()
 						if _G.AutoSeaBest then
+							if not game:GetService("Workspace").Enemies:FindFirstChild("Piranha") or not game.workspace.Enemies:FindFirstChild("Shark") then
 								if not game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") then
 									if not game:GetService("Workspace").Enemies:FindFirstChild("PirateBrigade") then 
 										if not game:GetService("Workspace").Enemies:FindFirstChild("PirateGrandBrigade") then
-											if not game:GetService("Workspace").Enemies:FindFirstChild("Piranha") or not game.workspace.Enemies:FindFirstChild("Shark") then
 												if not game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") then
 													if not game:GetService("Workspace").Boats:FindFirstChild("PirateGrandBrigade") then
-
 														topos(npcboatpos)
-														
 														print("dang mua")
 														wait(1)
 															if (npcboatpos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 5 then
@@ -6262,29 +6284,27 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 																
 															end
 															wait(1)
-													else
-														for i,v in pairs(game.workspace.Boats:GetChildren()) do
-															print("dang lam")
-																if (CFrame.new(-33080, 0, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude < 50 then
+													elseif game:GetService("Workspace").Boats:FindFirstChild("PirateGrandBrigade") then
+														for i,v in pairs(game.workspace.Boats:GetChildren()) do -- m có bật dex lên check lại tên chưa lỡ đéo phải thì sao =)) trc t copy path r ma
+															print("dang lam") -- y m la s. là nó spawn con terror shark rồi mà thì phải đánh chứ sao lại print đang làm| thi do moi bug uhuhu vl
+															print(game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark"))
+															if (CFrame.new(-33080, 0, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude < 50 then
 																	repeat wait()
-																		Sex_Tween = topos(v.VehicleSeat.CFrame * CFrame.new(1,1,0))
+																		Sex_Tween = topos(v.VehicleSeat.CFrame * CFrame.new(0,0.1,0)) -- có đúng tên Terror shark ko check dex chưa de x
 																	until not _G.AutoSeaBest or game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") or game:GetService("Workspace").Enemies:FindFirstChild("PirateGrandBrigade") or game:GetService("Workspace").Enemies:FindFirstChild("PirateBrigade")  or game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") or game:GetService("Workspace").Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") or game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true or not v.Parent
 																else
-																	
 																	game.workspace.Boats[v.name]:MoveTo(cframtpboat)
-																end
-																if (v.VehicleSeat.CFrame.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 5 then
-																	Sex_Tween:Cancel()
-																end
+																end 
 														end
-													
 													end
-												elseif game.workspace.Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") then
+												elseif game.workspace.Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") then -- nó spawn r mà sao lại leo lên boat chi 
 													for i,v in pairs(game.workspace.Enemies:GetChildren()) do
 														if v.name == "Terrorshark" then
 															if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
 																repeat task.wait()
-																	
+																	print("farm ", v.name)
+																	game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
+	
 																	if _G.FastAttack then
 																		FastAttack = true
 																		elseif _G.SuperFastAttack then
@@ -6302,51 +6322,13 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 														end
 													end
 												end
-											elseif game.workspace.Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") then
-												for i,v in pairs(game.workspace.Enemies:GetChildren()) do
-													if v.name == "Piranha" or v.name == "Shark" then
-														if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-															repeat task.wait()
-																for v4,v5 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do 
-																	if (v5.Name==v.Name) then 
-																		spawn(function()
-																			if InMyNetWork(v5.HumanoidRootPart) then 
-																				v5.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame;
-																				v5.Humanoid.JumpPower=0;
-																				v5.Humanoid.WalkSpeed=0;
-																				v5.HumanoidRootPart.CanCollide=false;
-																				v5.Humanoid:ChangeState(14);
-																				v5.Humanoid:ChangeState(11);
-																				v5.Head.CanCollide = false
-																				v5.HumanoidRootPart.Size=Vector3.new(55,55,55);
-																				
-																			end 
-																		end);
-																	end 
-																end 
-																if _G.FastAttack then
-																	FastAttack = true
-																	elseif _G.SuperFastAttack then
-																	SFastAttack = true
-																end	
-																topos(v.HumanoidRootPart.CFrame * CFrame.new(0,20,0))
-																AutoHaki()
-																EquipWeapon(_G.SelectWeapon);
-																if (game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") and (game.Players.LocalPlayer.Character:FindFirstChild("Black Leg").Level.Value>=150)) then 
-																	game:service("VirtualInputManager"):SendKeyEvent(true,"V",false,game);
-																	game:service("VirtualInputManager"):SendKeyEvent(false,"V",false,game);
-																end 
-															until not _G.AutoSeaBest or not v.Parent or v.Humanoid.Health <= 0
-														end
-													end
-												end
-											end
 										elseif game.workspace.Enemies:FindFirstChild("PirateGrandBrigade") then
 											for is,vs in pairs(game.workspace.Enemies:GetChildren()) do
 												if vs.Name == "PirateGrandBrigade" then
 													if v:FindFirstChild("VehicleSeat") then
 														repeat wait()
-															game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
+																game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
+																print("farm ", v.name)
 															topos(vs.VehicleSeat.CFrame * CFrame.new(0,15,0))
 															EquipAllWeapon()  
 															AutoSkill = true
@@ -6364,6 +6346,8 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 											if vss.Name == "PirateBrigade" then
 												if v:FindFirstChild("VehicleSeat") then
 													repeat wait()
+															game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
+															print("farm ", v.name)
 														game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
 														topos(vss.VehicleSeat.CFrame * CFrame.new(0,15,0))
 														EquipAllWeapon()  
@@ -6381,7 +6365,8 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 									for i,v in pairs(game:GetService("Workspace").SeaBeasts:GetChildren()) do
 										if v:FindFirstChild("HumanoidRootPart") then
 											repeat wait()
-												game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
+													game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
+													print("farm ", v.name)
 												topos(v.HumanoidRootPart.CFrame * CFrame.new(0,500,0))
 												
 												EquipAllWeapon() 
@@ -6395,6 +6380,48 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 										end
 									end
 								end
+							elseif game.workspace.Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") then
+								for i,v in pairs(game.workspace.Enemies:GetChildren()) do
+									if v.name == "Piranha" or v.name == "Shark" then
+										if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+											repeat task.wait()
+												print("farm ", v.name)
+													game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
+													topos(v.HumanoidRootPart.CFrame * CFrame.new(0,20,0))
+												for v4,v5 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do 
+													if (v5.Name==v.Name) then 
+														spawn(function()
+															if InMyNetWork(v5.HumanoidRootPart) then 
+																v5.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame;
+																v5.Humanoid.JumpPower=0;
+																v5.Humanoid.WalkSpeed=0;
+																v5.HumanoidRootPart.CanCollide=false;
+																v5.Humanoid:ChangeState(14);
+																v5.Humanoid:ChangeState(11);
+																v5.Head.CanCollide = false
+																v5.HumanoidRootPart.Size=Vector3.new(55,55,55);
+																
+															end 
+														end);
+													end 
+												end 
+												if _G.FastAttack then
+													FastAttack = true
+													elseif _G.SuperFastAttack then
+													SFastAttack = true
+												end	
+												
+												AutoHaki()
+												EquipWeapon(_G.SelectWeapon);
+												if (game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") and (game.Players.LocalPlayer.Character:FindFirstChild("Black Leg").Level.Value>=150)) then 
+													game:service("VirtualInputManager"):SendKeyEvent(true,"V",false,game);
+													game:service("VirtualInputManager"):SendKeyEvent(false,"V",false,game);
+												end 
+											until not _G.AutoSeaBest or not v.Parent or v.Humanoid.Health <= 0
+										end
+									end
+								end
+							end
 						end
 					end)
 				end
