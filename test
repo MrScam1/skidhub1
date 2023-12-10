@@ -6,24 +6,6 @@ setfflag("CrashUploadToBacktraceBlackholeToken", "")
 setfflag("CrashUploadToBacktraceWindowsPlayerToken", "")
 
 local Global_V = {}
-pcall(function()
-    local req = (syn and syn.request) or request
-    local GetDataFormServer = req({
-        Url = 'http://kangisloser.xyz/GetData',
-        Method = 'POST',
-        Headers = {
-            ["Content-Type"] = "application/json"
-        };
-        Body = game:GetService('HttpService'):JSONEncode({
-            GameId = tostring(game.PlaceId)
-        }),
-    })
-    local Body = game:GetService("HttpService"):JSONDecode(GetDataFormServer.Body)
-    Global_V = {
-        Version_script = Body.Version,
-        Script_enabled = Body.ScriptEnabled
-    }
-end)
 
 -- Global_V = {
 --     Version_script = "Testing",
