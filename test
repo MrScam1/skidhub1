@@ -2275,6 +2275,34 @@ AllMaterial = {
 	"Gunpowder",
 }
 end
+local function VeruTween(place)
+    local player = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+    if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").Sit == true then
+        game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").Sit = false
+    end
+    local Distance = (place.Position - player.Position).Magnitude
+    local speed = 250
+    if Distance < 250 then
+        speed = 5000
+    elseif Distance < 500 then
+        speed = 650
+    elseif Distance < 1000 then
+        speed = 350
+    elseif Distance >= 1000 then
+        speed = 250
+    end
+	local TweenService = game:GetService("TweenService")
+	local start = player.Position
+	local _end = place.Position
+	local distance = (start - _end).Magnitude
+	local _time = distance/(speed)
+	local info = TweenInfo.new(
+		_time,
+		Enum.EasingStyle.Linear
+	)
+	local tp = TweenService:Create(player, info, {CFrame = place})
+	return tp
+end
 function topos(Pos)
 	Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
 	if Distance < 25 then
@@ -2297,7 +2325,7 @@ function topos(Pos)
 		TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
 		{CFrame = Pos}
 	):Play()
-end
+end 
 
 function TPP(CFgo)
 if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health <= 0 or not game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid") then tween:Cancel() repeat wait() until game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid") and game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health > 0 wait(7) return end
@@ -6264,10 +6292,10 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 			spawn(function()
 				while _G.AutoSeaBest do wait(1)
 					pcall(function()
-						if _G.AutoSeaBest then
+						if _G.AutoSeaBest then --bug gi ko co ngoi
 							if not game:GetService("Workspace").Enemies:FindFirstChild("Piranha") or not game.workspace.Enemies:FindFirstChild("Shark") then
 								if not game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") then
-									if not game:GetService("Workspace").Enemies:FindFirstChild("PirateBrigade") then 
+									if not game:GetService("Workspace").Enemies:FindFirstChild("PirateBrigade") then -- ngoi vao xong bay ra r bug
 										if not game:GetService("Workspace").Enemies:FindFirstChild("PirateGrandBrigade") then
 												if not game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") then
 													if not game:GetService("Workspace").Boats:FindFirstChild("PirateGrandBrigade") then
@@ -6289,12 +6317,26 @@ local npcboatpos = CFrame.new(-16210, 9, 476)
 															print("dang lam") -- y m la s. là nó spawn con terror shark rồi mà thì phải đánh chứ sao lại print đang làm| thi do moi bug uhuhu vl
 															print(game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark"))
 															if (CFrame.new(-33080, 0, 26077).Position - v.VehicleSeat.CFrame.Position).magnitude < 50 then
-																	repeat wait()
-																		Sex_Tween = topos(v.VehicleSeat.CFrame * CFrame.new(0,0.1,0)) -- có đúng tên Terror shark ko check dex chưa de x
-																	until not _G.AutoSeaBest or game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") or game:GetService("Workspace").Enemies:FindFirstChild("PirateGrandBrigade") or game:GetService("Workspace").Enemies:FindFirstChild("PirateBrigade")  or game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") or game:GetService("Workspace").Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") or game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true or not v.Parent
-																else
-																	game.workspace.Boats[v.name]:MoveTo(cframtpboat)
-																end 
+																if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").Sit == false then
+																	repeat wait(1)
+																		Sex_Tween = VeruTween(v.VehicleSeat.CFrame) 
+																		Sex_Tween:Play()
+																		repeat wait(0.05)
+																		until Sex_Tween.PlaybackState ~= Enum.PlaybackState.Playing
+																		game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0,0.1,0)
+																		game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0,0.2,0)
+																		game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0,-0.1,0)
+																		game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0,0.1,0.5)
+																		game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0,0.1,-0.5)
+																		game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0.5,0.1,0)
+																		game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(-0.5,0.1,0)
+																		game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0.1,0.1,0)
+																		game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(3)
+																	until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").Sit == true
+																end
+															else
+																game.workspace.Boats[v.name]:MoveTo(cframtpboat) -- cnay de lam gi v tp boat tp character to boat ? tp boat ra do th
+															end 
 														end
 													end
 												elseif game.workspace.Enemies:FindFirstChild("Piranha") or game.workspace.Enemies:FindFirstChild("Shark") then -- nó spawn r mà sao lại leo lên boat chi 
