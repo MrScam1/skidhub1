@@ -2822,20 +2822,24 @@ Tab6:AddToggle({
         SaveSetting()
 	end    
 })
-
+local Event = game:GetService("Workspace").Merchants.ExpertiseMerchant.Clickable.Retum
 spawn(function()--auto quest
     while wait() do
         if Config.quest then
+            print("1")
             if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 100 and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
-                    if not game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Visible then
-                        if game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Header.Text == "Mission Objective" then
-                            repeat wait(10)
-                            game:GetService("Workspace").Merchants.ExpertiseMerchant.Clickable.Retum:FireServer()
-                            until game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Visible
-                        end
-                    elseif game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Visible then
+                print("check name")
+                if not string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Beris") or not string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Damage") then
+                    print('checkquest')
+                    if not game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Visible then  
+                        print("nhan quest")
+                        repeat wait(5)
+                        Event:FireServer()   
+                        until game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Visible and (string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Beris") or string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Damage"))                
+                    elseif game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Visible then
                         print("co quest")
                     end
+                end
             end
         end
     end
