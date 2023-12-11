@@ -2,6 +2,9 @@
 repeat task.wait() until game:IsLoaded()
 repeat task.wait() until game.Players
 repeat task.wait() until game.Players.LocalPlayer
+repeat
+    wait()
+until game.Players.LocalPlayer.PlayerGui:FindFirstChild("Blindness")
 spawn(function()
     pcall(function()
         while task.wait(2400) do 
@@ -15,7 +18,7 @@ spawn(function()
                 if foundAnything == "" then
                     Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
                 else
-                    Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+                    Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/serversCc/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
                 end
                 local ID = ""
                 if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
@@ -299,21 +302,38 @@ local GC = getconnections or get_signal_cons
     end)
 local Players = game:GetService("Players")
 local BlacklistedPlayers = {
-    "Oblivic",
-    "BowTiedPony",
-    "Bige0n",
-    "Farquanetta",
-    "icydragonwingsis",
-    "trashpanda2361",
-    "MarcusVetarus",
+    "Foltix",
+    "VaporConduct",
     "ElianJoestar",
-    "Quixotize",
-    "CudlesstheCat",
+    "Farquanetta",
+    "alligatorwithaguitar ",
+    "Cythex",
+    "MarcusVetarus",
+    "BowTiedPony",
+    "EtanaruSky",
     "FoxKingFab",
+    "Lxxt0",
+    "mariobros38",
+    "Natsu_dragn331",
+    "Quixotize",
+    "reki_tf2",
+    "TheWrightDefense",
     "Tiptop98",
+    "TrashPanda2361",
     "vlonedd",
     "VortexFragmented",
-    "Natsudragn331",
+    "YourDadAKABIgPoppa",
+    "Zomkittz",
+    "Oblivic",
+    "CudlesstheCat",
+    "EtanaruSky",
+    "Elianmc1s",
+    "AzureXoten",
+    "ArchaicBread",
+    "Americanflag",
+    "Bige0n",
+    "Davida3rd",
+    "BowTiedPony"
 
 }
 spawn(function()
@@ -430,6 +450,9 @@ cooltoggle2 = Tab:AddToggle({
             pcall(function()
                 while true do wait()
                     if Config.safezone then
+                        repeat
+                            wait()
+                        until game.Players.LocalPlayer.PlayerGui:FindFirstChild("Blindness")
                         if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 100 then
                             for i,v in pairs(game:GetService("Workspace").ISLAND:GetChildren()) do
                                 if v.Name == "Base1" then
@@ -2803,9 +2826,14 @@ Tab6:AddToggle({
 spawn(function()--auto quest
     while wait() do
         if Config.quest then
-            if game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Header.Text == "Mission Objective" then
-                local Event = game:GetService("Workspace").Merchants.ExpertiseMerchant.Clickable.Retum
-                Event:FireServer()
+            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 100 and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
+                if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text,"Beris") or not string.find(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Kill") then
+                    if not game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Visible then
+                        repeat wait(10)
+                        game:GetService("Workspace").Merchants.ExpertiseMerchant.Clickable.Retum:FireServer()
+                        until game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Visible and (string.find(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text,"Beris") or string.find(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Kill"))
+                    end
+                end
             end
         end
     end
@@ -2964,7 +2992,7 @@ local Tab8 = Window:MakeTab({
 })
 local aaaa = Tab7:AddLabel("Position Spawn: ")
 Tab7:AddButton({
-	Name = "Set Spawn ",
+	Name = "Set Spawn",
     
 	Callback = function()
         getgenv().posFarm = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
@@ -2994,23 +3022,23 @@ Tab7:AddToggle({
         spawn(function()
             pcall(function()
                     while true do wait(0.1)
-                        pcall(function()
                             if Config.tpss then
+                                        
                                 pcall(function()
-                                    if Config.tpss then
-                                        pcall(function()
-                                            if (plr.Character.HumanoidRootPart.Position - StringToCFrame(getgenv().setspawn).Position).Magnitude > 5 and game.Players.LocalPlayer.Character.Humanoid.Health > 0 and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 100 then
-                                                wait(5)
-                                                
-                                                repeat wait()
-                                                    plr.Character.HumanoidRootPart.CFrame = StringToCFrame(getgenv().setspawn)
-                                                until Config.tpss == false
-                                            end
-                                        end)
+                                    if (plr.Character.HumanoidRootPart.Position - StringToCFrame(getgenv().setspawn).Position).Magnitude > 50 and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
+                                        if game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y >= 20000 then
+                                            game.Players.LocalPlayer.Character.CamScript.ClientServerClient:FireServer()
+                                            game.Players.LocalPlayer.Character.Weapons:FireServer()
+                                            game.Players.LocalPlayer.Character.CharacterTrait.ClothingTrigger:FireServer()
+                                        elseif game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y < 20000 then
+                                            repeat wait()
+                                                wait(3)
+                                                plr.Character.HumanoidRootPart.CFrame = StringToCFrame(getgenv().setspawn)
+                                            until Config.tpss == false or (plr.Character.HumanoidRootPart.Position - StringToCFrame(getgenv().setspawn).Position).Magnitude < 10 or game.Players.LocalPlayer.Character.Humanoid.Health <= 0
+                                        end
                                     end
                                 end)
                             end
-                        end)
                     end
             end)
         end)
@@ -3056,6 +3084,7 @@ sex_toggle = Tab8:AddToggle({
 
     end
 })
+
 spawn(function()
     pcall(function()
         while true do wait()
