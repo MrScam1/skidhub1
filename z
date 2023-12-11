@@ -2827,11 +2827,13 @@ spawn(function()--auto quest
     while wait() do
         if Config.quest then
             if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 100 and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
-                if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text,"Beris") or not string.find(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Kill") then
+                if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text,"Deal") or not string.find(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Earn") then
                     if not game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Visible then
-                        repeat wait(10)
-                        game:GetService("Workspace").Merchants.ExpertiseMerchant.Clickable.Retum:FireServer()
-                        until game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Visible and (string.find(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text,"Beris") or string.find(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Kill"))
+                        if game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Header.Text == "Mission Objective" then
+                            repeat wait(10)
+                            game:GetService("Workspace").Merchants.ExpertiseMerchant.Clickable.Retum:FireServer()
+                            until string.find(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text,"Deal") or string.find(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Earn")
+                        end
                     end
                 end
             end
