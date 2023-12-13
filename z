@@ -3096,21 +3096,3 @@ sex_toggle = Tab8:AddToggle({
 
     end
 })
-
-spawn(function()
-    pcall(function()
-        while true do wait()
-            if not Config.respawn and not Config.safezone and not Config.cannonfarmboth and not Config.autorejoin and not Config.SaveSetting then
-                cooltoggle1:Set(true)  
-                wait(1)
-                cooltoggle2:Set(true)
-                wait(1)
-                cooltoggle:Set(true)
-                wait(1)
-                chitchit:Set(true)
-                wait(1)
-                sex_toggle:Set(true)
-            end
-        end
-    end)
-end)
