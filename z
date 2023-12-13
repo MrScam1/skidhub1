@@ -2720,6 +2720,7 @@ Tab:AddToggle({
                         wait(1)
                         game.Players.LocalPlayer.Character.Weapons:FireServer()
                         game.Players.LocalPlayer.Character.CharacterTrait.ClothingTrigger:FireServer()
+                        wait(3)
                     elseif game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y < 20000 then
                         repeat wait()
                         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-19784, 218, 4675) 
@@ -3104,5 +3105,3 @@ sex_toggle = Tab8:AddToggle({
 
     end
 })
-
-
