@@ -2716,61 +2716,61 @@ Tab:AddToggle({
         
 			while true do wait(0.1)
                 if Config.fish then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(188679, 216, 176128) 
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-19784, 218, 4675) 
        end
     end
 end)
             spawn(function()
                 pcall(function()
+                    pcall(function()
+                        while true do wait()
+                    
                             pcall(function()
-               while true do wait()
-                
-                   pcall(function()
-            if Config.fish and _G.fish then
-                pcall(function()
-                                for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                                    if string.find(v.Name , "Rod") then
-                                                        for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                                if string.find(v.Name , "Rod") then
-                                    game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
-                                end
-                            end
-                                    end
-                                end
-                                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                                    if string.find(v.Name , "Rod") then
-                                                        for _,x in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-                                if string.find(x.Name , "Rod") then
-                                    for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-                                        if v:FindFirstChild("Bobber") then
-                                            if v.Bobber.Effect.Enabled == true then
-                                                
-                                                wait(0.5)
-                                                local args = {
-                                                    [1] = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-                                                }
-                                                game:GetService("Players").LocalPlayer.Character:FindFirstChild(x.Name).Click:FireServer(unpack(args))
+                                if Config.fish and _G.fish then
+                                    pcall(function()
+                                        for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                                            if string.find(v.Name , "Rod") then
+                                                for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                                                    if string.find(v.Name , "Rod") then
+                                                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+                                                    end
+                                                end
                                             end
-                                        elseif v.Name == "Cast" and not v:FindFirstChild("Bobber") then
-                                            
-                                            wait(0.5)
-                                            local args = {
-                                                [1] = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-                                            }
-                                            game:GetService("Players").LocalPlayer.Character:FindFirstChild(x.Name).Click:FireServer(unpack(args))
                                         end
-                                    end
+                                        for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                                            if string.find(v.Name , "Rod") then
+                                                for _,x in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                                                    if string.find(x.Name , "Rod") then
+                                                        for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                                                            if v:FindFirstChild("Bobber") then
+                                                                if v.Bobber.Effect.Enabled == true then
+                                                                    
+                                                                    wait(0.5)
+                                                                    local args = {
+                                                                        [1] = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+                                                                    }
+                                                                    game:GetService("Players").LocalPlayer.Character:FindFirstChild(x.Name).Click:FireServer(unpack(args))
+                                                                end
+                                                            elseif v.Name == "Cast" and not v:FindFirstChild("Bobber") then
+                                                                
+                                                                wait(0.5)
+                                                                local args = {
+                                                                    [1] = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+                                                                }
+                                                                game:GetService("Players").LocalPlayer.Character:FindFirstChild(x.Name).Click:FireServer(unpack(args))
+                                                            end
+                                                        end
+                                                    end
+                                                end
+                                                wait(0.5)
+                                            end
+                                        end
+                                    end)
                                 end
-                            end
-                                        wait(0.5)
-                                    end
-                                end
+                            end)
+                        end
+                    end)
                 end)
-            end
-            end)
-            end
-            end)
-            end)
             end)
         
         
@@ -3096,3 +3096,21 @@ sex_toggle = Tab8:AddToggle({
 
     end
 })
+
+spawn(function()
+    pcall(function()
+        while true do wait()
+            if not Config.respawn and not Config.safezone and not Config.cannonfarmboth and not Config.autorejoin and not Config.SaveSetting then
+                cooltoggle1:Set(true)  
+                wait(1)
+                cooltoggle2:Set(true)
+                wait(1)
+                cooltoggle:Set(true)
+                wait(1)
+                chitchit:Set(true)
+                wait(1)
+                sex_toggle:Set(true)
+            end
+        end
+    end)
+end)
