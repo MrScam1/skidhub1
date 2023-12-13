@@ -2863,7 +2863,8 @@ Tab6:AddToggle({
                                 wait(1)
                                 if  game.Players.LocalPlayer.Backpack:FindFirstChild("Package") or game.Players.LocalPlayer.Character:FindFirstChild("Package") or game.workspace.playernameuser:FindFirstChild("Package") then
                                     game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Package"))
-                                elseif game.Players.LocalPlayer.Character:FindFirstChild("Package") and not game.Players.LocalPlayer.Backpack:FindFirstChild("Package") then
+                                end
+                            elseif game.Players.LocalPlayer.Character:FindFirstChild("Package") then
                                     wait(1)
                                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Merchants.AffinityMerchant.HumanoidRootPart.CFrame*CFrame.new(0,0,3.1)
                                     game:GetService'VirtualUser':CaptureController()
@@ -2955,7 +2956,7 @@ Tab6:AddToggle({
                                     game:GetService'VirtualUser':CaptureController()
                                     game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))      
                                 end
-                            end
+                            
                         end
                     end
                 end)
