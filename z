@@ -2716,7 +2716,9 @@ Tab:AddToggle({
 			while true do wait(0.1)
                 if Config.fish then
                     if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 100 and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
+                        repeat wait()
                         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-19784, 218, 4675) 
+                        until (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 100 or game.Players.LocalPlayer.Character.Humanoid.Health < 0
                     end
                 end
             end
