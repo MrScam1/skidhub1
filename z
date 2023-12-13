@@ -2715,7 +2715,7 @@ Tab:AddToggle({
        spawn(function()
 			while true do wait(0.1)
                 if Config.fish then
-                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 100 then
+                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 100 and game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y >= 20000 then
                         game.Players.LocalPlayer.Character.CamScript.ClientServerClient:FireServer()
                         wait(1)
                         game.Players.LocalPlayer.Character.Weapons:FireServer()
