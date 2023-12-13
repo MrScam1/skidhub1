@@ -2717,6 +2717,8 @@ Tab:AddToggle({
                 if Config.fish then
                     if game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y >= 20000 then
                         game.Players.LocalPlayer.Character.CamScript.ClientServerClient:FireServer()
+                        wait(1)
+                        game.Players.LocalPlayer.Character.Weapons:FireServer()
                         game.Players.LocalPlayer.Character.CharacterTrait.ClothingTrigger:FireServer()
                     elseif game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y < 20000 then
                         repeat wait()
@@ -3102,3 +3104,21 @@ sex_toggle = Tab8:AddToggle({
 
     end
 })
+
+spawn(function()
+    pcall(function()
+        while true do wait()
+            if not Config.respawn and not Config.safezone and not Config.cannonfarmboth and not Config.autorejoin and not Config.SaveSetting then
+                cooltoggle1:Set(true)  
+                wait(1)
+                cooltoggle2:Set(true)
+                wait(1)
+                cooltoggle:Set(true)
+                wait(1)
+                chitchit:Set(true)
+                wait(1)
+                sex_toggle:Set(true)
+            end
+        end
+    end)
+end)
