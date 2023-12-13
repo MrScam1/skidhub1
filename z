@@ -2739,11 +2739,7 @@ Tab:AddToggle({
                                     pcall(function()
                                         for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                                             if string.find(v.Name , "Rod") then
-                                                for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                                                    if string.find(v.Name , "Rod") then
-                                                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
-                                                    end
-                                                end
+                                                game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
                                             end
                                         end
                                         for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
