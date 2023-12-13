@@ -2715,16 +2715,10 @@ Tab:AddToggle({
        spawn(function()
 			while true do wait(0.1)
                 if Config.fish then
-                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 100 and game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y >= 20000 then
-                        game.Players.LocalPlayer.Character.CamScript.ClientServerClient:FireServer()
-                        wait(1)
-                        game.Players.LocalPlayer.Character.Weapons:FireServer()
-                        game.Players.LocalPlayer.Character.CharacterTrait.ClothingTrigger:FireServer()
-                        wait(3)
-                    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 100 then
+                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 300 then
                         repeat wait()
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-19784, 218, 4675) 
-                        until game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y >= 20000 or game.Players.LocalPlayer.Character.Humanoid.Health < 0
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-19784, 218, 4675) 
+                        until (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 300 or game.Players.LocalPlayer.Character.Humanoid.Health < 0
                     end
                 end
             end
@@ -2736,11 +2730,15 @@ Tab:AddToggle({
                             pcall(function()
                                 if Config.fish and _G.fish then
                                     _G.noclip = true
-                                    pcall(function()
+                                    if not (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 300 then
                                         for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                                             if string.find(v.Name , "Rod") then
-                                                game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
-                                            end
+                                                for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                                                    if string.find(v.Name , "Rod") then
+                                                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+                                                    end
+                                                end
+                                             end
                                         end
                                         for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
                                             if string.find(v.Name , "Rod") then
@@ -2748,16 +2746,16 @@ Tab:AddToggle({
                                                     if string.find(x.Name , "Rod") then
                                                         for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
                                                             if v:FindFirstChild("Bobber") then
-                                                                if v.Bobber.Effect.Enabled == true then
-                                                                    
+                                                                 if v.Bobber.Effect.Enabled == true then
+                                                        
                                                                     wait(0.5)
                                                                     local args = {
-                                                                        [1] = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+                                                                        [1] = Vector3.new(100,100,100)
                                                                     }
                                                                     game:GetService("Players").LocalPlayer.Character:FindFirstChild(x.Name).Click:FireServer(unpack(args))
-                                                                end
+                                                                 end
                                                             elseif v.Name == "Cast" and not v:FindFirstChild("Bobber") then
-                                                                
+                                                    
                                                                 wait(0.5)
                                                                 local args = {
                                                                     [1] = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
@@ -2770,7 +2768,25 @@ Tab:AddToggle({
                                                 wait(0.5)
                                             end
                                         end
-                                    end)
+                                        for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                                            if string.find(v.Name , "Small") or string.find(v.Name , "Medium") or string.find(v.Name , "Large") then
+                                                game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+                                            end
+                                        end
+                                        wait(0.5)
+                                        local args = {
+                                            [1] = CFrame.new(-1754.22559, 215.300003, -328.040588, -0.423235953, 0.686230123, -0.591573775, -0, 0.652937114, 0.757412136, 0.906019449, 0.320564061, -0.276346475),
+                                            [2] = workspace:WaitForChild("Firepit"):WaitForChild("Part")
+                                        }
+                                        
+                                        game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").Click:FireServer(unpack(args))
+                                        wait(0.5)
+                                        workspace:WaitForChild("Merchants"):WaitForChild("FishMerchant"):WaitForChild("Clickable"):WaitForChild("Retum"):FireServer()
+                                    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 300 then
+                                        game.Players.LocalPlayer.Character.CamScript.ClientServerClient:FireServer()
+                                        game.Players.LocalPlayer.Character.Weapons:FireServer()
+                                        game.Players.LocalPlayer.Character.CharacterTrait.ClothingTrigger:FireServer()
+                                    end
                                 end
                             end)
                         end
@@ -2781,39 +2797,7 @@ Tab:AddToggle({
         
     end
 })
-Tab:AddToggle({
-    Name = "Auto Sell Fish",
-    
-    Default = Config.sellfish or false,
-    Callback = function(Value)
-        Config.sellfish = Value
-        SaveSetting()
-        if Config.sellfish then
-        while true do wait()
-        for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-            if string.find(v.Name , "Busser") or string.find(v.Name , "Jawber") or string.find(v.Name , "Lubber") or string.find(v.Name, "Flooper") then
-                _G.fish = false
-                game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
-        wait(0.3)
-        local args = {
-            [1] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame,
-            [2] = workspace:WaitForChild("Firepit"):WaitForChild("Part")
-        }
-        
-        game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").Click:FireServer(unpack(args))
-        wait(0.1)
-        workspace:WaitForChild("Merchants"):WaitForChild("FishMerchant"):WaitForChild("Clickable"):WaitForChild("Retum"):FireServer()
-            end
-        end
-        wait(1)
-        _G.fish = true
-    end
 
-    
-end
-
-    end
-})
 local Tab6 = Window:MakeTab({
     Name = "Quest",
     Icon = "rbxassetid://4483345998",
