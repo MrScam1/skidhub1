@@ -2164,7 +2164,7 @@ spawn(function()
                     until not _G.tpplayer or plr2.Humanoid.Health == 0 or plr1.Humanoid.Health == 0
                 else
                     for i,v in pairs(game:GetService("Workspace").ISLAND:GetChildren()) do
-                        if v.Name == "Part" then
+                        if v.Name == "Base1" then
                             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0,10,0)
                         end
                     end
@@ -3096,21 +3096,3 @@ sex_toggle = Tab8:AddToggle({
 
     end
 })
-
-spawn(function()
-    pcall(function()
-        while true do wait()
-            if not Config.respawn and not Config.safezone and not Config.cannonfarmboth and not Config.autorejoin and not Config.SaveSetting then
-                cooltoggle1:Set(true)  
-                wait(1)
-                cooltoggle2:Set(true)
-                wait(1)
-                cooltoggle:Set(true)
-                wait(1)
-                chitchit:Set(true)
-                wait(1)
-                sex_toggle:Set(true)
-            end
-        end
-    end)
-end)
