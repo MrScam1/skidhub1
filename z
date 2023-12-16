@@ -919,7 +919,6 @@ local Section = Tab:AddSection({
                             for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                                 if string.find(v.Name , "Cannon Ball") then
                                     lololo = lololo +1
-                                    print(lololo)
                                 end 
                             end
                             wait(5)
