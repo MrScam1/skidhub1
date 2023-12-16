@@ -912,7 +912,7 @@ local Section = Tab:AddSection({
 
         spawn(function()
             pcall(function()
-                while task.wait(0.75) do
+                while task.wait(0) do
                     pcall(function()
                         if Config.cannonfarm then
                                 for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
@@ -933,8 +933,8 @@ local Section = Tab:AddSection({
                                 if Plr.Backpack:FindFirstChild(toolname) then
                                     repeat wait(0.75)
                                         Plr.Character.Humanoid:EquipTool(toolname)
-                                    until Config.cannonfarm == false or game.Players.LocalPlayer.Character.Humanoid.health < 0
-                                end
+                                    until Config.cannonfarm == false
+                                end                            
                         end
                     end)
                 end
