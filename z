@@ -925,14 +925,14 @@ local Section = Tab:AddSection({
                                     game:GetService("Players").LocalPlayer.Character.Weapons:FireServer()
                                 end
                             end
+                        repeat wait(0.25)
                             local toolname = "Cannon Ball"
                             local Plr = game:GetService("Players").LocalPlayer
                             wait(0.5)
                             if Plr.Backpack:FindFirstChild(toolname) then
-                            repeat wait(0.25)
                                 Plr.Character.Humanoid:EquipTool(toolname)
-                            until Config.cannonfarm == false
                             end
+                        until Config.cannonfarm == false
                         
                     end
                 end)
