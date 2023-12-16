@@ -915,7 +915,6 @@ local Section = Tab:AddSection({
                 pcall(function()
                     if Config.cannonfarm then
                         if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 300 then
-                            
                             for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                                 if string.find(v.Name , "Cannon Ball") then
                                     lololo = lololo +1
@@ -946,6 +945,8 @@ local Section = Tab:AddSection({
                                         
                                     end
                                 end  
+                            elseif lololo > 10 then
+                                lololo = 4
                             end
                         end
                     end
