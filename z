@@ -914,6 +914,7 @@ local Section = Tab:AddSection({
             while task.wait(0) do
                 pcall(function()
                     if Config.cannonfarm then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 300 then
                             for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                                 if v.ClassName == "Tool" then
                                     v:Destroy()
@@ -938,6 +939,7 @@ local Section = Tab:AddSection({
                                     end
                                 end 
                             end  
+                        end
                     end
                 end)
             end
@@ -1543,7 +1545,7 @@ spawn(function() --
             pcall(function()
                 repeat wait(1)
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new((math.random(-1000000, 1000000)), (math.random(500000, 1000000)), (math.random(-1000000, 1000000)))
-                until Config.antispam == false or game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 100  
+                until Config.antispam == false or game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 300  
             end)
         end
     end
