@@ -918,6 +918,7 @@ local Section = Tab:AddSection({
                                 for i=1,4 do
                                     game:GetService("Players").LocalPlayer.Character.Weapons:FireServer()
                                 end
+                                wait(1)
                             for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                                 if string.find(v.Name , "Cannon Ball") then
                                     game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
