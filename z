@@ -911,39 +911,33 @@ local Section = Tab:AddSection({
             SaveSetting()
 
         spawn(function()
-            pcall(function()
-                while task.wait(0) do
-                    pcall(function()
-                        if Config.cannonfarm then
-                                for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                                    if v.ClassName == "Tool" then
-                                        v:Destroy()
-                                    end
+            while task.wait(0) do
+                pcall(function()
+                    if Config.cannonfarm then
+                            for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                                if v.ClassName == "Tool" then
+                                    v:Destroy()
                                 end
-                                wait(1)
-                                if not game.Players.LocalPlayer.Backpack:FindFirstChild("Cannon Ball")  then
-                                    for i=1,4 do
-                                        game:GetService("Players").LocalPlayer.Character.Weapons:FireServer()
-                                    end
+                            end
+                            wait(1)
+                            if not game.Players.LocalPlayer.Backpack:FindFirstChild("Cannon Ball")  then
+                                for i=1,4 do
+                                    game:GetService("Players").LocalPlayer.Character.Weapons:FireServer()
                                 end
-                            
-                                local toolname = "Cannon Ball"
-                                local Plr = game:GetService("Players").LocalPlayer
-                                wait()
-                                if Plr.Backpack:FindFirstChild(toolname) then
-                                    repeat wait(0.75)
-                                        Plr.Character.Humanoid:EquipTool(toolname)
-                                    until Config.cannonfarm == false
-                                end                            
-                        end
-                    end)
-                end
-            end)
+                            end
+                            local toolname = "Cannon Ball"
+                            local Plr = game:GetService("Players").LocalPlayer
+                            wait(0.5)
+                            if Plr.Backpack:FindFirstChild(toolname) then
+                            repeat wait(0.25)
+                                Plr.Character.Humanoid:EquipTool(toolname)
+                            until Config.cannonfarm == false
+                            end
+                        
+                    end
+                end)
+            end
         end)
-        
-        
-        
-        
         spawn(function()
         while task.wait(0) do
         pcall(function()
