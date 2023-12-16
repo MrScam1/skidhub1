@@ -453,7 +453,7 @@ cooltoggle2 = Tab:AddToggle({
                         repeat
                             wait()
                         until game.Players.LocalPlayer.PlayerGui:FindFirstChild("Blindness")
-                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 300 then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 100 then
                             for i,v in pairs(game:GetService("Workspace").ISLAND:GetChildren()) do
                                 if v.Name == "Base1" then
                                     repeat wait(5)
@@ -907,15 +907,15 @@ local Section = Tab:AddSection({
 		Default = Config.cannonfarm or false,
 		Callback = function(Value)
 	    Config.cannonfarm = Value
-	local kikiki
+	
             SaveSetting()
 
         spawn(function()
             while task.wait(0) do
                 pcall(function()
                     if Config.cannonfarm then
-                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 300 then
-                                wait(10)
+                           
+                            wait(5)
                                 for i=1,4 do
                                     game:GetService("Players").LocalPlayer.Character.Weapons:FireServer()
                                 end
@@ -925,9 +925,7 @@ local Section = Tab:AddSection({
                                         game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
                                         
                                     end
-                                end 
-
-                        end
+                                end  
                     end
                 end)
             end
@@ -977,7 +975,7 @@ local Section = Tab:AddSection({
         end)
         end
         end)
-       
+      
         spawn(function()
         while wait(0) do
         pcall(function()
@@ -1518,7 +1516,7 @@ spawn(function() --
             pcall(function()
                 repeat wait(1)
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new((math.random(-1000000, 1000000)), (math.random(500000, 1000000)), (math.random(-1000000, 1000000)))
-                until Config.antispam == false or game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 300  
+                until Config.antispam == false or game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 100  
             end)
         end
     end
