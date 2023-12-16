@@ -931,8 +931,9 @@ local Section = Tab:AddSection({
                                 local Plr = game:GetService("Players").LocalPlayer
                                 wait()
                                 if Plr.Backpack:FindFirstChild(toolname) then
-                                    local tool = Plr.Backpack:FindFirstChild(toolname)
-                                        Plr.Character.Humanoid:EquipTool(tool)
+                                    repeat wait(0.75)
+                                        Plr.Character.Humanoid:EquipTool(toolname)
+                                    until Config.cannonfarm == false or game.Players.LocalPlayer.Character.Humanoid.health < 0
                                 end
                         end
                     end)
