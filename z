@@ -925,20 +925,14 @@ local Section = Tab:AddSection({
                                     game:GetService("Players").LocalPlayer.Character.Weapons:FireServer()
                                 end
                             end
-                    end
-                end)
-            end
-        end)
-        spawn(function()
-            while task.wait(0) do
-                pcall(function()
-                    if Config.cannonfarm then
-                        for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                            if string.find(v.Name , toolname) then
-                                wait(1.3)
-                                game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
-                            end
-                        end  
+                        repeat wait(1.3)
+                            for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                                if string.find(v.Name , toolname) then
+                                    game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+                                end
+                            end  
+                        until Config.cannonfarm == false
+                        
                     end
                 end)
             end
