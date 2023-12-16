@@ -923,7 +923,7 @@ local Section = Tab:AddSection({
                                 for i=1,4 do
                                     game:GetService("Players").LocalPlayer.Character.Weapons:FireServer()
                                 end
-                            repeat wait()
+                            repeat wait(2)
                                 for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                                     if string.find(v.Name , "Cannon Ball") then
                                         game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
@@ -980,22 +980,7 @@ local Section = Tab:AddSection({
         end)
         end
         end)
-        spawn(function()
-        while task.wait(0) do
-        pcall(function()
-            if Config.cannonfarm then
-                task.wait(0.1)
-                if game.Players.LocalPlayer.Backpack:FindFirstChild("Cannon Ball") then
-                    for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                        if v.Name ~= "Cannon" and v.Name ~= "Cannon Ball" then
-                            v:Destroy()
-                        end
-                    end
-                end
-            end
-        end)
-        end
-        end)
+      
         spawn(function()
         while wait(0) do
         pcall(function()
