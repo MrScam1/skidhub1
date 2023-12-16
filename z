@@ -919,12 +919,10 @@ local Section = Tab:AddSection({
                                     v:Destroy()
                                 end
                             end
-                            wait(5)
-                            if not game.Players.LocalPlayer.Backpack:FindFirstChild("Cannon Ball")  then
+                            wait(1)
                                 for i=1,4 do
                                     game:GetService("Players").LocalPlayer.Character.Weapons:FireServer()
                                 end
-                            end
                             repeat wait()
                                 for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                                     if string.find(v.Name , "Cannon Ball") then
