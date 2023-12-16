@@ -453,7 +453,7 @@ cooltoggle2 = Tab:AddToggle({
                         repeat
                             wait()
                         until game.Players.LocalPlayer.PlayerGui:FindFirstChild("Blindness")
-                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 100 then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 300 then
                             for i,v in pairs(game:GetService("Workspace").ISLAND:GetChildren()) do
                                 if v.Name == "Base1" then
                                     repeat wait(5)
@@ -914,7 +914,7 @@ local Section = Tab:AddSection({
             while task.wait(0) do
                 pcall(function()
                     if Config.cannonfarm then
-                           
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 300 then
                             wait(5)
                                 for i=1,4 do
                                     game:GetService("Players").LocalPlayer.Character.Weapons:FireServer()
@@ -926,6 +926,7 @@ local Section = Tab:AddSection({
                                         
                                     end
                                 end  
+                        end
                     end
                 end)
             end
@@ -1516,7 +1517,7 @@ spawn(function() --
             pcall(function()
                 repeat wait(1)
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new((math.random(-1000000, 1000000)), (math.random(500000, 1000000)), (math.random(-1000000, 1000000)))
-                until Config.antispam == false or game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 100  
+                until Config.antispam == false or game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 300  
             end)
         end
     end
@@ -2790,7 +2791,7 @@ spawn(function()--auto quest
             repeat
                 wait()
             until game.Players.LocalPlayer.PlayerGui:FindFirstChild("Blindness")
-            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 100 and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
+            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 300 and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
                 if not string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Beris") or not string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Damage") or not string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Kill") or string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Hard") then
                     repeat wait(600)
                         Event:FireServer()   
