@@ -930,8 +930,13 @@ local Section = Tab:AddSection({
                             local Plr = game:GetService("Players").LocalPlayer
                             wait(0.5)
                             if Plr.Backpack:FindFirstChild(toolname) then
-                                Plr.Character.Humanoid:EquipTool(toolname)
+                                local tool = Plr.Backpack:FindFirstChild(toolname)
+                                Plr.Character.Humanoid:EquipTool(tool)
                             end
+                            wait(0.6)
+                            game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+                            wait(0.3)
+                            Plr.Character.Humanoid:EquipTool(tool)
                         until Config.cannonfarm == false
                         
                     end
