@@ -901,7 +901,7 @@ local Section = Tab:AddSection({
 	Name = "Cannon Farm"
 })
 
-	Tab:AddToggle({
+	chitchit1111 = Tab:AddToggle({
 		Name = "Cannon Ball Farm Mob(Fast)",
 		
 		Default = Config.cannonfarm or false,
@@ -1142,11 +1142,11 @@ cooltoggle = Tab:AddToggle({
                 fireclickdetector(workspace.Island11.CentralBuilding.Doors.Button.Button.ClickDetector)
                 task.wait(0)
                 if not game.Players.LocalPlayer.PlayerGui.HealthBar.Frame.Status:FindFirstChild("BusoHaki") then
-                    wait(2)
+                    wait(5)
                     game.workspace.UserData["User_" .. game.Players.LocalPlayer.UserId].UpdateHaki:FireServer()
                 end
                 if game.Players.LocalPlayer.PlayerGui.HealthBar.Frame.Status:FindFirstChild("BusoHaki") then
-                    wait(5)
+                    wait(2)
                     game.workspace.UserData["User_" .. game.Players.LocalPlayer.UserId].UpdateHaki:FireServer()
                 end
         
@@ -3023,7 +3023,7 @@ spawn(function()
                 wait(1)
                 chitchit:Set(true)
                 wait(1)
-                cooltoggle:Set(true)
+                chitchit1111:Set(true)
             end
         end
     end)
