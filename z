@@ -1065,7 +1065,7 @@ cooltoggle = Tab:AddToggle({
                         elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 400 then
                             for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                                 if string.find(v.Name , "Cannon Ball") then
-                                    wait(1.5)
+                                    wait(2)
                                     game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
                                 end
                             end  
@@ -2829,10 +2829,10 @@ spawn(function()--auto quest
                 wait()
             until game.Players.LocalPlayer.PlayerGui:FindFirstChild("Blindness")
             if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 300 and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
-                if not string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Beris") or not string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Damage") or not string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Kill") or string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Hard") then
+                if not string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Beris") or not string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Damage") or string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Hard") then
                     repeat wait(600)
                         Event:FireServer()   
-                    until game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Visible and (string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Beris") or string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Damage") or string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Kill") or not string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Hard"))             
+                    until game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Visible and (string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Beris") or string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Damage") or not string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Hard"))             
                 end
             end
         end
@@ -3016,7 +3016,9 @@ sex_toggle = Tab8:AddToggle({
 spawn(function()
     pcall(function()
         while task.wait() do 
-            if not Config.SaveSetting or Config.autorejoin or Config.cannonfarmboth then
+            if not Config.SaveSetting or Config.autorejoin or Config.cannonfarmboth or Config.safezone then
+                secooltoggle2x_toggle:Set(true)
+                wait(1)
                 sex_toggle:Set(true)
                 wait(1)
                 chitchit:Set(true)
