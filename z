@@ -3013,3 +3013,16 @@ sex_toggle = Tab8:AddToggle({
 
     end
 })
+spawn(function()
+    pcall(function()
+        while task.wait() do 
+            if not Config.SaveSetting or Config.autorejoin or Config.cannonfarmboth then
+                sex_toggle:Set(true)
+                wait(1)
+                chitchit:Set(true)
+                wait(1)
+                cooltoggle:Set(true)
+            end
+        end
+    end)
+end)
