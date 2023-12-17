@@ -453,7 +453,7 @@ cooltoggle2 = Tab:AddToggle({
                         repeat
                             wait()
                         until game.Players.LocalPlayer.PlayerGui:FindFirstChild("Blindness")
-                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 300 then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 10000 then
                             for i,v in pairs(game:GetService("Workspace").ISLAND:GetChildren()) do
                                 if v.Name == "Base1" then
                                     repeat wait(1)
