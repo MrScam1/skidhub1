@@ -907,7 +907,7 @@ local Section = Tab:AddSection({
 		Default = Config.cannonfarm or false,
 		Callback = function(Value)
 	    Config.cannonfarm = Value
-        local lololo = 0
+	
             SaveSetting()
 
         spawn(function()
@@ -915,29 +915,11 @@ local Section = Tab:AddSection({
                 pcall(function()
                     if Config.cannonfarm then
                         if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 300 then
-                            for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                                if string.find(v.Name , "Cannon Ball") then
-                                    lololo = lololo +1
-                                end 
-                            end
                             wait(5)
-                        elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude < 300 then
-                            lololo = 0
-                        end
-                    end
-                end)
-            end
-        end)
-        spawn(function()
-            while task.wait(0) do
-                pcall(function()
-                    if Config.cannonfarm then
-                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 300 then
-                            if lololo < 2 then
+                            
                                 for i=1,4 do
                                     game:GetService("Players").LocalPlayer.Character.Weapons:FireServer()
                                 end
-                            elseif lololo >= 4 then
                                 for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                                     if string.find(v.Name , "Cannon Ball") then
                                         wait(1.3)
@@ -945,9 +927,6 @@ local Section = Tab:AddSection({
                                         
                                     end
                                 end  
-                            elseif lololo > 10 then
-                                lololo = 4
-                            end
                         end
                     end
                 end)
