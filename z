@@ -3017,7 +3017,7 @@ spawn(function()
     pcall(function()
         while task.wait() do 
             if not Config.SaveSetting or Config.autorejoin or Config.cannonfarmboth or Config.safezone then
-                secooltoggle2x_toggle:Set(true)
+                cooltoggle2:Set(true)
                 wait(1)
                 sex_toggle:Set(true)
                 wait(1)
