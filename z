@@ -922,6 +922,7 @@ local Section = Tab:AddSection({
                             end
                             game.Players.LocalPlayer.Character.CharacterTrait.ClothingTrigger:FireServer()
                         elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 400 then
+                            wait(10)
                             for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                                 if string.find(v.Name , "Cannon Ball") then
                                     wait(1)
@@ -3013,18 +3014,11 @@ sex_toggle = Tab8:AddToggle({
 
     end
 })
-spawn(function()
-    pcall(function()
-        while task.wait() do 
-            if not Config.SaveSetting or Config.autorejoin or Config.cannonfarmboth or Config.safezone then
-                cooltoggle2:Set(true)
-                wait(1)
-                sex_toggle:Set(true)
-                wait(1)
-                chitchit:Set(true)
-                wait(1)
-                chitchit1111:Set(true)
-            end
-        end
-    end)
-end)
+
+cooltoggle2:Set(true)
+wait(1)
+sex_toggle:Set(true)
+wait(1)
+chitchit:Set(true)
+wait(1)
+chitchit1111:Set(true)
