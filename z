@@ -922,7 +922,7 @@ local Section = Tab:AddSection({
                                 end
                                 for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                                     if string.find(v.Name , "Cannon Ball") then
-                                        wait(0.5)
+                                        wait(1.3)
                                         game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
                                         
                                     end
