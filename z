@@ -3013,11 +3013,3 @@ sex_toggle = Tab8:AddToggle({
 
     end
 })
-
-cooltoggle2:Set(true)
-wait(1)
-sex_toggle:Set(true)
-wait(1)
-chitchit:Set(true)
-wait(1)
-chitchit1111:Set(true)
