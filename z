@@ -2830,7 +2830,7 @@ spawn(function()--auto quest
             until game.Players.LocalPlayer.PlayerGui:FindFirstChild("Blindness")
             if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - game:GetService("Workspace").CustomizeModel.SpawnAreaStuffK.HBase.Position).Magnitude > 300 and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
                 if not string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Beris") or not string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Damage") or string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Hard") then
-                    repeat wait(600)
+                    repeat wait(300)
                         Event:FireServer()   
                     until game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Visible and (string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Beris") or string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Damage") or not string.match(game:GetService("Players").LocalPlayer.PlayerGui.MissionGui.Frame.Frame.Description.Text, "Hard"))             
                 end
