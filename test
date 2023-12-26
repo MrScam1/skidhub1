@@ -2813,16 +2813,17 @@ end
     Toggle:OnChanged(function(Value)
         _G.FastAttack = Value
     end)
+    local n = 0
     coroutine.wrap(function()
         spawn(function()
             while wait(0.2) do
-                if _G.FastAttack then
+                if _G.FastAttack and FastAttack then
                     if n <= 70 then
                         pcall(function()
                             repeat task.wait(0.1)
                                 AttackNoCD()
                                 n = n +1
-                            until n > 70
+                            until (not _G.FastAttack and not FastAttack) or (_G.FastAttack and not FastAttack)  or (not _G.FastAttack and FastAttack) or n >= 100
                         end)
                     else n = 0
                     end
