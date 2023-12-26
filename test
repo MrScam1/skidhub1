@@ -55,20 +55,20 @@ function AttackNoCD()
     wait()
 end
 coroutine.wrap(function()
-			spawn(function()
-				while wait(0.2) do
-							if i <= 10 then
-								pcall(function()
-									repeat task.wait(0.01)
-										AttackNoCD()
-										i = i + 1
-									until i >= 10
-								end)
-							else i = 0
-								game:GetService'VirtualUser':CaptureController()
-								game:GetService'VirtualUser':Button1Down(Vector2.new(0,1,0,1))
-								print("reset hit")
-							end
-				end
-			end)
-		end)()
+	spawn(function()
+		while wait(0.2) do
+			if i <= 10 then
+				pcall(function()
+					repeat task.wait(0.01)
+						AttackNoCD()
+						i = i + 1
+					until i >= 10
+				end)
+			else i = 0
+				game:GetService'VirtualUser':CaptureController()
+				game:GetService'VirtualUser':Button1Down(Vector2.new(0,1,0,1))
+				print("reset hit")
+			end
+		end
+	end)
+end)()
