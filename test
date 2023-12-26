@@ -2817,13 +2817,13 @@ end
     coroutine.wrap(function()
         spawn(function()
             while wait(0.2) do
-                if _G.FastAttack and FastAttack then
+                if _G.FastAttack then
                     if n <= 70 then
                         pcall(function()
                             repeat task.wait(0.1)
                                 AttackNoCD()
                                 n = n +1
-                            until (not _G.FastAttack and not FastAttack) or (_G.FastAttack and not FastAttack)  or (not _G.FastAttack and FastAttack) or n >= 100
+                            until n > 70
                         end)
                     else n = 0
                     end
