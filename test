@@ -3522,7 +3522,7 @@ M:AddToggle({
 									repeat task.wait(0.01)
 										AttackNoCD()
 										i = i + 1
-									until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack) or i >= 10
+									until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack)
 								end)
 							
 								game:GetService'VirtualUser':CaptureController()
