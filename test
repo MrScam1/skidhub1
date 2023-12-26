@@ -2281,7 +2281,7 @@ do
             end
         end
     end)
-    local Toggle = SettingFarm.Main:AddToggle("Bring Mob", {Title = "Bring Mob", Default = false })
+    local Toggle = SettingFarm.Main:AddToggle("bringmob", {Title = "Bring Mob", Default = false })
     Toggle:OnChanged(function(Value)
         _G.BringMonster = Value
     end)
@@ -2809,7 +2809,7 @@ function AttackNoCD()
     end
     
 end
-    local Toggle = SettingFarm.Main:AddToggle("Fast Attack", {Title = "Fast", Default = false })
+    local Toggle = SettingFarm.Main:AddToggle("fastattack", {Title = "Fast Attack", Default = false })
     Toggle:OnChanged(function(Value)
         _G.FastAttack = Value
     end)
