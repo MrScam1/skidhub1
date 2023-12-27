@@ -2856,8 +2856,13 @@ end
                                     end
                                 end
                             else
-                                Sex_Tween = TP1(QuestCheck()[7][1] * CFrame.new(0,15,20))
-                                Sex_Tween:Play()
+                                if not CFrameMon then
+                                    pcall(function()
+                                        CFrameMon = game.Workspace._WorldOrigin:FindFirstChild("EnemySpawns"):FindFirstChild(QuestCheck()[3]).CFrame * CFrame.new(0, 15, 0)
+                                    end)
+                                end
+                                Sex_Tween = TP1(CFrameMon)
+							    Sex_Tween:Play()
                             end
                         else
                             Sex_Tween = TP1(QuestCheck()[2])
@@ -2870,9 +2875,13 @@ end
                                     SFastAttack = false
                                 end	
                                 wait(0.2)
-                                game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", QuestCheck()[4], QuestCheck()[1]) wait(0.5)
-                                Sex_Tween = TP1(QuestCheck()[7][1] * CFrame.new(0,15,20))
-                                Sex_Tween:Play()
+                                if not CFrameMon then
+                                    pcall(function()
+                                        CFrameMon = game.Workspace._WorldOrigin:FindFirstChild("EnemySpawns"):FindFirstChild(QuestCheck()[3]).CFrame * CFrame.new(0, 15, 0)
+                                    end)
+                                end
+                                Sex_Tween = TP1(CFrameMon)
+							    Sex_Tween:Play()
                             end
                         end
                     
