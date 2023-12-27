@@ -2813,4 +2813,77 @@ end
     Toggle:OnChanged(function(Value)
         _G.lBypassTP = Value
     end)
+    local Toggle = MainFarm.Main:AddToggle("farmlevel", {Title = "Auto Farm Level", Default = false })
+    Toggle:OnChanged(function(Value)
+        _G.AutoFarm = Value
+    end)
+    spawn(function()
+        while wait() do
+            local MyLevel = game.Players.LocalPlayer.Data.Level.Value
+            local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
+            local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
+            pcall(function()
+                if _G.AutoFarm then
+                        if QuestC.Visible == true then
+                            if game:GetService("Workspace").Enemies:FindFirstChild(QuestCheck()[3]) then
+                                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                    if v.Name == QuestCheck()[3] then
+                                        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                            repeat task.wait()
+                                                if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, QuestCheck()[6]) then
+                                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                                else
+                                                    StartMagnet = true
+                                                    if _G.FastAttack then
+                                                        FastAttack = true
+                                                        elseif _G.SuperFastAttack then
+                                                        SFastAttack = true
+                                                    end	
+                                                    EquipWeapon(_G.SelectWeapon)
+                                                    AutoHaki()
+                                                    v.HumanoidRootPart.Transparency = 1
+                                                    PosMon = v.HumanoidRootPart.CFrame
+                                                    Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                                    Sex_Tween:Play()
+                                                end
+                                            until not _G.AutoFarm or not v.Parent or v.Humanoid.Health <= 0 or QuestC.Visible == false or not v:FindFirstChild("HumanoidRootPart")
+                                            if _G.FastAttack then
+                                                FastAttack = false
+                                                elseif _G.SuperFastAttack then
+                                                SFastAttack = false
+                                            end	
+                                        end
+                                    end
+                                end
+                            else
+                                if not CFrameMon then
+                                    pcall(function()
+                                        CFrameMon = game.Workspace._WorldOrigin:FindFirstChild("EnemySpawns"):FindFirstChild(QuestCheck()[3]).CFrame * CFrame.new(0, 15, 0)
+                                    end)
+                                end
+                                Sex_Tween = TP1(CFrameMon)
+							    Sex_Tween:Play()
+                                wait(0.5)
+                            end
+                        else
+                            Sex_Tween = TP1(QuestCheck()[2])
+                            Sex_Tween:Play()
+                            if (QuestCheck()[2].Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1 then
+                                StartMagnet = false
+                                if _G.FastAttack then
+                                    FastAttack = false
+                                    elseif _G.SuperFastAttack then
+                                    SFastAttack = false
+                                end	
+                                wait(0.2)
+                                game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", QuestCheck()[4], QuestCheck()[1]) wait(0.5)
+                                Sex_Tween(QuestCheck()[7][1] * CFrame.new(0,15,20))
+                                Sex_Tween:Play()
+                            end
+                        end
+                    
+                end
+            end)
+        end
+    end)
 end
