@@ -37,6 +37,68 @@ if game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseT
 		end
 	until game.Players.LocalPlayer.Team ~= nil and game:IsLoaded()
 	end
+    local EnemySpawns = Instance.new("Folder",workspace)
+    EnemySpawns.Name = "EnemySpawns"
+
+    for i, v in pairs(workspace._WorldOrigin.EnemySpawns:GetChildren()) do
+        if v:IsA("Part") then
+            local EnemySpawnsX2 = v:Clone()
+            local result = string.gsub(v.Name, "Lv. ", "")
+            local result2 = string.gsub(result, "[%[%]]", "")
+            local result3 = string.gsub(result2, "%d+", "")
+            local result4 = string.gsub(result3, "%s+", "")
+            EnemySpawnsX2.Name = result4
+            EnemySpawnsX2.Parent = workspace.EnemySpawns
+            EnemySpawnsX2.Anchored = true
+        end
+    end
+    for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+        if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
+            local EnemySpawnsX2 = v.HumanoidRootPart:Clone()
+            local result = string.gsub(v.Name, "Lv. ", "")
+            local result2 = string.gsub(result, "[%[%]]", "")
+            local result3 = string.gsub(result2, "%d+", "")
+            local result4 = string.gsub(result3, "%s+", "")
+
+            EnemySpawnsX2.Name = result4
+            EnemySpawnsX2.Parent = workspace.EnemySpawns
+            EnemySpawnsX2.Anchored = true
+        end
+    end
+    for i, v in pairs(game.ReplicatedStorage:GetChildren()) do
+        if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
+            local EnemySpawnsX2 = v.HumanoidRootPart:Clone()
+            local result = string.gsub(v.Name, "Lv. ", "")
+            local result2 = string.gsub(result, "[%[%]]", "")
+            local result3 = string.gsub(result2, "%d+", "")
+            local result4 = string.gsub(result3, "%s+", "")
+
+            EnemySpawnsX2.Name = result4
+            EnemySpawnsX2.Parent = workspace.EnemySpawns
+            EnemySpawnsX2.Anchored = true
+        end
+    end
+
+    local EnemyCDKSpawns = Instance.new("Folder", workspace)
+    EnemyCDKSpawns.Name = "EnemyCDKSpawns"
+    local processedNames = {}
+
+    for i, v in pairs(game.workspace.EnemySpawns:GetChildren()) do
+        local name = v.Name
+
+        if not processedNames[name] then
+            processedNames[name] = true
+
+            local existingChild = EnemyCDKSpawns:FindFirstChild(name)
+
+            if not existingChild then
+                local EnemySpawnsX2Clone = v:Clone()
+
+                EnemySpawnsX2Clone.Parent = workspace.EnemyCDKSpawns
+                EnemySpawnsX2Clone.Anchored = true
+            end
+        end
+    end
 
 function CheckQuest() 
 	MyLevel = game:GetService("Players").LocalPlayer.Data.Level.Value
@@ -2824,6 +2886,7 @@ end
             local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
             pcall(function()
                 if _G.AutoFarm then
+                    print("GG")
                         if QuestC.Visible == true then
                             if game:GetService("Workspace").Enemies:FindFirstChild(QuestCheck()[3]) then
                                 for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -2844,7 +2907,7 @@ end
                                                     AutoHaki()
                                                     v.HumanoidRootPart.Transparency = 1
                                                     PosMon = v.HumanoidRootPart.CFrame
-                                                    Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                                    Sex_Tween = TP1(v.HumanoidRootPart.CFrame * Pos)
                                                     Sex_Tween:Play()
                                                 end
                                             until not _G.AutoFarm or not v.Parent or v.Humanoid.Health <= 0 or QuestC.Visible == false or not v:FindFirstChild("HumanoidRootPart")
