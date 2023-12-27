@@ -4552,38 +4552,7 @@ spawn(function()
                             end
                         else
                             UnEquipWeapon(_G.Select_Weapon)
-                            if _G.Auto_CFrame and not _G.AutoFarmFast then
-                                getgenv().ToTarget(QuestCheck()[7][SetCFarme] * CFrame.new(0,30,5))
-                                if (QuestCheck()[7][SetCFarme].Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
-                                    if SetCFarme == nil or SetCFarme == '' then
-                                        SetCFarme = 1
-                                        print(SetCFarme)
-                                    elseif SetCFarme >= #QuestCheck()[7] then
-                                        SetCFarme = 1
-                                        print(SetCFarme)
-                                    end
-                                    SetCFarme =  SetCFarme + 1
-
-                                    print(SetCFarme)
-                                    wait(0.5)
-                                end
-                            else
-                                if not _G.AutoFarmFast then
-                                    if AttackRandomType_MonCFrame == 1 then
-                                        getgenv().ToTarget(QuestCheck()[7][1] * CFrame.new(0,30,20))
-                                    elseif AttackRandomType_MonCFrame == 2 then
-                                        getgenv().ToTarget(QuestCheck()[7][1] * CFrame.new(0,30,-20))
-                                    elseif AttackRandomType_MonCFrame == 3 then
-                                        getgenv().ToTarget(QuestCheck()[7][1] * CFrame.new(20,30,0))
-                                    elseif AttackRandomType_MonCFrame == 4 then
-                                        getgenv().ToTarget(QuestCheck()[7][1] * CFrame.new(0,30,-20))
-                                    elseif AttackRandomType_MonCFrame == 5 then
-                                        getgenv().ToTarget(QuestCheck()[7][1] * CFrame.new(-20,30,0))
-                                    else
-                                        getgenv().ToTarget(QuestCheck()[7][1] * CFrame.new(0,30,20))
-                                    end
-                                end
-                            end
+                            
                         end
                     else
                         getgenv().ToTarget(QuestCheck()[2])
