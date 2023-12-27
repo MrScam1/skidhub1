@@ -2878,7 +2878,6 @@ end
         _G.AutoFarm = Value
     end)
     SetCFarme = 1
-    spawn(function()
         while wait() do
             local MyLevel = game.Players.LocalPlayer.Data.Level.Value
             local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
@@ -2949,5 +2948,4 @@ end
                 end
             end)
         end
-    end)
 end
