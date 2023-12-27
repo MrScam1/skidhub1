@@ -45,13 +45,13 @@ getgenv().Setting = {
             }
         },
         ["Blox Fruit"] = {
-            ["Enable"] = false,
-            ["Delay"] = 6,
+            ["Enable"] = true,
+            ["Delay"] = 1.5,
             ["Skills"] = {
                 ["Z"] = {["Enable"] = true, ["HoldTime"] = 0},
                 ["X"] = {["Enable"] = true, ["HoldTime"] = 0},
                 ["C"] = {["Enable"] = true, ["HoldTime"] = 0},
-                ["V"] = {["Enable"] = true, ["HoldTime"] = .25},
+                ["V"] = {["Enable"] = false, ["HoldTime"] = .25},
                 ["F"] = {["Enable"] = false, ["HoldTime"] = 0}
             }
         },
