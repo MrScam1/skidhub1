@@ -2233,7 +2233,7 @@ do
             end
         end
     end)
-    local Toggle = SettingFarm.Main:AddToggle("bringmob", {Title = "Bring Mob", Default = false })
+    local Toggle = SettingFarm.Main:AddToggle("bringmob", {Title = "Bring Mob", Default = true })
     Toggle:OnChanged(function(Value)
         _G.BringMonster = Value
     end)
@@ -2843,7 +2843,7 @@ end
                                                     AutoHaki()
                                                     v.HumanoidRootPart.Transparency = 1
                                                     PosMon = v.HumanoidRootPart.CFrame
-                                                    Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                                    Sex_Tween = TP1(v.HumanoidRootPart.CFrame * Pos)
                                                     Sex_Tween:Play()
                                                 end
                                             until not _G.AutoFarm or not v.Parent or v.Humanoid.Health <= 0 or QuestC.Visible == false or not v:FindFirstChild("HumanoidRootPart")
@@ -2856,14 +2856,8 @@ end
                                     end
                                 end
                             else
-                                if not CFrameMon then
-                                    pcall(function()
-                                        CFrameMon = game.Workspace._WorldOrigin:FindFirstChild("EnemySpawns"):FindFirstChild(QuestCheck()[3]).CFrame * CFrame.new(0, 15, 0)
-                                    end)
-                                end
-                                Sex_Tween = TP1(CFrameMon)
-							    Sex_Tween:Play()
-                                wait(0.5)
+                                Sex_Tween = TP1(QuestCheck()[7][1] * CFrame.new(0,15,20))
+                                Sex_Tween:Play()
                             end
                         else
                             Sex_Tween = TP1(QuestCheck()[2])
@@ -2877,7 +2871,7 @@ end
                                 end	
                                 wait(0.2)
                                 game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", QuestCheck()[4], QuestCheck()[1]) wait(0.5)
-                                Sex_Tween(QuestCheck()[7][1] * CFrame.new(0,15,20))
+                                Sex_Tween = TP1(QuestCheck()[7][1] * CFrame.new(0,15,20))
                                 Sex_Tween:Play()
                             end
                         end
