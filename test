@@ -2794,10 +2794,8 @@ end
     local Toggle = SettingFarm.Main:AddToggle("sfastattack", {Title = "Super Fast Attack", Default = false })
     Toggle:OnChanged(function(Value)
         _G.SuperFastAttack = Value
-        local CameraShakerR = require(game.ReplicatedStorage.Util.CameraShaker)
     end)
         local i = 0
-		CameraShakerR:Stop()
 		
 		coroutine.wrap(function()
 			spawn(function()
