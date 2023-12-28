@@ -2957,15 +2957,16 @@ end
     })
     local MultiDropdown = MainFarm.Main:AddDropdown("MultiDropdown", {
         Title = "Select Skill Farm Mastery",
-        Values = {"Z", "X", "C", "V"},
+        Values = {"Z","X","C","V"},
         Multi = true,
+        Default = {"seven", "twelve"},
     })
     MultiDropdown:OnChanged(function(Value)
-        local Skillbfmastery = {}
+        local Values = {}
         for Value, State in next, Value do
-            table.insert(Skillbfmastery, Value)
+            table.insert(Values, Value)
         end
-        print("Mutlidropdown changed:", table.concat(Skillbfmastery, ", "))
+        print("Mutlidropdown changed:", table.concat(Values, ", "))
     end)
     function EquipBloxFruit()
         for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
