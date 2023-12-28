@@ -2941,9 +2941,58 @@ end
             end)
         end
     end)
-    print("create toggle mastery")
-    local masterryfruit = MainFarm.Main:AddToggle("bfmastery", {Title = "Auto Farm Fruit Mastery", Default = false })
-    masterryfruit:OnChanged(function(Value)
+    local Toggle = MainFarm.Main:AddToggle("bfmastery", {Title = "Auto Farm Fruit Mastery", Default = false })
+    Toggle:OnChanged(function(Value)
         _G.AutoFarmFruitMastery = Value
     end)
+    local Slider = MainFarm.Main:AddSlider("Slider", {
+        Title = "Mob Health",
+        Default = 20,
+        Min = 0,
+        Max = 100,
+        Rounding = 1,
+        Callback = function(Value)
+            _G.Kill_At = Value
+        end
+    })
+    local MultiDropdown = MainFarm.Main:AddDropdown("MultiDropdown", {
+        Title = "Select Skill Farm Mastery",
+        Values = {"Z", "X", "C", "V"},
+        Multi = true,
+    })
+    MultiDropdown:OnChanged(function(Value)
+        local Skillbfmastery = {}
+        for Value, State in next, Value do
+            table.insert(Skillbfmastery, Value)
+        end
+        print("Mutlidropdown changed:", table.concat(Values, ", "))
+    end)
+    function EquipBloxFruit()
+        for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+            if v.ToolTip == "Blox Fruit" then
+            if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+                    EquipWeapon(v.Name)
+                end
+            end
+        end
+    end
+    local gg = getrawmetatable(game)
+    local old = gg.__namecall
+    setreadonly(gg,false)
+    gg.__namecall = newcclosure(function(...)
+        local method = getnamecallmethod()
+        local args = {...}
+        if tostring(method) == "FireServer" then
+            if tostring(args[1]) == "RemoteEvent" then
+                if tostring(args[2]) ~= "true" and tostring(args[2]) ~= "false" then
+                    if UseSkillMasteryDevilFruit and _G.AutoFarmFruitMastery then
+                        args[2] = PositionSkillMasteryDevilFruit
+                        return old(unpack(args))
+                    end
+                end
+            end
+        end
+        return old(...)
+    end)
+    
 end
