@@ -2890,10 +2890,6 @@ end
                                     if v.Name == QuestCheck()[3] then
                                         if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                                             repeat task.wait()
-                                                
-                                                if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text:lower(), QuestCheck()[3]:lower()) then
-                                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                                                else
                                                     StartMagnet = true
                                                     if _G.FastAttack then
                                                         FastAttack = true
@@ -2906,7 +2902,6 @@ end
                                                     PosMon = v.HumanoidRootPart.CFrame
                                                     Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
                                                     Sex_Tween:Play()
-                                                end
                                             until not _G.AutoFarm or not v.Parent or v.Humanoid.Health <= 0 or QuestC.Visible == false or not v:FindFirstChild("HumanoidRootPart")
                                         end
                                     end
