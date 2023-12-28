@@ -2877,70 +2877,7 @@ end
     Toggle:OnChanged(function(Value)
         _G.AutoFarm = Value
     end)
-    SetCFarme = 1
-    spawn(function()
-    while wait() do
-        local MyLevel = game.Players.LocalPlayer.Data.Level.Value
-        local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
-        local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
-        pcall(function()
-            if _G.AutoFarm then
-                    if QuestC.Visible == true then
-                        if game:GetService("Workspace").Enemies:FindFirstChild(QuestCheck()[3]) then
-                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                if v.Name == QuestCheck()[3] then
-                                    if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                        repeat task.wait()
-                                            StartMagnet = true
-                                            if _G.FastAttack then
-                                                FastAttack = true
-                                                elseif _G.SuperFastAttack then
-                                                SFastAttack = true
-                                            end	
-                                            EquipWeapon(_G.SelectWeapon)
-                                            AutoHaki()
-                                            v.HumanoidRootPart.Transparency = 1
-                                            PosMon = v.HumanoidRootPart.CFrame
-                                            Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
-                                            Sex_Tween:Play()
-                                        until not _G.AutoFarm or not v.Parent or v.Humanoid.Health <= 0 or QuestC.Visible == false or not v:FindFirstChild("HumanoidRootPart")
-                                    end
-                                end
-                            end
-                        else
-                            Sex_Tween = TP1(QuestCheck()[7][SetCFarme] * CFrame.new(0,30,5))
-                            Sex_Tween:Play()
-                            if (QuestCheck()[7][SetCFarme].Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
-                                if SetCFarme == nil or SetCFarme == '' then
-                                    SetCFarme = 1
-                                elseif SetCFarme >= #QuestCheck()[7] then
-                                    SetCFarme = 1
-                                end
-                                SetCFarme =  SetCFarme + 1
-                                wait(0.5)
-                            end
-                        end
-                    elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false or not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text:find(QuestCheck()[3], 1, true) then
-                        Sex_Tween = TP1(QuestCheck()[2])
-                        Sex_Tween:Play()
-                        if (QuestCheck()[2].Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1 then
-                            StartMagnet = false
-                            if _G.FastAttack then
-                                FastAttack = false
-                                elseif _G.SuperFastAttack then
-                                SFastAttack = false
-                            end	
-                            wait(0.2)
-                            game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", QuestCheck()[4], QuestCheck()[1]) wait(0.5)
-                            Sex_Tween(QuestCheck()[7][1] * CFrame.new(0,15,20))
-                            Sex_Tween:Play()
-                        end
-                    end
-                
-            end
-        end)
-    end
-end)
+   
     print("create toggle mastery")
     local masterryfruit = MainFarm.Main:AddToggle("bfmastery", {Title = "Auto Farm Fruit Mastery", Default = false })
     masterryfruit:OnChanged(function(Value)
