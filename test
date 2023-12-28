@@ -2890,7 +2890,7 @@ end
                                     if v.Name == QuestCheck()[3] then
                                         if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                                             repeat task.wait()
-                                                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text:find(NameMob, 1, true) then
+                                                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text:find(QuestCheck()[3], 1, true) then
                                                     StartMagnet = true
                                                     if _G.FastAttack then
                                                         FastAttack = true
