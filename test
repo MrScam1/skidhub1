@@ -2890,7 +2890,9 @@ end
                                     if v.Name == QuestCheck()[3] then
                                         if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                                             repeat task.wait()
-                                                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text:find(QuestCheck()[3], 1, true) then
+                                                if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text:find(QuestCheck()[3], 1, true), QuestCheck()[3]) then
+                                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                                else
                                                     StartMagnet = true
                                                     if _G.FastAttack then
                                                         FastAttack = true
