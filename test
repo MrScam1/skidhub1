@@ -2904,8 +2904,8 @@ end
                                                 PosMon = v.HumanoidRootPart.CFrame
                                                 Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
                                                 Sex_Tween:Play()
-                                                wait(20)
                                             until not _G.AutoFarm or not v.Parent or v.Humanoid.Health <= 0 or QuestC.Visible == false or not v:FindFirstChild("HumanoidRootPart")
+                                            wait(20)
                                         end
                                     end
                                 end
