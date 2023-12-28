@@ -2886,7 +2886,7 @@ end
             pcall(function()
                 if _G.AutoFarm then
                         if QuestC.Visible == true then
-                            if game.ReplicatedStorage:FindFirstChild(QuestCheck()[3]) then
+                            if game:GetService("Workspace").Enemies:FindFirstChild(QuestCheck()[3]) then
                                 for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                                     if v.Name == QuestCheck()[3] then
                                         if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
@@ -2903,6 +2903,7 @@ end
                                                 PosMon = v.HumanoidRootPart.CFrame
                                                 Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
                                                 Sex_Tween:Play()
+                                                wait(50)
                                             until not _G.AutoFarm or not v.Parent or v.Humanoid.Health <= 0 or QuestC.Visible == false or not v:FindFirstChild("HumanoidRootPart")
                                         end
                                     end
@@ -2930,7 +2931,7 @@ end
                                     elseif _G.SuperFastAttack then
                                     SFastAttack = false
                                 end	
-                                wait(0.2)
+                                wait(10)
                                 game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", QuestCheck()[4], QuestCheck()[1]) wait(0.5)
                                 Sex_Tween(QuestCheck()[7][1] * CFrame.new(0,15,20))
                                 Sex_Tween:Play()
