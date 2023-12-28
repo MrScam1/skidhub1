@@ -2885,6 +2885,7 @@ end
             local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
             pcall(function()
                 if _G.AutoFarm then
+                    QuestCheck()
                         if QuestC.Visible == true then
                             if game:GetService("Workspace").Enemies:FindFirstChild(QuestCheck()[3]) then
                                 for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
