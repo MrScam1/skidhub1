@@ -2726,7 +2726,7 @@ end
     })
     local MultiDropdown = MainFarm.Main:AddDropdown("MultiDropdown", {
         Title = "Select Skill Farm Mastery",
-        Values = {"Melee","Sword","Fruit","Gun"},
+        Values = {"Z", "X", "C", "V"},
         Multi = true,
         Default = "",
     })
