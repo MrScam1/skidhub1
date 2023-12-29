@@ -2734,9 +2734,9 @@ end
     })
     
     MultiDropdown:OnChanged(function(Value)
-        local Values = {}
+        local skillfarmmastery = {}
         for Value, State in next, Value do
-            table.insert(Values, Value)
+            table.insert(skillfarmmastery, Value)
         end
         print("Mutlidropdown changed:", table.concat(Values, ", "))
     end)
