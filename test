@@ -2724,11 +2724,12 @@ end
             _G.Kill_At = Value
         end
     })
-    local MultiDropdown = MainFarm.Main:AddDropdown("MultiDropdown", {
+    local MultiDropdown = Tabs.Main:AddDropdown("MultiDropdown", {
         Title = "Dropdown",
         Description = "You can select multiple values.",
-        Values = {"Z", "X", "C", "V"},
+        Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
         Multi = true,
+        Default = {"seven", "twelve"},
     })
     MultiDropdown:OnChanged(function(Value)
         local Values = {}
