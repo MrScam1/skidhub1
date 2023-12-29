@@ -2453,7 +2453,6 @@ end
                         pcall(function()
                             repeat task.wait(0.2)
                                 AttackNoCD()
-                                print(n)
                             until (not _G.FastAttack and not FastAttack) or (_G.FastAttack and not FastAttack)  or (not _G.FastAttack and FastAttack) or tick() - n > 10
                         end)
                     else n = tick()
@@ -2735,10 +2734,10 @@ end
     })
     
     MultiDropdown:OnChanged(function(Value)
-        local skillfarmmastery = {}
+        local Values = {}
         for Value, State in next, Value do
-            table.insert(skillfarmmastery, Value)
+            table.insert(Values, Value)
         end
-        print("Mutlidropdown changed:", table.concat(skillfarmmastery, ", "))
+        print("Mutlidropdown changed:", table.concat(Values, ", "))
     end)
 end
