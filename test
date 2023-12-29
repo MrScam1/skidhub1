@@ -2735,6 +2735,7 @@ end
         for i,v in pairs(Value) do
             table.insert(skillfarmmastery, v)
         end
+        print("Mutlidropdown changed:", table.concat(skillfarmmastery, ", "))
     end)
     
     
