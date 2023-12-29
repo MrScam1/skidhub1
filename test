@@ -2453,7 +2453,7 @@ end
                         pcall(function()
                             repeat task.wait(0.2)
                                 AttackNoCD()
-                                n = n +1
+                                print(n)
                             until (not _G.FastAttack and not FastAttack) or (_G.FastAttack and not FastAttack)  or (not _G.FastAttack and FastAttack) or tick() - n > 10
                         end)
                     else n = tick()
