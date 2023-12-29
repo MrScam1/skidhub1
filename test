@@ -2444,7 +2444,7 @@ end
     Toggle:OnChanged(function(Value)
         _G.FastAttack = Value
     end)
-    local n = tick()
+    n = tick()
     coroutine.wrap(function()
         spawn(function()
             while wait(0.2) do
@@ -2730,7 +2730,7 @@ end
         Description = "You can select multiple values.",
         Values = {"Z", "X", "C", "V"},
         Multi = true,
-        Default = {"Z", "X", "C", "V"},
+        Default = {""},
     })
     
     MultiDropdown:OnChanged(function(Value)
