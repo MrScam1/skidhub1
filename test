@@ -14,7 +14,7 @@ getgenv().Setting = {
         ["Cap"] = 30, --[[ fps to lock]]
     },
     ["LockBounty"] = {
-        ["Enable"] = true, --[[ lock bounty]]
+        ["Enable"] = false, --[[ lock bounty]]
         ["Cap"] = 30000000, --[[ reach to this bounty do the action below]]
         ["Action"] = "Kick", --[[ Kick, Shutdown]]
         ["SendMessage"] = true, --[[ send message to webhook when reach the cap]]
