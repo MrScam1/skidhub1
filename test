@@ -2731,11 +2731,11 @@ end
         Default = "",
     })
     MultiDropdown:OnChanged(function(Value)
-        local skillfarmmastery = {}
-        for i,v in pairs(Value) do
-            table.insert(skillfarmmastery, v)
+        local Values = {}
+        for Value, State in next, Value do
+            table.insert(Values, Value)
         end
-        print("Mutlidropdown changed:", table.concat(skillfarmmastery, ", "))
+        print("Mutlidropdown changed:", table.concat(Values, ", "))
     end)
     
     
