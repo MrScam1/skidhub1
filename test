@@ -2457,7 +2457,8 @@ end
                             until (not _G.FastAttack and not FastAttack) or (_G.FastAttack and not FastAttack)  or (not _G.FastAttack and FastAttack) or tick() - n > 10
                         end)
                     else n = tick()
-                        print("reset hit")
+                        game:GetService'VirtualUser':CaptureController()
+						game:GetService'VirtualUser':Button1Down(Vector2.new(0,1,0,1))
                     end
                 end
             end
@@ -2730,7 +2731,7 @@ end
         Description = "You can select multiple values.",
         Values = {"Z", "X", "C", "V"},
         Multi = true,
-        Default = {""},
+        Default = {},
     })
     
     MultiDropdown:OnChanged(function(Value)
@@ -2738,6 +2739,6 @@ end
         for Value, State in next, Value do
             table.insert(skillfarmmastery, Value)
         end
-        print("Mutlidropdown changed:", table.concat(Values, ", "))
+        print("Mutlidropdown changed:", table.concat(skillfarmmastery, ", "))
     end)
 end
