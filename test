@@ -1722,7 +1722,7 @@ function UpdatePlayerChams()
         end)        
         spawn(function()
         game:GetService("RunService").Heartbeat:Connect(function()
-            if _G.AutoFarm then
+            if _G.AutoFarm or _G.AutoFarmFruitMastery or _G.Auto_Bone then
                 if not game:GetService("Workspace"):FindFirstChild("LOL") then
                     local LOL = Instance.new("Part")
                     LOL.Name = "LOL"
@@ -1744,7 +1744,7 @@ function UpdatePlayerChams()
         spawn(function()
             pcall(function()
                 while wait() do
-                    if _G.AutoFarm  then
+                    if _G.AutoFarm or _G.AutoFarmFruitMastery or _G.Auto_Bone then
                         if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
                             local Noclip = Instance.new("BodyVelocity")
                             Noclip.Name = "BodyClip"
@@ -1760,7 +1760,7 @@ function UpdatePlayerChams()
         spawn(function()
             pcall(function()
                 game:GetService("RunService").Stepped:Connect(function()
-                    if _G.AutoFarm then
+                    if _G.AutoFarm or _G.AutoFarmFruitMastery or _G.Auto_Bone then
                         for _, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
                             if v:IsA("BasePart") then
                                 v.CanCollide = false    
@@ -2701,6 +2701,132 @@ end
                                 Sex_Tween:Play()
                             end
                         end
+                end
+            end)
+        end
+    end)
+    local Toggle = MainFarm.Main:AddToggle("farmbone", {Title = "Auto Farm Bone", Default = false })
+    Toggle:OnChanged(function(Value)
+        _G.Auto_Bone = Value
+    end)
+     
+    --2
+    local Number2 = 1
+    local BoneTabel = {
+        ["Mon"] = {"Reborn Skeleton","Demonic Soul","Living Zombie","Posessed Mummy"},
+        ["Boss"] = {"Soul Reaper"},
+        ["Item"] = "Hallow Essence",
+    }
+
+    local SetCFarmeBone = 1
+    function GetBone_CFrame_Mon()
+        local matchingCFrames = {}
+
+        for _, Mon in ipairs(BoneTabel["Mon"]) do
+            local result = Mon:gsub("Lv. ", ""):gsub("[%[%]]", ""):gsub("%d+", ""):gsub("%s+", "")
+            
+            for _, v in ipairs(game.workspace.EnemySpawns:GetChildren()) do
+                if v.Name == result then
+                    table.insert(matchingCFrames, v.CFrame)
+                end
+            end
+        end
+        
+        return matchingCFrames
+    end
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if _G.Auto_Bone then
+                    for _, _Boss in ipairs(BoneTabel["Boss"]) do
+                        local _Item = BoneTabel["Item"]
+                        if game:GetService("Workspace").Enemies:FindFirstChild(_Boss) or game:GetService("ReplicatedStorage"):FindFirstChild(_Boss) then
+                            for _, _v1 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                if _v1.Name == _Boss then
+                                    if _v1:FindFirstChild("Humanoid") and _v1:FindFirstChild("HumanoidRootPart") and _v1.Humanoid.Health > 0 then
+                                        repeat wait()
+                                            EquipWeapon(_G.SelectWeapon)
+                                            _v1.HumanoidRootPart.Size = Vector3.new(60, 60, 60)  
+                                            EquipWeapon(_G.SelectWeapon)
+                                            Sex_Tween = TP1(_v1.HumanoidRootPart.CFrame * CFrame.new(0, 30, 5))
+                                            Sex_Tween:Play()
+                                            if (_v1.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+                                                if _G.FastAttack then
+                                                    FastAttack = true
+                                                    elseif _G.SuperFastAttack then
+                                                    SFastAttack = true
+                                                end	
+                                            end
+                                        until not _G.Auto_Bone or v.Humanoid.Health <= 0 or not v.Parent or v.Humanoid.Health <= 0
+                                        StartMagnetBoneMon = false
+                                    end
+                                end
+                            end
+                        else
+                            if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(_Item) or game:GetService("Players").LocalPlayer.Character:FindFirstChild(_Item) then
+                                EquipWeapon(_Item)
+                                Sex_Tween = TP1(workspace.Map["Haunted Castle"].Summoner.Detection.CFrame)
+                                Sex_Tween:Play()
+                            else
+                                for _, _Mon in next, BoneTabel["Mon"] do
+                                    if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
+                                        print(_Mon)
+                                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                            if v.Name == _Mon then
+                                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                                    repeat wait()
+                                                        PosMonBone = v.HumanoidRootPart.CFrame
+                                                        EquipWeapon(_G.SelectWeapon)
+                                                        v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)  
+                                                        StartMagnetBoneMon = true
+                                                        Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0, 30, 5))
+                                                        Sex_Tween:Play()
+                                                        if (v.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+                                                            if _G.FastAttack then
+                                                                FastAttack = true
+                                                                elseif _G.SuperFastAttack then
+                                                                SFastAttack = true
+                                                            end	
+                                                        end
+                                                    until not _G.Auto_Bone or v.Humanoid.Health <= 0 or not v.Parent or v.Humanoid.Health <= 0
+                                                    if _G.FastAttack then
+                                                        FastAttack = false
+                                                        elseif _G.SuperFastAttack then
+                                                        SFastAttack = false
+                                                    end	
+                                                else
+                                                    Sex_Tween = TP1(GetBone_CFrame_Mon()[SetCFarmeBone] * CFrame.new(0,30,5))
+                                                    Sex_Tween:Play()
+                                                    if (GetBone_CFrame_Mon()[SetCFarmeBone].Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+                                                        if SetCFarmeBone == nil or SetCFarmeBone == '' then
+                                                            SetCFarmeBone = 1
+                                                        elseif SetCFarmeBone >= #GetBone_CFrame_Mon() then
+                                                            SetCFarmeBone = 1
+                                                        end
+                                                        SetCFarmeBone =  SetCFarmeBone + 1
+                                                        wait(0.5)
+                                                    end
+                                                end
+                                            end
+                                        end
+                                    else
+                                        Sex_Tween = TP1(GetBone_CFrame_Mon()[SetCFarmeBone] * CFrame.new(0,30,5))
+                                        Sex_Tween:Play()
+                                        if (GetBone_CFrame_Mon()[SetCFarmeBone].Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+                                            if SetCFarmeBone == nil or SetCFarmeBone == '' then
+                                                SetCFarmeBone = 1
+                                            elseif SetCFarmeBone >= #GetBone_CFrame_Mon() then
+                                                SetCFarmeBone = 1
+                                            end
+                                            SetCFarmeBone =  SetCFarmeBone + 1
+                                            wait(0.5)
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
                 end
             end)
         end
