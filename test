@@ -2233,7 +2233,7 @@ end
                                 AttackNoCD()
                             until (not _G.FastAttack and not FastAttack) or (_G.FastAttack and not FastAttack)  or (not _G.FastAttack and FastAttack) or tick() - n > 10
                         end)
-                    else wait(0.2)
+                    else wait()
                         n = tick()
                     end
                 end
@@ -2256,7 +2256,7 @@ end
 										AttackNoCD()
 									until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack) or tick() - i > 3
 								end)
-							else wait(0.2)
+							else
                                 i = tick()
 							end
 						end
