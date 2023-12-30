@@ -2650,10 +2650,8 @@ end
                                                             StartMagnetBoneMon = true
                                                             Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0, 30, 5))
                                                             Sex_Tween:Play()
-                                                            if (v.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
-                                                                Click()
-                                                            end
-                                                    end
+                                                            Click()
+                                                        end
                                                     until not _G.Auto_Bone or v.Humanoid.Health <= 0 or not v.Parent or v.Humanoid.Health <= 0
                                                     if _G.FastAttack then
                                                         FastAttack = false
