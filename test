@@ -2161,229 +2161,7 @@ do
             end)
     end
     end)
-    spawn(function()
-        while task.wait() do
-            pcall(function()
-                if _G.BringMonster then
-                    CheckQuest()
-                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                        if _G.AutoFarm and StartMagnet and v.Name == CheckQuest()[4] and (CheckQuest()[4] == "Factory Staff" or CheckQuest()[4] == "Monkey" or CheckQuest()[4] == "Dragon Crew Warrior" or CheckQuest()[4] == "Dragon Crew Archer") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 250 then
-                            v.HumanoidRootPart.CFrame = PosMon
-                            v.HumanoidRootPart.CanCollide = false
-                            v.HumanoidRootPart.Size = Vector3.new(60,60,60)
-                            if v.Humanoid:FindFirstChild("Animator") then
-                                v.Humanoid.Animator:Destroy()
-                            end
-                            sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  math.huge)
-                        elseif _G.AutoFarm and StartMagnet and v.Name == CheckQuest()[4] and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= _G.BringMode then
-                            v.HumanoidRootPart.CFrame = PosMon
-                            v.HumanoidRootPart.CanCollide = false
-                            v.HumanoidRootPart.Size = Vector3.new(60,60,60)
-                            if v.Humanoid:FindFirstChild("Animator") then
-                                v.Humanoid.Animator:Destroy()
-                            end
-                            sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  math.huge)
-                        end
-                        if _G.AutoEctoplasm and StartEctoplasmMagnet then
-                            if string.find(v.Name, "Ship") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - EctoplasmMon.Position).Magnitude <= _G.BringMode then
-                                v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                v.HumanoidRootPart.CFrame = EctoplasmMon
-                                v.Humanoid:ChangeState(14)
-                                v.HumanoidRootPart.CanCollide = false
-                                v.Head.CanCollide = false
-                                if v.Humanoid:FindFirstChild("Animator") then
-                                    v.Humanoid.Animator:Destroy()
-                                end
-                                sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-                            end
-                        end
-                        if _G.AutoRengoku and StartRengokuMagnet then
-                            if (v.Name == "Snow Lurker") or v.Name == ("Arctic Warrior") and (v.HumanoidRootPart.Position - RengokuMon.Position).Magnitude <= _G.BringMode and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                v.HumanoidRootPart.Size = Vector3.new(1500,1500,1500)
-                                v.Humanoid:ChangeState(14)
-                                v.HumanoidRootPart.CanCollide = false
-                                v.Head.CanCollide = false
-                                v.HumanoidRootPart.CFrame = RengokuMon
-                                if v.Humanoid:FindFirstChild("Animator") then
-                                    v.Humanoid.Animator:Destroy()
-                                end
-                                sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-                            end
-                        end
-                        if _G.AutoMusketeerHat and StartMagnetMusketeerhat then
-                            if v.Name == "Forest Pirate" and (v.HumanoidRootPart.Position - MusketeerHatMon.Position).Magnitude <= _G.BringMode and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                v.Humanoid:ChangeState(14)
-                                v.HumanoidRootPart.CanCollide = false
-                                v.Head.CanCollide = false
-                                v.HumanoidRootPart.CFrame = MusketeerHatMon
-                                if v.Humanoid:FindFirstChild("Animator") then
-                                    v.Humanoid.Animator:Destroy()
-                                end
-                                sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-                            end
-                        end
-                        if _G.AutoObservationHakiV2 and Mangnetcitzenmon then
-                            if v.Name == "Forest Pirate" and (v.HumanoidRootPart.Position - MusketeerHatMon.Position).Magnitude <= _G.BringMode and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                v.Humanoid:ChangeState(14)
-                                v.HumanoidRootPart.CanCollide = false
-                                v.Head.CanCollide = false
-                                v.HumanoidRootPart.CFrame = PosHee
-                                if v.Humanoid:FindFirstChild("Animator") then
-                                    v.Humanoid.Animator:Destroy()
-                                end
-                                sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-                            end
-                        end
-                        if _G.Auto_EvoRace and StartEvoMagnet then
-                            if v.Name == "Zombie" and (v.HumanoidRootPart.Position - PosMonEvo.Position).Magnitude <= _G.BringMode and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                v.Humanoid:ChangeState(14)
-                                v.HumanoidRootPart.CanCollide = false
-                                v.Head.CanCollide = false
-                                v.HumanoidRootPart.CFrame = PosMonEvo
-                                if v.Humanoid:FindFirstChild("Animator") then
-                                    v.Humanoid.Animator:Destroy()
-                                end
-                                sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-                            end
-                        end
-                        if _G.AutoBartilo and AutoBartiloBring then
-                            if v.Name == "Swan Pirate" and (v.HumanoidRootPart.Position - PosMonBarto.Position).Magnitude <= _G.BringMode and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                v.Humanoid:ChangeState(14)
-                                v.HumanoidRootPart.CanCollide = false
-                                v.Head.CanCollide = false
-                                v.HumanoidRootPart.CFrame = PosMonBarto
-                                if v.Humanoid:FindFirstChild("Animator") then
-                                    v.Humanoid.Animator:Destroy()
-                                end
-                                sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-                            end
-                        end
-                        if _G.AutoFarmFruitMastery and StartMasteryFruitMagnet then
-                            if v.Name == "Monkey" then
-                                if (v.HumanoidRootPart.Position - PosMonMasteryFruit.Position).Magnitude <= _G.BringMode and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                    v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                    v.Humanoid:ChangeState(14)
-                                    v.HumanoidRootPart.CanCollide = false
-                                    v.Head.CanCollide = false
-                                    v.HumanoidRootPart.CFrame = PosMonMasteryFruit
-                                    if v.Humanoid:FindFirstChild("Animator") then
-                                        v.Humanoid.Animator:Destroy()
-                                    end
-                                    sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-                                end
-                            elseif v.Name == "Factory Staff" then
-                                if (v.HumanoidRootPart.Position - PosMonMasteryFruit.Position).Magnitude <= _G.BringMode and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                    v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                    v.Humanoid:ChangeState(14)
-                                    v.HumanoidRootPart.CanCollide = false
-                                    v.Head.CanCollide = false
-                                    v.HumanoidRootPart.CFrame = PosMonMasteryFruit
-                                    if v.Humanoid:FindFirstChild("Animator") then
-                                        v.Humanoid.Animator:Destroy()
-                                    end
-                                    sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-                                end
-                            elseif v.Name == CheckQuest()[4] then
-                                if (v.HumanoidRootPart.Position - PosMonMasteryFruit.Position).Magnitude <= _G.BringMode and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                    v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                    v.Humanoid:ChangeState(14)
-                                    v.HumanoidRootPart.CanCollide = false
-                                    v.Head.CanCollide = false
-                                    v.HumanoidRootPart.CFrame = PosMonMasteryFruit
-                                    if v.Humanoid:FindFirstChild("Animator") then
-                                        v.Humanoid.Animator:Destroy()
-                                    end
-                                    sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-                                end
-                            end
-                        end
-                        if _G.AutoFarmGunMastery and StartMasteryGunMagnet then
-                            if v.Name == "Monkey" then
-                                if (v.HumanoidRootPart.Position - PosMonMasteryGun.Position).Magnitude <= _G.BringMode and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                    v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                    v.Humanoid:ChangeState(14)
-                                    v.HumanoidRootPart.CanCollide = false
-                                    v.Head.CanCollide = false
-                                    v.HumanoidRootPart.CFrame = PosMonMasteryGun
-                                    if v.Humanoid:FindFirstChild("Animator") then
-                                        v.Humanoid.Animator:Destroy()
-                                    end
-                                    sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-                                end
-                            elseif v.Name == "Factory Staff" then
-                                if (v.HumanoidRootPart.Position - PosMonMasteryGun.Position).Magnitude <= _G.BringMode and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                    v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                    v.Humanoid:ChangeState(14)
-                                    v.HumanoidRootPart.CanCollide = false
-                                    v.Head.CanCollide = false
-                                    v.HumanoidRootPart.CFrame = PosMonMasteryGun
-                                    if v.Humanoid:FindFirstChild("Animator") then
-                                        v.Humanoid.Animator:Destroy()
-                                    end
-                                    sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-                                end
-                            elseif v.Name == CheckQuest()[4] then
-                                if (v.HumanoidRootPart.Position - PosMonMasteryGun.Position).Magnitude <= _G.BringMode and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                    v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                    v.Humanoid:ChangeState(14)
-                                    v.HumanoidRootPart.CanCollide = false
-                                    v.Head.CanCollide = false
-                                    v.HumanoidRootPart.CFrame = PosMonMasteryGun
-                                    if v.Humanoid:FindFirstChild("Animator") then
-                                        v.Humanoid.Animator:Destroy()
-                                    end
-                                    sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-                                end
-                            end
-                        end
-                        if _G.Auto_Bone and StartMagnetBoneMon then
-                            if (v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy") and (v.HumanoidRootPart.Position - PosMonBone.Position).Magnitude <= _G.BringMode and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                v.Humanoid:ChangeState(14)
-                                v.HumanoidRootPart.CanCollide = false
-                                v.Head.CanCollide = false
-                                v.HumanoidRootPart.CFrame = PosMonBone
-                                if v.Humanoid:FindFirstChild("Animator") then
-                                    v.Humanoid.Animator:Destroy()
-                                end
-                                sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-                            end
-                        end
-                        if _G.AutoFarmCandy and StartCandyMagnet then
-                            if (v.Name == "Ice Cream Chef" or v.Name == "Ice Cream Commander") and (v.HumanoidRootPart.Position - CandyMon.Position).Magnitude <= _G.BringMode and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                v.Humanoid:ChangeState(14)
-                                v.HumanoidRootPart.CanCollide = false
-                                v.Head.CanCollide = false
-                                v.HumanoidRootPart.CFrame = CandyMon
-                                if v.Humanoid:FindFirstChild("Animator") then
-                                    v.Humanoid.Animator:Destroy()
-                                end
-                                sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-                            end
-                        end
-                        if _G.AutoDoughtBoss and MagnetDought then
-                            if (v.Name == "Cookie Crafter" or v.Name == "Cake Guard" or v.Name == "Baking Staff" or v.Name == "Head Baker") and (v.HumanoidRootPart.Position - PosMonDoughtOpenDoor.Position).Magnitude <= _G.BringMode and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                v.Humanoid:ChangeState(14)
-                                v.HumanoidRootPart.CanCollide = false
-                                v.Head.CanCollide = false
-                                v.HumanoidRootPart.CFrame = PosMonDoughtOpenDoor
-                                if v.Humanoid:FindFirstChild("Animator") then
-                                    v.Humanoid.Animator:Destroy()
-                                end
-                                sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-                            end
-                        end
-                    end
-                end
-            end)
-        end
-    end)
+    
     local plr = game.Players.LocalPlayer
 local CbFw = getupvalues(require(plr.PlayerScripts.CombatFramework))
 local CbFw2 = CbFw[2]
@@ -2455,9 +2233,8 @@ end
                                 AttackNoCD()
                             until (not _G.FastAttack and not FastAttack) or (_G.FastAttack and not FastAttack)  or (not _G.FastAttack and FastAttack) or tick() - n > 10
                         end)
-                    else n = tick()
-                        game:GetService'VirtualUser':CaptureController()
-						game:GetService'VirtualUser':Button1Down(Vector2.new(0,1,0,1))
+                    else wait(0.5)
+                        n = tick()
                     end
                 end
             end
@@ -2479,7 +2256,7 @@ end
 										AttackNoCD()
 									until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack) or tick() - i > 3
 								end)
-							else wait(0.2)
+							else wait(0.5)
                                 i = tick()
 							end
 						end
@@ -2738,7 +2515,7 @@ end
     spawn(function()
         while wait() do
             pcall(function()
-                if _G.Auto_Bone then
+                if _G.Auto_Bone and World3 and not _G.AutoFarmFruitMastery then
                     for _, _Boss in ipairs(BoneTabel["Boss"]) do
                         local _Item = BoneTabel["Item"]
                         if game:GetService("Workspace").Enemies:FindFirstChild(_Boss) or game:GetService("ReplicatedStorage"):FindFirstChild(_Boss) then
@@ -2748,7 +2525,7 @@ end
                                         repeat wait()
                                             EquipWeapon(_G.SelectWeapon)
                                             _v1.HumanoidRootPart.Size = Vector3.new(60, 60, 60)  
-                                            EquipWeapon(_G.SelectWeapon)
+                                            StartMagnetBoneMon = true
                                             Sex_Tween = TP1(_v1.HumanoidRootPart.CFrame * CFrame.new(0, 30, 5))
                                             Sex_Tween:Play()
                                             if (_v1.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
@@ -2760,6 +2537,191 @@ end
                                             end
                                         until not _G.Auto_Bone or v.Humanoid.Health <= 0 or not v.Parent or v.Humanoid.Health <= 0
                                         StartMagnetBoneMon = false
+                                        if _G.FastAttack then
+                                            FastAttack = false
+                                            elseif _G.SuperFastAttack then
+                                            SFastAttack = false
+                                        end	
+                                    end
+                                end
+                            end
+                        else
+                            if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(_Item) or game:GetService("Players").LocalPlayer.Character:FindFirstChild(_Item) then
+                                EquipWeapon(_Item)
+                                Sex_Tween = TP1(workspace.Map["Haunted Castle"].Summoner.Detection.CFrame)
+                                Sex_Tween:Play()
+                            else
+                                for _, _Mon in next, BoneTabel["Mon"] do
+                                    if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
+                                        print(_Mon)
+                                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                            if v.Name == _Mon then
+                                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                                    repeat wait()
+                                                        HealthMin = v.Humanoid.MaxHealth*_G.Kill_At/100
+                                                        if v.Humanoid.Health <= HealthMin then 
+                                                            UseSkillMasteryDevilFruit = true
+                                                            EquipBloxFruit()
+                                                            wait(0.5)
+                                                            if game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value) then
+                                                                MasteryDevilFruit = require(game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Data.DevilFruit.Value].Data)
+                                                                DevilFruitMastery = game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Data.DevilFruit.Value].Level.Value
+                                                            elseif game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value) then
+                                                                MasteryDevilFruit = require(game:GetService("Players").LocalPlayer.Backpack[game.Players.LocalPlayer.Data.DevilFruit.Value].Data)
+                                                                DevilFruitMastery = game:GetService("Players").LocalPlayer.Backpack[game.Players.LocalPlayer.Data.DevilFruit.Value].Level.Value
+                                                            end
+                                                            if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Dragon-Dragon") then
+                                                                if _G.SkillZ and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
+                                                                    wait(.1)
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
+                                                                end
+                                                                if _G.SkillX and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
+                                                                    wait(.1)
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
+                                                                end   
+                                                            elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Human-Human: Buddha") then
+                                                                if _G.SkillZ and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and game.Players.LocalPlayer.Character.HumanoidRootPart.Size == Vector3.new(7.6, 7.676, 3.686) and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
+                                                                else
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
+                                                                    wait(.1)
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
+                                                                end
+                                                                if _G.SkillX and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
+                                                                    wait(.1)
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
+                                                                end
+                                                                if _G.SkillC and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.C then
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "C", false, game)
+                                                                    wait(.1)
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "C", false, game)
+                                                                end  
+                                                            elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Venom-Venom") then
+                                                                if _G.SkillZ and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
+                                                                    wait(4)
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
+                                                                end
+                                                                if _G.SkillX and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
+                                                                    wait(.1)
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
+                                                                end
+                                                                if _G.SkillC and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.C then
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "C", false, game)
+                                                                    wait(.1)
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "C", false, game)
+                                                                end
+                                                            elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value) then
+                                                                game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value).MousePos.Value = v.HumanoidRootPart.Position
+                                                                if _G.SkillZ and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
+                                                                    wait(.1)
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
+                                                                end
+                                                                if _G.SkillX and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
+                                                                    wait(.1)
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
+                                                                end
+                                                                if _G.SkillC and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.C then
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "C", false, game)
+                                                                    wait(.1)
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "C", false, game)
+                                                                end
+                                                                if _G.SkillV and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.V then
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "V", false, game)
+                                                                    wait(.1)
+                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "V", false, game)
+                                                                end
+                                                            end
+                                                            Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,15,0))
+                                                            Sex_Tween:Play()
+                                                            PosMonMasteryFruit = v.HumanoidRootPart.CFrame
+                                                            PositionSkillMasteryDevilFruit = v.HumanoidRootPart.CFrame.Position
+                                                            v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+                                                            v.HumanoidRootPart.CanCollide = false
+                                                            v.Humanoid.WalkSpeed = 0
+                                                            v.Head.CanCollide = false
+                                                            StartMasteryFruitMagnet = true
+                                                            v.HumanoidRootPart.TranAsparency = 1
+                                                        else
+                                                            StartMagnet = true
+                                                            Click()
+                                                            EquipWeapon(_G.SelectWeapon)
+                                                            AutoHaki()
+                                                            v.HumanoidRootPart.Transparency = 1
+                                                            PosMonBone = v.HumanoidRootPart.CFrame
+                                                            Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
+                                                            Sex_Tween:Play()
+                                                        end
+                                                    until not _G.Auto_Bone or v.Humanoid.Health <= 0 or not v.Parent or v.Humanoid.Health <= 0
+                                                    if _G.FastAttack then
+                                                        FastAttack = false
+                                                        elseif _G.SuperFastAttack then
+                                                        SFastAttack = false
+                                                    end	
+                                                else
+                                                    Sex_Tween = TP1(GetBone_CFrame_Mon()[SetCFarmeBone] * CFrame.new(0,30,5))
+                                                    Sex_Tween:Play()
+                                                    if (GetBone_CFrame_Mon()[SetCFarmeBone].Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+                                                        if SetCFarmeBone == nil or SetCFarmeBone == '' then
+                                                            SetCFarmeBone = 1
+                                                        elseif SetCFarmeBone >= #GetBone_CFrame_Mon() then
+                                                            SetCFarmeBone = 1
+                                                        end
+                                                        SetCFarmeBone =  SetCFarmeBone + 1
+                                                        wait(0.5)
+                                                    end
+                                                end
+                                            end
+                                        end
+                                    else
+                                        Sex_Tween = TP1(GetBone_CFrame_Mon()[SetCFarmeBone] * CFrame.new(0,30,5))
+                                        Sex_Tween:Play()
+                                        if (GetBone_CFrame_Mon()[SetCFarmeBone].Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+                                            if SetCFarmeBone == nil or SetCFarmeBone == '' then
+                                                SetCFarmeBone = 1
+                                            elseif SetCFarmeBone >= #GetBone_CFrame_Mon() then
+                                                SetCFarmeBone = 1
+                                            end
+                                            SetCFarmeBone =  SetCFarmeBone + 1
+                                            wait(0.5)
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                elseif _G.Auto_Bone and World3 and _G.AutoFarmFruitMastery then
+                    for _, _Boss in ipairs(BoneTabel["Boss"]) do
+                        local _Item = BoneTabel["Item"]
+                        if game:GetService("Workspace").Enemies:FindFirstChild(_Boss) or game:GetService("ReplicatedStorage"):FindFirstChild(_Boss) then
+                            for _, _v1 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                if _v1.Name == _Boss then
+                                    if _v1:FindFirstChild("Humanoid") and _v1:FindFirstChild("HumanoidRootPart") and _v1.Humanoid.Health > 0 then
+                                        repeat wait()
+                                            EquipWeapon(_G.SelectWeapon)
+                                            _v1.HumanoidRootPart.Size = Vector3.new(60, 60, 60)  
+                                            StartMagnetBoneMon = true
+                                            Sex_Tween = TP1(_v1.HumanoidRootPart.CFrame * CFrame.new(0, 30, 5))
+                                            Sex_Tween:Play()
+                                            if (_v1.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+                                                if _G.FastAttack then
+                                                    FastAttack = true
+                                                    elseif _G.SuperFastAttack then
+                                                    SFastAttack = true
+                                                end	
+                                            end
+                                        until not _G.Auto_Bone or v.Humanoid.Health <= 0 or not v.Parent or v.Humanoid.Health <= 0
+                                        StartMagnetBoneMon = false
+                                        if _G.FastAttack then
+                                            FastAttack = false
+                                            elseif _G.SuperFastAttack then
+                                            SFastAttack = false
+                                        end	
                                     end
                                 end
                             end
