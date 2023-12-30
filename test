@@ -2233,8 +2233,9 @@ end
                                 AttackNoCD()
                             until (not _G.FastAttack and not FastAttack) or (_G.FastAttack and not FastAttack)  or (not _G.FastAttack and FastAttack) or tick() - n > 10
                         end)
-                    else wait(0.5)
-                        n = tick()
+                    else n = tick()
+                        game:GetService'VirtualUser':CaptureController()
+						game:GetService'VirtualUser':Button1Down(Vector2.new(0,1,0,1))
                     end
                 end
             end
@@ -2256,7 +2257,7 @@ end
 										AttackNoCD()
 									until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack) or tick() - i > 3
 								end)
-							else wait(0.5)
+							else wait(0.2)
                                 i = tick()
 							end
 						end
@@ -2558,104 +2559,18 @@ end
                                             if v.Name == _Mon then
                                                 if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                                                     repeat wait()
-                                                        HealthMin = v.Humanoid.MaxHealth*_G.Kill_At/100
-                                                        if v.Humanoid.Health <= HealthMin then 
-                                                            UseSkillMasteryDevilFruit = true
-                                                            EquipBloxFruit()
-                                                            wait(0.5)
-                                                            if game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value) then
-                                                                MasteryDevilFruit = require(game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Data.DevilFruit.Value].Data)
-                                                                DevilFruitMastery = game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Data.DevilFruit.Value].Level.Value
-                                                            elseif game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value) then
-                                                                MasteryDevilFruit = require(game:GetService("Players").LocalPlayer.Backpack[game.Players.LocalPlayer.Data.DevilFruit.Value].Data)
-                                                                DevilFruitMastery = game:GetService("Players").LocalPlayer.Backpack[game.Players.LocalPlayer.Data.DevilFruit.Value].Level.Value
-                                                            end
-                                                            if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Dragon-Dragon") then
-                                                                if _G.SkillZ and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
-                                                                    wait(.1)
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
-                                                                end
-                                                                if _G.SkillX and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
-                                                                    wait(.1)
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
-                                                                end   
-                                                            elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Human-Human: Buddha") then
-                                                                if _G.SkillZ and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and game.Players.LocalPlayer.Character.HumanoidRootPart.Size == Vector3.new(7.6, 7.676, 3.686) and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
-                                                                else
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
-                                                                    wait(.1)
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
-                                                                end
-                                                                if _G.SkillX and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
-                                                                    wait(.1)
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
-                                                                end
-                                                                if _G.SkillC and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.C then
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "C", false, game)
-                                                                    wait(.1)
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "C", false, game)
-                                                                end  
-                                                            elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Venom-Venom") then
-                                                                if _G.SkillZ and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
-                                                                    wait(4)
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
-                                                                end
-                                                                if _G.SkillX and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
-                                                                    wait(.1)
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
-                                                                end
-                                                                if _G.SkillC and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.C then
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "C", false, game)
-                                                                    wait(.1)
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "C", false, game)
-                                                                end
-                                                            elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value) then
-                                                                game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value).MousePos.Value = v.HumanoidRootPart.Position
-                                                                if _G.SkillZ and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
-                                                                    wait(.1)
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
-                                                                end
-                                                                if _G.SkillX and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
-                                                                    wait(.1)
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
-                                                                end
-                                                                if _G.SkillC and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.C then
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "C", false, game)
-                                                                    wait(.1)
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "C", false, game)
-                                                                end
-                                                                if _G.SkillV and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.V then
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(true, "V", false, game)
-                                                                    wait(.1)
-                                                                    game:service('VirtualInputManager'):SendKeyEvent(false, "V", false, game)
-                                                                end
-                                                            end
-                                                            Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,15,0))
-                                                            Sex_Tween:Play()
-                                                            PosMonMasteryFruit = v.HumanoidRootPart.CFrame
-                                                            PositionSkillMasteryDevilFruit = v.HumanoidRootPart.CFrame.Position
-                                                            v.HumanoidRootPart.Size = Vector3.new(60,60,60)
-                                                            v.HumanoidRootPart.CanCollide = false
-                                                            v.Humanoid.WalkSpeed = 0
-                                                            v.Head.CanCollide = false
-                                                            StartMasteryFruitMagnet = true
-                                                            v.HumanoidRootPart.TranAsparency = 1
-                                                        else
-                                                            StartMagnet = true
-                                                            Click()
-                                                            EquipWeapon(_G.SelectWeapon)
-                                                            AutoHaki()
-                                                            v.HumanoidRootPart.Transparency = 1
-                                                            PosMonBone = v.HumanoidRootPart.CFrame
-                                                            Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
-                                                            Sex_Tween:Play()
+                                                        PosMonBone = v.HumanoidRootPart.CFrame
+                                                        EquipWeapon(_G.SelectWeapon)
+                                                        v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)  
+                                                        StartMagnetBoneMon = true
+                                                        Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0, 30, 5))
+                                                        Sex_Tween:Play()
+                                                        if (v.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+                                                            if _G.FastAttack then
+                                                                FastAttack = true
+                                                                elseif _G.SuperFastAttack then
+                                                                SFastAttack = true
+                                                            end	
                                                         end
                                                     until not _G.Auto_Bone or v.Humanoid.Health <= 0 or not v.Parent or v.Humanoid.Health <= 0
                                                     if _G.FastAttack then
@@ -2703,17 +2618,108 @@ end
                                 if _v1.Name == _Boss then
                                     if _v1:FindFirstChild("Humanoid") and _v1:FindFirstChild("HumanoidRootPart") and _v1.Humanoid.Health > 0 then
                                         repeat wait()
-                                            EquipWeapon(_G.SelectWeapon)
-                                            _v1.HumanoidRootPart.Size = Vector3.new(60, 60, 60)  
-                                            StartMagnetBoneMon = true
-                                            Sex_Tween = TP1(_v1.HumanoidRootPart.CFrame * CFrame.new(0, 30, 5))
-                                            Sex_Tween:Play()
-                                            if (_v1.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
-                                                if _G.FastAttack then
-                                                    FastAttack = true
-                                                    elseif _G.SuperFastAttack then
-                                                    SFastAttack = true
-                                                end	
+                                            HealthMin = v.Humanoid.MaxHealth*_G.Kill_At/100
+                                            if v.Humanoid.Health <= HealthMin then 
+                                                UseSkillMasteryDevilFruit = true
+                                                EquipBloxFruit()
+                                                wait(0.5)
+                                                if game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value) then
+                                                    MasteryDevilFruit = require(game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Data.DevilFruit.Value].Data)
+                                                    DevilFruitMastery = game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Data.DevilFruit.Value].Level.Value
+                                                elseif game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value) then
+                                                    MasteryDevilFruit = require(game:GetService("Players").LocalPlayer.Backpack[game.Players.LocalPlayer.Data.DevilFruit.Value].Data)
+                                                    DevilFruitMastery = game:GetService("Players").LocalPlayer.Backpack[game.Players.LocalPlayer.Data.DevilFruit.Value].Level.Value
+                                                end
+                                                if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Dragon-Dragon") then
+                                                    if _G.SkillZ and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
+                                                        game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
+                                                        wait(.1)
+                                                        game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
+                                                    end
+                                                    if _G.SkillX and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
+                                                        game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
+                                                        wait(.1)
+                                                        game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
+                                                    end   
+                                                elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Human-Human: Buddha") then
+                                                    if _G.SkillZ and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and game.Players.LocalPlayer.Character.HumanoidRootPart.Size == Vector3.new(7.6, 7.676, 3.686) and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
+                                                    else
+                                                        game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
+                                                        wait(.1)
+                                                        game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
+                                                    end
+                                                    if _G.SkillX and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
+                                                        game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
+                                                        wait(.1)
+                                                        game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
+                                                    end
+                                                    if _G.SkillC and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.C then
+                                                        game:service('VirtualInputManager'):SendKeyEvent(true, "C", false, game)
+                                                        wait(.1)
+                                                        game:service('VirtualInputManager'):SendKeyEvent(false, "C", false, game)
+                                                    end  
+                                                elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Venom-Venom") then
+                                                    if _G.SkillZ and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
+                                                        game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
+                                                        wait(4)
+                                                        game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
+                                                    end
+                                                    if _G.SkillX and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
+                                                        game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
+                                                        wait(.1)
+                                                        game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
+                                                    end
+                                                    if _G.SkillC and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.C then
+                                                        game:service('VirtualInputManager'):SendKeyEvent(true, "C", false, game)
+                                                        wait(.1)
+                                                        game:service('VirtualInputManager'):SendKeyEvent(false, "C", false, game)
+                                                    end
+                                                elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value) then
+                                                    game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value).MousePos.Value = v.HumanoidRootPart.Position
+                                                    if _G.SkillZ and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
+                                                        game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
+                                                        wait(.1)
+                                                        game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
+                                                    end
+                                                    if _G.SkillX and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
+                                                        game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
+                                                        wait(.1)
+                                                        game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
+                                                    end
+                                                    if _G.SkillC and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.C then
+                                                        game:service('VirtualInputManager'):SendKeyEvent(true, "C", false, game)
+                                                        wait(.1)
+                                                        game:service('VirtualInputManager'):SendKeyEvent(false, "C", false, game)
+                                                    end
+                                                    if _G.SkillV and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.V then
+                                                        game:service('VirtualInputManager'):SendKeyEvent(true, "V", false, game)
+                                                        wait(.1)
+                                                        game:service('VirtualInputManager'):SendKeyEvent(false, "V", false, game)
+                                                    end
+                                                end
+                                                Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,15,0))
+                                                Sex_Tween:Play()
+                                                PosMonMasteryFruit = v.HumanoidRootPart.CFrame
+                                                PositionSkillMasteryDevilFruit = v.HumanoidRootPart.CFrame.Position
+                                                v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+                                                v.HumanoidRootPart.CanCollide = false
+                                                v.Humanoid.WalkSpeed = 0
+                                                v.Head.CanCollide = false
+                                                StartMasteryFruitMagnet = true
+                                                v.HumanoidRootPart.TranAsparency = 1
+                                            else
+                                                EquipWeapon(_G.SelectWeapon)
+                                                _v1.HumanoidRootPart.Size = Vector3.new(60, 60, 60)  
+                                                StartMagnetBoneMon = true
+                                                Sex_Tween = TP1(_v1.HumanoidRootPart.CFrame * CFrame.new(0, 30, 5))
+                                                Sex_Tween:Play()
+                                                if (_v1.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+                                                    if _G.FastAttack then
+                                                        FastAttack = true
+                                                        elseif _G.SuperFastAttack then
+                                                        SFastAttack = true
+                                                    end	
+                                                end
                                             end
                                         until not _G.Auto_Bone or v.Humanoid.Health <= 0 or not v.Parent or v.Humanoid.Health <= 0
                                         StartMagnetBoneMon = false
