@@ -2670,11 +2670,7 @@ end
                                                     v.HumanoidRootPart.TranAsparency = 1
                                                 else
                                                     StartMagnet = true
-                                                    if _G.FastAttack then
-                                                        FastAttack = true
-                                                        elseif _G.SuperFastAttack then
-                                                        SFastAttack = true
-                                                    end	
+                                                    Click()
                                                     EquipWeapon(_G.SelectWeapon)
                                                     AutoHaki()
                                                     v.HumanoidRootPart.Transparency = 1
