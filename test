@@ -2256,7 +2256,7 @@ end
 										AttackNoCD()
 									until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack) or tick() - i > 3
 								end)
-							else
+							else wait()
                                 i = tick()
 							end
 						end
@@ -2605,6 +2605,8 @@ end
                             end
                         end
                     end
+                elseif _G.Auto_Bone and World3 and _G.AutoFarmFruitMastery then
+                    print("farm mas")
                 end
             end)
         end
