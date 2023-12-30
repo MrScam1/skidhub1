@@ -2592,67 +2592,67 @@ end
                                                         DevilFruitMastery = game:GetService("Players").LocalPlayer.Backpack[game.Players.LocalPlayer.Data.DevilFruit.Value].Level.Value
                                                     end
                                                     if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Dragon-Dragon") then
-                                                        if table.find(Values, "Z") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
+                                                        if _G.SkillZ and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
                                                             game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
                                                             wait(.1)
                                                             game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
                                                         end
-                                                        if table.find(Values, "X") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
+                                                        if _G.SkillX and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
                                                             game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
                                                             wait(.1)
                                                             game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
                                                         end   
                                                     elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Human-Human: Buddha") then
-                                                        if table.find(Values, "Z") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and game.Players.LocalPlayer.Character.HumanoidRootPart.Size == Vector3.new(7.6, 7.676, 3.686) and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
+                                                        if _G.SkillZ and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and game.Players.LocalPlayer.Character.HumanoidRootPart.Size == Vector3.new(7.6, 7.676, 3.686) and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
                                                         else
                                                             game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
                                                             wait(.1)
                                                             game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
                                                         end
-                                                        if table.find(Values, "X") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
+                                                        if _G.SkillX and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
                                                             game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
                                                             wait(.1)
                                                             game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
                                                         end
-                                                        if table.find(Values, "C") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.C then
+                                                        if _G.SkillC and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.C then
                                                             game:service('VirtualInputManager'):SendKeyEvent(true, "C", false, game)
                                                             wait(.1)
                                                             game:service('VirtualInputManager'):SendKeyEvent(false, "C", false, game)
                                                         end  
                                                     elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Venom-Venom") then
-                                                        if table.find(Values, "Z") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
+                                                        if _G.SkillZ and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
                                                             game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
                                                             wait(4)
                                                             game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
                                                         end
-                                                        if table.find(Values, "X") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
+                                                        if _G.SkillX and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
                                                             game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
                                                             wait(.1)
                                                             game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
                                                         end
-                                                        if table.find(Values, "C") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.C then
+                                                        if _G.SkillC and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.C then
                                                             game:service('VirtualInputManager'):SendKeyEvent(true, "C", false, game)
                                                             wait(.1)
                                                             game:service('VirtualInputManager'):SendKeyEvent(false, "C", false, game)
                                                         end
                                                     elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value) then
                                                         game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value).MousePos.Value = v.HumanoidRootPart.Position
-                                                        if table.find(Values, "Z") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
+                                                        if _G.SkillZ and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.Z then
                                                             game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
                                                             wait(.1)
                                                             game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
                                                         end
-                                                        if table.find(Values, "X") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
+                                                        if _G.SkillX and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.X then
                                                             game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
                                                             wait(.1)
                                                             game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
                                                         end
-                                                        if table.find(Values, "C") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.C then
+                                                        if _G.SkillC and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.C then
                                                             game:service('VirtualInputManager'):SendKeyEvent(true, "C", false, game)
                                                             wait(.1)
                                                             game:service('VirtualInputManager'):SendKeyEvent(false, "C", false, game)
                                                         end
-                                                        if table.find(Values, "V") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.V then
+                                                        if _G.SkillV and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and DevilFruitMastery >= MasteryDevilFruit.Lvl.V then
                                                             game:service('VirtualInputManager'):SendKeyEvent(true, "V", false, game)
                                                             wait(.1)
                                                             game:service('VirtualInputManager'):SendKeyEvent(false, "V", false, game)
@@ -2719,19 +2719,20 @@ end
             _G.Kill_At = Value
         end
     })
-    local MultiDropdown = MainFarm.Main:AddDropdown("MultiDropdown", {
-        Title = "Dropdown",
-        Description = "You can select multiple values.",
-        Values = {"Z", "X", "C", "V"},
-        Multi = true,
-        Default = {},
-    })
-    
-    MultiDropdown:OnChanged(function(Value)
-        local Values = {}
-        for Value, State in next, Value do
-            table.insert(Values, Value)
-        end
-        print("Mutlidropdown changed:", table.concat(Values, ", "))
+    local Toggle = MainFarm.Main:AddToggle("skillz", {Title = "Skill Z", Default = false })
+    Toggle:OnChanged(function(Value)
+        _G.SkillZ = Value
+    end)
+    local Toggle = MainFarm.Main:AddToggle("skillx", {Title = "Skill X", Default = false })
+    Toggle:OnChanged(function(Value)
+        _G.SkillX = Value
+    end)
+    local Toggle = MainFarm.Main:AddToggle("skillc", {Title = "Skill C", Default = false })
+    Toggle:OnChanged(function(Value)
+        _G.SkillC = Value
+    end)
+    local Toggle = MainFarm.Main:AddToggle("skillv", {Title = "Skill V", Default = false })
+    Toggle:OnChanged(function(Value)
+        _G.SkillV = Value
     end)
 end
