@@ -25,10 +25,10 @@ pcall(function()
     }
 end)
 
--- Global_V = {
---     Version_script = "Testing",
---     Script_enabled = true
--- }
+ Global_V = {
+    Version_script = "Testing",
+    Script_enabled = true
+}
 
 if not Global_V.Script_enabled then
     return game.Players.LocalPlayer:Kick("Script was disabled.")
