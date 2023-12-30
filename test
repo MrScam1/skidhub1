@@ -2233,9 +2233,8 @@ end
                                 AttackNoCD()
                             until (not _G.FastAttack and not FastAttack) or (_G.FastAttack and not FastAttack)  or (not _G.FastAttack and FastAttack) or tick() - n > 10
                         end)
-                    else n = tick()
-                        game:GetService'VirtualUser':CaptureController()
-						game:GetService'VirtualUser':Button1Down(Vector2.new(0,1,0,1))
+                    else wait(0.2)
+                        n = tick()
                     end
                 end
             end
