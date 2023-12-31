@@ -2437,7 +2437,6 @@ end
                                                     end
                                                     Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,15,0))
                                                     Sex_Tween:Play()
-                                                    PosMonMasteryFruit = v.HumanoidRootPart.CFrame
                                                     PositionSkillMasteryDevilFruit = v.HumanoidRootPart.CFrame.Position
                                                     v.HumanoidRootPart.Size = Vector3.new(60,60,60)
                                                     v.HumanoidRootPart.CanCollide = false
@@ -2777,7 +2776,6 @@ end
                                         end
                                         Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,15,0))
                                         Sex_Tween:Play()
-                                        PosMonMasteryFruit = v.HumanoidRootPart.CFrame
                                         PositionSkillMasteryDevilFruit = v.HumanoidRootPart.CFrame.Position
                                         v.HumanoidRootPart.Size = Vector3.new(60,60,60)
                                         v.HumanoidRootPart.CanCollide = false
@@ -2785,15 +2783,13 @@ end
                                         v.Head.CanCollide = false
                                         v.HumanoidRootPart.TranAsparency = 1
                                     else
-                                        AutoHaki()
-                                        EquipWeapon(_G.SelectWeapon)
-                                        v.HumanoidRootPart.CanCollide = false
-                                        v.Humanoid.WalkSpeed = 0
-                                        v.Head.CanCollide = false 
                                         StartMagnetBoneMon = true
-                                        Click()	
+                                        Click()
+                                        EquipWeapon(_G.SelectWeapon)
+                                        AutoHaki()
+                                        v.HumanoidRootPart.Transparency = 1
                                         PosMonBone = v.HumanoidRootPart.CFrame
-                                        Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,15,0))
+                                        Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
                                         Sex_Tween:Play()
                                         StartMasteryFruitMagnet = true
                                         PosMonMasteryFruit = v.HumanoidRootPart.CFrame
