@@ -2655,7 +2655,7 @@ end
                                             SFastAttack = true
                                         end	
                                         PosMonBone = v.HumanoidRootPart.CFrame
-                                        Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                        Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,15,0))
                                         Sex_Tween:Play()
                                     until not _G.Auto_Bone or v.Humanoid.Health <= 0 or not v.Parent or v.Humanoid.Health <= 0
                                 end
