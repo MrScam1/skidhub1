@@ -2767,8 +2767,7 @@ while task.wait() do
                                         repeat wait()
                                             AutoHaki()
                                             EquipWeapon(_G.SelectWeapon)
-                                            Sex_Tween = TP1(v:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0,15,0))
-                                            Sex_Tween:Play()
+                                            topos(v:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0,15,0))
                                             v.HumanoidRootPart.CanCollide = false
                                             v.Humanoid.WalkSpeed = 0
                                             v.Head.CanCollide = false 
