@@ -2859,7 +2859,7 @@ end
     Toggle:OnChanged(function(Value)
         _G.SkillV = Value
     end)
-local Priority = {
+local PriorityQueue = {
     ["Auto Farm Level"] = 1,
     ["Auto Farm Bone"] = 2,
 }
@@ -2899,8 +2899,10 @@ spawn(function()
         if not queue:empty() then
             if queue:top() == "Auto Farm Level" then
                 farmlevel()
+                print("farm lv")
             elseif queue:top() == "Auto Farm Bone" then
                 farmbone()
+                print("farm b0ne")
             end
         end
     end
