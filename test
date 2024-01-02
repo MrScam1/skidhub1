@@ -2859,51 +2859,50 @@ end
     Toggle:OnChanged(function(Value)
         _G.SkillV = Value
     end)
-    local PriorityQueue = {
-        ["Auto Farm Level"] = 1,
-        ["Auto Farm Bone"] = 2,
-    }
-    function PriorityQueue:new()
-        local obj = {queue = {}}
-        setmetatable(obj, self)
-        self.__index = self
-        return obj
-    end
-    function PriorityQueue:push(element, priority)
-        for i, task in ipairs(self.queue) do
-            if task.element == element then
-                return
-            end
-        end
-        table.insert(self.queue, {element = element, priority = priority})
-        table.sort(self.queue, function(a, b)
-            return a.priority > b.priority
-        end)
-    end
-    function PriorityQueue:pop(element)
-        for i, task in ipairs(self.queue) do
-            if task.element == element then
-                return table.remove(self.queue, i)
-            end
+    local PriorityQueue = {}
+function PriorityQueue:new()
+    local obj = {queue = {}}
+    setmetatable(obj, self)
+    self.__index = self
+    return obj
+end
+function PriorityQueue:push(element, priority)
+    for i, task in ipairs(self.queue) do
+        if task.element == element then
+            return
         end
     end
-    function PriorityQueue:top()
-        return self.queue[1] and self.queue[1].element
-    end
-    function PriorityQueue:empty()
-        return #self.queue == 0
-    end
-    local queue = PriorityQueue:new()
-    spawn(function()
-        while task.wait() do
-            if not queue:empty() then
-                if queue:top() == "Auto Farm Level" then
-                    farmlevel()
-                    print("farm lv")
-                elseif queue:top() == "Auto Farm Bone" then
-                    farmbone()
-                    print("farm bone")
-                end
-            end
-        end
+    table.insert(self.queue, {element = element, priority = priority})
+    table.sort(self.queue, function(a, b)
+        return a.priority > b.priority
     end)
+end
+function PriorityQueue:pop(element)
+    for i, task in ipairs(self.queue) do
+        if task.element == element then
+            return table.remove(self.queue, i)
+        end
+    end
+end
+function PriorityQueue:top()
+    return self.queue[1] and self.queue[1].element
+end
+function PriorityQueue:empty()
+    return #self.queue == 0
+end
+local queue = PriorityQueue:new()
+local Priority = {
+    ["Auto Farm Level"] = 1,
+    ["Auto Farm Bone"] = 2,
+}
+spawn(function()
+    while task.wait() do
+        if not queue:empty() then
+            if queue:top() == "Auto Farm Level" then
+                farmlevel()
+            elseif queue:top() == "Auto Farm Bone" then
+                farmbone()
+            end
+        end
+    end
+end)
