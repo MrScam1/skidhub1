@@ -2669,8 +2669,6 @@ end
             while wait() do 
                 if _G.Auto_Bone and World3 and not _G.AutoFarmFruitMastery then
                     pcall(function()
-                        Sex_Tween = TP1(boneframe)
-                        Sex_Tween:Play()
                         if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
                             for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                                 if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
@@ -2721,8 +2719,6 @@ end
                     end)
                 elseif _G.Auto_Bone and World3 and _G.AutoFarmFruitMastery then
                     --farm mas
-                    Sex_Tween = TP1(boneframe)
-                    Sex_Tween:Play()
                     if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
                         for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                             if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
