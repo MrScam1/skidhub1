@@ -2859,7 +2859,10 @@ end
     Toggle:OnChanged(function(Value)
         _G.SkillV = Value
     end)
-    local PriorityQueue = {}
+    local PriorityQueue = {
+        ["Auto Farm Level"] = 1,
+        ["Auto Farm Bone"] = 2,
+    }
     function PriorityQueue:new()
         local obj = {queue = {}}
         setmetatable(obj, self)
@@ -2891,10 +2894,6 @@ end
         return #self.queue == 0
     end
     local queue = PriorityQueue:new()
-    local Priority = {
-        ["Auto Farm Level"] = 1,
-        ["Auto Farm Bone"] = 2,
-    }
     spawn(function()
         while task.wait() do
             if not queue:empty() then
