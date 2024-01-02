@@ -2242,7 +2242,7 @@ i = tick()
                     if _G.SuperFastAttack and SFastAttack then
                         if tick() - i <= 3 then
                             pcall(function()
-                                repeat task.wait(0.03)
+                                repeat task.wait(0.01)
                                     AttackNoCD()
                                 until (not _G.SuperFastAttack and not SFastAttack) or (_G.SuperFastAttack and not SFastAttack)  or (not _G.SuperFastAttack and SFastAttack) or tick() - i > 3
                             end)
