@@ -2719,8 +2719,6 @@ spawn(function()
             if queue:top() == "Auto Farm Level" then
                 farmlevel()
             elseif queue:top() == "Auto Farm Bone" then
-                spawn(function()
-                    while wait() do 
                         if _G.Auto_Bone and World3 and not _G.AutoFarmFruitMastery then
                             pcall(function()
                                 if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
@@ -2906,8 +2904,6 @@ spawn(function()
                                 Sex_Tween:Play()  
                             end
                         end
-                    end
-                end)   
             end
         end
     end
