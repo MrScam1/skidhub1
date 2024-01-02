@@ -1546,12 +1546,15 @@ local function TP1(...)
 
     local tweenfunc = {}
     local Distance = (RealTarget.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude
+    local Speed = 250
     if Distance < 250 then
-        Speed = 352
+        Speed = 5000
     elseif Distance < 500 then
-        Speed = 395
+        Speed = 650
+    elseif Distance < 1000 then
+        Speed = 350
     elseif Distance >= 1000 then
-        Speed = 255
+        Speed = 250
     end
     if _G.lBypassTP then
         fkwarp = false
@@ -2767,7 +2770,8 @@ while task.wait() do
                                         repeat wait()
                                             AutoHaki()
                                             EquipWeapon(_G.SelectWeapon)
-                                            topos(v:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0,15,0))
+                                            Sex_Tween = TP1(v:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0,15,0))
+                                            Sex_Tween:Play()
                                             v.HumanoidRootPart.CanCollide = false
                                             v.Humanoid.WalkSpeed = 0
                                             v.Head.CanCollide = false 
