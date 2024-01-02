@@ -2899,10 +2899,8 @@ spawn(function()
         if not queue:empty() then
             if queue:top() == "Auto Farm Level" then
                 farmlevel()
-                print("farm lv")
             elseif queue:top() == "Auto Farm Bone" then
                 farmbone()
-                print("farm b0ne")
             end
         end
     end
