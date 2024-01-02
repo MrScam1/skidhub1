@@ -2899,9 +2899,9 @@ end
         while task.wait() do
             if not queue:empty() then
                 if queue:top() == "Auto Farm Level" then
-                    AutoFarmLevel()
+                    farmlevel()
                 elseif queue:top() == "Auto Farm Bone" then
-                    AutoFarmBone()
+                    farmbone()
                 end
             end
         end
