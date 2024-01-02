@@ -2907,3 +2907,17 @@ spawn(function()
         end
     end
 end)
+spawn(function()
+    while task.wait(0.01) do
+        if _G.AutoFarm then
+            queue:push("Auto Farm Level", PriorityQueue["Auto Farm Level"])
+        elseif not _G.AutoFarm then
+            queue:pop("Auto Farm Level")
+        end
+        if _G.Auto_Bone then
+            queue:push("Auto Farm Bone", PriorityQueue["Auto Farm Bone"])
+        elseif not _G.Auto_Bone then
+            queue:pop("Auto Farm Bone")
+        end
+    end
+end)
