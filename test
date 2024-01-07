@@ -130,7 +130,7 @@ getgenv().Setting = {
         EndHealth = 4000,
     },
     ["Notify"] = {
-        Enable = true,
+        Enable = false,
         CustomIcon = false,
         Image = "sticker.png", -- The Path Is: W-azure/AutoBounty/Notify
     },
