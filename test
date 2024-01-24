@@ -34,15 +34,6 @@ World3 = true
 
 end
 local PriorityQueue = {}
-if World1 then
-    local Priority = {
-        ["Auto Farm Saber"] = 1,
-        ["Fully sphm"] = 2,
-        ["Store Fruits"] = 3,
-        ["Get Fruits"] = 4,
-        ["Auto Farm Level"] = 5,
-    }
-end
 function PriorityQueue:new()
     local obj = {queue = {}}
     setmetatable(obj, self)
@@ -104,6 +95,15 @@ if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Main").ChooseT
     end
 end
 until game.Players.LocalPlayer.Team ~= nil and game:IsLoaded()
+end
+if World1 then
+    local Priority = {
+        ["Auto Farm Saber"] = 1,
+        ["Fully sphm"] = 2,
+        ["Store Fruits"] = 3,
+        ["Get Fruits"] = 4,
+        ["Auto Farm Level"] = 5,
+    }
 end
 local EnemySpawns = Instance.new("Folder",workspace)
 EnemySpawns.Name = "EnemySpawns"
@@ -2608,6 +2608,23 @@ spawn(function()
                 queue:push("Auto Farm Saber", Priority["Auto Farm Saber"])
             elseif game.Players.LocalPlayer.Data.Level.Value >= 200 and Check_Sword("Saber") then
                 queue:pop("Auto Farm Saber")
+            end
+        end
+    end
+end)
+spawn(function()
+    while task.wait() do
+        if not queue:empty() then
+            if queue:top() == "Auto Farm Level" then
+                autofarm()
+            elseif queue:top() == "Get Fruits" then
+                tweenfruit()
+            elseif queue:top() == "Store Fruits" then
+                StoreFruit()
+            elseif queue:top() == "Fully sphm" then
+                fullysuperhuman()
+            elseif queue:top() == "Auto Farm Saber" then
+                getsaber()
             end
         end
     end
