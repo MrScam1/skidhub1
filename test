@@ -25,6 +25,46 @@ end
 for i,v in pairs(x2Code) do
     RedeemCode(v)
 end
+if World1 then
+    local PriorityQueue = {
+        ["Auto Farm Saber"] = 1,
+        ["Fully sphm"] = 2,
+        ["Store Fruits"] = 3,
+        ["Get Fruits"] = 4,
+        ["Auto Farm Level"] = 5,
+    }
+end
+function PriorityQueue:new()
+    local obj = {queue = {}}
+    setmetatable(obj, self)
+    self.__index = self
+    return obj
+end
+function PriorityQueue:push(element, priority)
+    for i, task in ipairs(self.queue) do
+        if task.element == element then
+            return
+        end
+    end
+    table.insert(self.queue, {element = element, priority = priority})
+    table.sort(self.queue, function(a, b)
+        return a.priority > b.priority
+    end)
+end
+function PriorityQueue:pop(element)
+    for i, task in ipairs(self.queue) do
+        if task.element == element then
+            return table.remove(self.queue, i)
+        end
+    end
+end
+function PriorityQueue:top()
+    return self.queue[1] and self.queue[1].element
+end
+function PriorityQueue:empty()
+    return #self.queue == 0
+end
+local queue = PriorityQueue:new()
 if game.PlaceId == 2753915549 then
 World1 = true
 elseif game.PlaceId == 4442272183 then
@@ -2539,46 +2579,6 @@ task.spawn(function()
         end
     end)
 end)
-if World1 then
-    local PriorityQueue = {
-        ["Auto Farm Saber"] = 1,
-        ["Fully sphm"] = 2,
-        ["Store Fruits"] = 3,
-        ["Get Fruits"] = 4,
-        ["Auto Farm Level"] = 5,
-    }
-end
-function PriorityQueue:new()
-    local obj = {queue = {}}
-    setmetatable(obj, self)
-    self.__index = self
-    return obj
-end
-function PriorityQueue:push(element, priority)
-    for i, task in ipairs(self.queue) do
-        if task.element == element then
-            return
-        end
-    end
-    table.insert(self.queue, {element = element, priority = priority})
-    table.sort(self.queue, function(a, b)
-        return a.priority > b.priority
-    end)
-end
-function PriorityQueue:pop(element)
-    for i, task in ipairs(self.queue) do
-        if task.element == element then
-            return table.remove(self.queue, i)
-        end
-    end
-end
-function PriorityQueue:top()
-    return self.queue[1] and self.queue[1].element
-end
-function PriorityQueue:empty()
-    return #self.queue == 0
-end
-local queue = PriorityQueue:new()
 spawn(function()
     while task.wait(0.01) do
         if World1 then
