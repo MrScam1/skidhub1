@@ -33,6 +33,7 @@ elseif game.PlaceId == 7449423635 then
 World3 = true
 
 end
+local PriorityQueue = {}
 if World1 then
     local Priority = {
         ["Auto Farm Saber"] = 1,
