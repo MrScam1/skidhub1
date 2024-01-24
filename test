@@ -2600,7 +2600,6 @@ end)
 spawn(function()
     while task.wait(0.01) do
         if World1 then
-            queue:push("Auto Farm Level", Priority["Auto Farm Level"])
             if CheckFruit() then
                 queue:push("Get Fruits", Priority["Get Fruits"])
             elseif not CheckFruit() then
