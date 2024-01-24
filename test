@@ -25,8 +25,16 @@ end
 for i,v in pairs(x2Code) do
     RedeemCode(v)
 end
+if game.PlaceId == 2753915549 then
+World1 = true
+elseif game.PlaceId == 4442272183 then
+World2 = true
+elseif game.PlaceId == 7449423635 then
+World3 = true
+
+end
 if World1 then
-    local PriorityQueue = {
+    local Priority = {
         ["Auto Farm Saber"] = 1,
         ["Fully sphm"] = 2,
         ["Store Fruits"] = 3,
@@ -65,14 +73,6 @@ function PriorityQueue:empty()
     return #self.queue == 0
 end
 local queue = PriorityQueue:new()
-if game.PlaceId == 2753915549 then
-World1 = true
-elseif game.PlaceId == 4442272183 then
-World2 = true
-elseif game.PlaceId == 7449423635 then
-World3 = true
-
-end
 local clickevent = {
 "MouseButton1Click",
 "MouseButton1Down",
@@ -2579,31 +2579,32 @@ task.spawn(function()
         end
     end)
 end)
+
 spawn(function()
     while task.wait(0.01) do
         if World1 then
-            queue:push("Auto Farm Level", PriorityQueue["Auto Farm Level"])
+            queue:push("Auto Farm Level", Priority["Auto Farm Level"])
             if CheckFruit() then
-                queue:push("Get Fruits", PriorityQueue["Get Fruits"])
+                queue:push("Get Fruits", Priority["Get Fruits"])
             elseif not CheckFruit() then
                 queue:pop("Get Fruits")
             end
             --store fruit
             for a, b in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
                 if string.match(b.Name, "Fruit$") then
-                    queue:push("Store Fruits", PriorityQueue["Store Fruits"])
+                    queue:push("Store Fruits", Priority["Store Fruits"])
                 elseif not string.match(b.Name, "Fruit$") then
                     queue:pop("Store Fruits")
                 end
             end
             if not game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman", true) == 1 then
-                queue:push("Fully sphm", PriorityQueue["Fully sphm"])
+                queue:push("Fully sphm", Priority["Fully sphm"])
             elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman", true) == 1 then
                 queue:pop("Fully sphm")
             end
             --saber
             if game.Players.LocalPlayer.Data.Level.Value >= 200 and Check_Sword("Saber") == nil then
-                queue:push("Auto Farm Saber", PriorityQueue["Auto Farm Saber"])
+                queue:push("Auto Farm Saber", Priority["Auto Farm Saber"])
             elseif game.Players.LocalPlayer.Data.Level.Value >= 200 and Check_Sword("Saber") then
                 queue:pop("Auto Farm Saber")
             end
