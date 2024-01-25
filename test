@@ -33,6 +33,44 @@ elseif game.PlaceId == 7449423635 then
 World3 = true
 
 end
+local clickevent = {
+"MouseButton1Click",
+"MouseButton1Down",
+"Activated"
+};
+function clickUI(path)
+for i, v in pairs(clickevent) do
+for i, v in pairs(getconnections(path[v])) do
+    v:Function();
+end;
+end;
+end;
+pcall(function()
+repeat wait()
+    game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
+    game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
+until not game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") or not game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn")
+end)
+if game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") then
+repeat wait()
+if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Main").ChooseTeam.Visible == true then
+    if _G.Team == "Pirate" then
+        clickUI(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.TextButton)
+    elseif _G.Team == "Marine" then
+        clickUI(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.TextButton)
+    else
+        clickUI(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.TextButton)
+    end
+end
+until game.Players.LocalPlayer.Team ~= nil and game:IsLoaded()
+end
+local Priority = {
+    ["Auto Farm Level"] = 1,
+    ["Auto Farm Saber"] = 2,
+    ["Fully sphm"] = 3,
+    ["Store Fruits"] = 4,
+    ["Get Fruits"] = 5,
+}
 local PriorityQueue = {}
 function PriorityQueue:new()
     local obj = {queue = {}}
@@ -65,46 +103,6 @@ function PriorityQueue:empty()
     return #self.queue == 0
 end
 local queue = PriorityQueue:new()
-local clickevent = {
-"MouseButton1Click",
-"MouseButton1Down",
-"Activated"
-};
-function clickUI(path)
-for i, v in pairs(clickevent) do
-for i, v in pairs(getconnections(path[v])) do
-    v:Function();
-end;
-end;
-end;
-pcall(function()
-repeat wait()
-    game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
-    game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
-until not game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") or not game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn")
-end)
-if game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") then
-repeat wait()
-if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Main").ChooseTeam.Visible == true then
-    if _G.Team == "Pirate" then
-        clickUI(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.TextButton)
-    elseif _G.Team == "Marine" then
-        clickUI(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.TextButton)
-    else
-        clickUI(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.TextButton)
-    end
-end
-until game.Players.LocalPlayer.Team ~= nil and game:IsLoaded()
-end
-if World1 then
-    local Priority = {
-        ["Auto Farm Level"] = 1,
-        ["Auto Farm Saber"] = 2,
-        ["Fully sphm"] = 3,
-        ["Store Fruits"] = 4,
-        ["Get Fruits"] = 5,
-    }
-end
 local EnemySpawns = Instance.new("Folder",workspace)
 EnemySpawns.Name = "EnemySpawns"
 
@@ -2599,7 +2597,7 @@ spawn(function()
 end)
 spawn(function()
     while task.wait(0.01) do
-        if World1 then
+            queue:push("Auto Farm Level", Priority["Auto Farm Level"])
             if CheckFruit() then
                 queue:push("Get Fruits", Priority["Get Fruits"])
             elseif not CheckFruit() then
@@ -2624,6 +2622,5 @@ spawn(function()
             elseif game.Players.LocalPlayer.Data.Level.Value >= 200 and Check_Sword("Saber") then
                 queue:pop("Auto Farm Saber")
             end
-        end
     end
 end)
