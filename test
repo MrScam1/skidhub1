@@ -19,24 +19,15 @@ for i, v in pairs(getconnections(path[v])) do
 end;
 end;
 end;
-pcall(function()
-repeat wait()
-    game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
-    game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
-until not game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") or not game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn")
-end)
-if game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") then
-repeat wait()
-if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Main").ChooseTeam.Visible == true then
-    if _G.Team == "Pirate" then
-        clickUI(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.TextButton)
-    elseif _G.Team == "Marine" then
-        clickUI(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.TextButton)
-    else
-        clickUI(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.TextButton)
-    end
+-- Join Team
+if getgenv().Team ~= "Pirates" and getgenv().Team ~= "Marines" then
+    getgenv().Team = "Marines"
 end
-until game.Players.LocalPlayer.Team ~= nil and game:IsLoaded()
+if game:GetService("Players").LocalPlayer.Team == nil then
+    local Button = game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container[getgenv().Team].Frame.TextButton
+    for i,v in pairs(getconnections(Button.Activated)) do
+        v.Function()
+    end
 end
 local Priority = {
     ["Auto Farm Level"] = 1,
@@ -2065,7 +2056,7 @@ coroutine.wrap(function()
                 if SFastAttack then
                     if tick() - i <= 3 then
                         pcall(function()
-                            repeat task.wait(0.05)
+                            repeat task.wait(0.1)
                                 AttackNoCD()
                             until not SFastAttack or tick() - i > 3
                         end)
@@ -2088,14 +2079,18 @@ function autofarm()
                             if v.Name == CheckQuest()[4] then
                                 if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                                     repeat task.wait()
-                                        StartMagnet = true
-                                        SFastAttack = true
-                                        EquipWeapon(_G.SelectWeapon)
-                                        AutoHaki()
-                                        v.HumanoidRootPart.Transparency = 1
-                                        PosMon = v.HumanoidRootPart.CFrame
-                                        Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
-                                        Sex_Tween:Play()
+                                        if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, CheckQuest()[4]) then
+                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                        else
+                                            StartMagnet = true
+                                            SFastAttack = true
+                                            EquipWeapon(_G.SelectWeapon)
+                                            AutoHaki()
+                                            v.HumanoidRootPart.Transparency = 1
+                                            PosMon = v.HumanoidRootPart.CFrame
+                                            Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
+                                            Sex_Tween:Play()
+                                        end
                                     until not queue:top() == "Auto Farm Level" or not v.Parent or v.Humanoid.Health <= 0 or QuestC.Visible == false or not v:FindFirstChild("HumanoidRootPart")
                                 end
                             end
@@ -2127,7 +2122,7 @@ local function CheckFruit()
 end
 function getsaber()
     pcall(function()
-        if queue:top() == "Auto Farm Saber" and game.Players.LocalPlayer.Data.Level.Value >= 200 and not game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Saber") and not game.Players.LocalPlayer.Character:FindFirstChild("Saber") then
+        if queue:top() == "Auto Farm Saber" and game.Players.LocalPlayer.Data.Level.Value >= 200 and not game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Saber") and not game.Players.LocalPlayer.Character:FindFirstChild("Saber") and World1 then
             if game:GetService("Workspace").Map.Jungle.Final.Part.Transparency == 0 then
                 if game:GetService("Workspace").Map.Jungle.QuestPlates.Door.Transparency == 0 then
                     if (CFrame.new(-1612.55884, 36.9774132, 148.719543, 0.37091279, 3.0717151e-09, -0.928667724, 3.97099491e-08, 1, 1.91679348e-08, 0.928667724, -4.39869794e-08, 0.37091279).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 100 then
@@ -2184,7 +2179,7 @@ function getsaber()
                                                 v.Humanoid.WalkSpeed = 0
                                                 v.HumanoidRootPart.CanCollide = false
                                                 v.Humanoid:ChangeState(11)
-                                            until v.Humanoid.Health <= 0 or queue:top() == "Auto Farm Saber" == false
+                                            until v.Humanoid.Health <= 0 or queue:top() ~= "Auto Farm Saber"
                                         end
                                     end
                                 end
@@ -2214,7 +2209,7 @@ function getsaber()
                                 v.HumanoidRootPart.CanCollide = false
                                 v.Humanoid:ChangeState(11)
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
-                            until v.Humanoid.Health <= 0 or queue:top() == "Auto Farm Saber" == false
+                            until v.Humanoid.Health <= 0 or queue:top() ~= "Auto Farm Saber"
                             if v.Humanoid.Health <= 0 then
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","PlaceRelic")
                             end
@@ -2618,7 +2613,7 @@ spawn(function()
             --saber
             if game.Players.LocalPlayer.Data.Level.Value >= 200 and Check_Sword("Saber") == nil then
                 queue:push("Auto Farm Saber", Priority["Auto Farm Saber"])
-            elseif game.Players.LocalPlayer.Data.Level.Value >= 200 and Check_Sword("Saber") then
+            elseif game.Players.LocalPlayer.Data.Level.Value >= 200 and Check_Sword("Saber") and World1 then
                 queue:pop("Auto Farm Saber")
             end
             queue:push("Auto Farm Level", Priority["Auto Farm Level"])
