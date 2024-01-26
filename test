@@ -2065,8 +2065,8 @@ coroutine.wrap(function()
                 if SFastAttack then
                     if tick() - i <= 3 then
                         pcall(function()
-                            repeat task.wait()
-                                AttackNoCD(0.05)
+                            repeat task.wait(0.05)
+                                AttackNoCD()
                             until not SFastAttack or tick() - i > 3
                         end)
                     else wait()
@@ -2597,7 +2597,6 @@ spawn(function()
 end)
 spawn(function()
     while task.wait(0.01) do
-            queue:push("Auto Farm Level", Priority["Auto Farm Level"])
             if CheckFruit() then
                 queue:push("Get Fruits", Priority["Get Fruits"])
             elseif not CheckFruit() then
@@ -2622,5 +2621,6 @@ spawn(function()
             elseif game.Players.LocalPlayer.Data.Level.Value >= 200 and Check_Sword("Saber") then
                 queue:pop("Auto Farm Saber")
             end
+            queue:push("Auto Farm Level", Priority["Auto Farm Level"])
     end
 end)
