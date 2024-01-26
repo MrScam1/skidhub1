@@ -33,8 +33,7 @@ local Priority = {
     ["Auto Farm Level"] = 1,
     ["Auto Farm Saber"] = 2,
     ["Fully sphm"] = 3,
-    ["Store Fruits"] = 4,
-    ["Get Fruits"] = 5,
+    ["Get Fruits"] = 4,
 }
 local PriorityQueue = {}
 function PriorityQueue:new()
@@ -2247,17 +2246,18 @@ function getsaber()
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         if v.Name == "Saber Expert" then
                             repeat wait()
-                                StartMagnet = true
+                                print("shank")
                                 SFastAttack = true
                                 AutoHaki()
                                 EquipWeapon(_G.SelectWeapon)
-                                topos(v.HumanoidRootPart.CFrame * CFrame.new(0,_G.Settings.Configs["Distance Auto Farm"],0))
+                                SexTween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,15,0))
+                                SexTween:Play()
                                 v.Humanoid.JumpPower = 0
                                 v.Humanoid.WalkSpeed = 0
                                 v.HumanoidRootPart.CanCollide = false
                                 v.Humanoid:ChangeState(11)
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
-                            until v.Humanoid.Health <= 0 or queue:top() ~= "Auto Farm Saber"
+                            until v.Humanoid.Health <= 0
                             if v.Humanoid.Health <= 0 then
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","PlaceRelic")
                             end
@@ -2312,6 +2312,13 @@ local function StoreFruit()
         end
     end
 end
+task.spawn(function()
+    pcall(function()
+        while wait() do 
+            StoreFruit()
+        end
+    end)
+end)
 function killaura()
     for _,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
         if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
@@ -2630,8 +2637,6 @@ spawn(function()
                 autofarm()
             elseif queue:top() == "Get Fruits" then
                 tweenfruit()
-            elseif queue:top() == "Store Fruits" then
-                StoreFruit()
             elseif queue:top() == "Fully sphm" then
                 fullysuperhuman()
             elseif queue:top() == "Auto Farm Saber" then
@@ -2647,15 +2652,7 @@ spawn(function()
             elseif not CheckFruit() then
                 queue:pop("Get Fruits")
             end
-            --store fruit
-            for a, b in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
-                if string.match(b.Name, "Fruit$") then
-                    queue:push("Store Fruits", Priority["Store Fruits"])
-                elseif not string.match(b.Name, "Fruit$") then
-                    queue:pop("Store Fruits")
-                end
-            end
-            if not game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman", true) == 1 then
+            if not game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman", true) ~= 1 then
                 queue:push("Fully sphm", Priority["Fully sphm"])
             elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman", true) == 1 then
                 queue:pop("Fully sphm")
