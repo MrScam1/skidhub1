@@ -1632,7 +1632,7 @@ elseif type(targetPos) == "number" then
 end
 
 if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health == 0 then if tween then tween:Cancel() end repeat wait() until game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health > 0; wait(0.2) end
-local request_place = CheckNearestRequestIsland(RealtargetPos)
+local request_place = CheckNearestRequestIsland(RealTarget)
 if request_place ~= nil then
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Request_Places[request_place].Position)
 end 
