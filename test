@@ -1,11 +1,10 @@
-
+getgenv().Team = "Pirates"
 if game.PlaceId == 2753915549 then
 World1 = true
 elseif game.PlaceId == 4442272183 then
 World2 = true
 elseif game.PlaceId == 7449423635 then
 World3 = true
-
 end
 local clickevent = {
 "MouseButton1Click",
@@ -29,6 +28,10 @@ if game:GetService("Players").LocalPlayer.Team == nil then
         v.Function()
     end
 end
+repeat wait()
+    game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
+    game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
+until not game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") or not game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn")
 local Priority = {
     ["Auto Farm Level"] = 1,
     ["Auto Farm Saber"] = 2,
@@ -1751,7 +1754,10 @@ elseif type(targetPos) == "userdata" then
 elseif type(targetPos) == "number" then
     RealTarget = CFrame.new(unpack(RealtargetPos))
 end
-
+local request_place = CheckNearestRequestIsland(RealTarget)
+if request_place ~= nil then
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Request_Places[request_place].Position)
+end
 if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health == 0 then if tween then tween:Cancel() end repeat wait() until game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health > 0; wait(0.2) end
 local tweenfunc = {}
 local Distance = (RealTarget.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude
@@ -1773,7 +1779,7 @@ end
 if _G.lBypassTP then
     fkwarp = false
         if Distance > 3000 and not (game.Players.LocalPlayer.Backpack:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Character:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Sweet Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Sweet Chalice")) and not (CheckQuest()[4] == "Fishman Commando" or CheckQuest()[4] == "Fishman Warrior") then
-            if fkwarp == false then
+            if fkwarp == false and request_place == nil then
                 BTP(RealTarget)
             end
             fkwarp = true
@@ -2970,23 +2976,23 @@ spawn(function()
     while task.wait() do
         if not queue:empty() then
             if queue:top() == "Auto Farm Level" then
-                print("lv")
+               -- print("lv")
                 autofarm()
             elseif queue:top() == "Get Fruits" then
-                print("tween fruit")
+               -- print("tween fruit")
                 tweenfruit()
             elseif queue:top() == "Fully sphm" then
                 fullysuperhuman()
-                print("sup")
+                --print("sup")
             elseif queue:top() == "Auto Farm Saber" then
                 getsaber()
-                print("saber")
+                --print("saber")
             elseif queue:top() == "Second Sea" then
                 secondsea()
-                print("second sea")
+                --print("second sea")
             elseif queue:top() == "Fully DeathStep" then
                 fullydeathstep()
-                print("death step")
+                --print("death step")
             end
         end
     end
