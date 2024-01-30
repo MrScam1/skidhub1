@@ -1755,9 +1755,6 @@ elseif type(targetPos) == "number" then
     RealTarget = CFrame.new(unpack(RealtargetPos))
 end
 local request_place = CheckNearestRequestIsland(RealTarget)
-if request_place ~= nil then
-    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Request_Places[request_place].Position)
-end
 if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health == 0 then if tween then tween:Cancel() end repeat wait() until game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health > 0; wait(0.2) end
 local tweenfunc = {}
 local Distance = (RealTarget.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude
@@ -1776,6 +1773,9 @@ elseif Distance < 750 then
 elseif Distance >= 1000 then
     Speed = 250
 end 
+if request_place ~= nil and Distance > 1000 then
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Request_Places[request_place].Position)
+end
 if _G.lBypassTP then
     fkwarp = false
         if Distance > 3000 and not (game.Players.LocalPlayer.Backpack:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Character:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Sweet Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Sweet Chalice")) and not (CheckQuest()[4] == "Fishman Commando" or CheckQuest()[4] == "Fishman Warrior") then
