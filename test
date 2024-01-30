@@ -2243,6 +2243,7 @@ function autofarm()
     local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
     local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
     pcall(function()
+        CheckQuest()
             if queue:top() == "Auto Farm Level" then
                 if QuestC.Visible == true then
                     if game:GetService("Workspace").Enemies:FindFirstChild(CheckQuest()[4]) then
@@ -2965,17 +2966,23 @@ spawn(function()
     while task.wait() do
         if not queue:empty() then
             if queue:top() == "Auto Farm Level" then
+                print("lv")
                 autofarm()
             elseif queue:top() == "Get Fruits" then
+                print("tween fruit")
                 tweenfruit()
             elseif queue:top() == "Fully sphm" then
                 fullysuperhuman()
+                print("sup")
             elseif queue:top() == "Auto Farm Saber" then
                 getsaber()
+                print("saber")
             elseif queue:top() == "Second Sea" then
                 secondsea()
+                print("second sea")
             elseif queue:top() == "Fully DeathStep" then
                 fullydeathstep()
+                print("death step")
             end
         end
     end
@@ -2987,7 +2994,7 @@ spawn(function()
             elseif not CheckFruit() then
                 queue:pop("Get Fruits")
             end
-            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman", true) == 1 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep",true) ~= 1 then
+            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman", true) == 1 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep",true) ~= 1 and World1 then
                 queue:push("Fully DeathStep", Priority["Fully DeathStep"])
             else
                 queue:pop("Fully DeathStep")
