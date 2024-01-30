@@ -32,8 +32,10 @@ end
 local Priority = {
     ["Auto Farm Level"] = 1,
     ["Auto Farm Saber"] = 2,
-    ["Fully sphm"] = 3,
-    ["Get Fruits"] = 4,
+    ["Fully DeathStep"] = 3,
+    ["Fully sphm"] = 4,
+    ["Get Fruits"] = 5,
+    ["Second Sea"] = 6,
 }
 local PriorityQueue = {}
 function PriorityQueue:new()
@@ -345,6 +347,125 @@ return {
 [5] = CFrameMon,
 [6] = LevelReq,
 }
+end
+local function FindBossCFrame(boss)
+    local CFrameBoss = nil
+    if not CFrameBoss then
+        for _, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+            if v.Name:find(boss, 1, true) and v:FindFirstChild("Humanoid") and v:FindFirstChild("Humanoid").Health > 0 then
+                CFrameBoss = CFrame.new(v.WorldPivot.Position) * CFrame.new(0, 50, 0)
+            end
+        end
+    end
+    if not CFrameBoss then
+        for _, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+            if v.Name:find(boss, 1, true) and v:FindFirstChild("Humanoid") and v:FindFirstChild("Humanoid").Health > 0 then
+                CFrameBoss = v:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0, 50, 0)
+            end
+        end
+    end
+    return CFrameBoss
+end
+local function CheckBossQuest()
+    local Level = game:GetService("Players").LocalPlayer.Data.Level.Value
+    local NameBoss = nil
+    local QuestBossNumber = nil
+    local NameQuestBoss = nil
+    local CFrameBoss = nil
+    local CFrameQuestBoss = nil
+    local LevelReqBoss = -999
+    local Quests = require(game:GetService("ReplicatedStorage").Quests)
+    local GuideModule = require(game:GetService("ReplicatedStorage").GuideModule)
+    local MaxLevelReqCurrentSea = -999
+    if World1 then
+        if Level < 20 then
+            return nil, nil, nil, nil, nil, -999
+        end
+    end
+    if World2 then
+        if Level < 750 then
+            return nil, nil, nil, nil, nil, -999
+        end
+    end
+    if World3 then
+        if Level < 1550 then
+            return nil, nil, nil, nil, nil, -999
+        end
+    end
+    for i,v in pairs(Quests) do
+        for i1,v1 in pairs(v) do
+            if i ~= "CitizenQuest" and i ~= "BartiloQuest" and v1["LevelReq"] <= Level then
+                for i2,v2 in pairs(v1["Task"]) do
+                    if v2 == 1 then
+                        LevelReqBoss = math.max(LevelReqBoss, v1["LevelReq"])
+                    end
+                end
+            end
+        end
+    end
+    for i,v in pairs(Quests) do
+        for i1,v1 in pairs(v) do
+            if i ~= "CitizenQuest" and i ~= "BartiloQuest" and v1["LevelReq"] == LevelReqBoss then
+                for i2,v2 in pairs(v1["Task"]) do
+                    NameBoss = i2
+                    QuestBossNumber = i1
+                    NameQuestBoss = i
+                end
+            end
+        end
+    end
+    for a,b in pairs(GuideModule["Data"]["NPCList"]) do
+        for c,d in pairs(b["Levels"]) do
+            if LevelReqBoss == d then
+                CFrameQuestBoss = a["CFrame"]
+            end
+            MaxLevelReqCurrentSea = math.max(d, MaxLevelReqCurrentSea)
+        end
+    end
+    CFrameBoss = FindBossCFrame(NameBoss)
+    if CFrameQuestBoss == nil then
+        LevelReqBoss = -999
+        CFrameBoss = nil
+        for i,v in pairs(Quests) do
+            for i1,v1 in pairs(v) do
+                if i ~= "CitizenQuest" and i ~= "BartiloQuest" and v1["LevelReq"] <= MaxLevelReqCurrentSea then
+                    for i2,v2 in pairs(v1["Task"]) do
+                        if v2 == 1 then
+                            LevelReqBoss = math.max(LevelReqBoss, v1["LevelReq"])
+                        end
+                    end
+                end
+            end
+        end
+        for i,v in pairs(Quests) do
+            for i1,v1 in pairs(v) do
+                if i ~= "CitizenQuest" and i ~= "BartiloQuest" and v1["LevelReq"] == LevelReqBoss then
+                    for i2,v2 in pairs(v1["Task"]) do
+                        NameBoss = i2
+                        QuestBossNumber = i1
+                        NameQuestBoss = i
+                    end
+                end
+            end
+        end
+        for a,b in pairs(GuideModule["Data"]["NPCList"]) do
+            for c,d in pairs(b["Levels"]) do
+                if LevelReqBoss == d then
+                    CFrameQuestBoss = a["CFrame"]
+                end
+            end
+        end
+        CFrameBoss = FindBossCFrame(NameBoss)
+    end
+    --return NameQuestBoss, QuestBossNumber, CFrameQuestBoss, NameBoss, CFrameBoss, LevelReqBoss
+    return {
+        [1] = NameQuestBoss,
+        [2] = QuestBossNumber,
+        [3] = CFrameQuestBoss,
+        [4] = NameBoss,
+        [5] = CFrameBoss,
+        [6] = LevelReqBoss
+    }
 end
 local x2Code = {
 	"KITTGAMING",
@@ -1655,8 +1776,8 @@ elseif Distance >= 1000 then
 end 
 if _G.lBypassTP then
     fkwarp = false
-        if Distance > 3000 and request_place == nil and not (game.Players.LocalPlayer.Backpack:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Character:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Sweet Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Sweet Chalice")) and not (CheckQuest()[4] == "Fishman Commando" or CheckQuest()[4] == "Fishman Warrior") then
-            if fkwarp == false then
+        if Distance > 3000 and not (game.Players.LocalPlayer.Backpack:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Character:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Sweet Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Sweet Chalice")) and not (CheckQuest()[4] == "Fishman Commando" or CheckQuest()[4] == "Fishman Warrior") then
+            if fkwarp == false and request_place == nil then
                 BTP(RealTarget)
             end
             fkwarp = true
@@ -1820,7 +1941,7 @@ end
 end)        
 spawn(function()
 game:GetService("RunService").Heartbeat:Connect(function()
-    if queue:top() == "Auto Farm Level" or queue:top() == "Auto Farm Saber" or queue:top() == "Get Fruits" or queue:top() == "Fully sphm" then
+    if queue:top() == "Auto Farm Level" or queue:top() == "Auto Farm Saber" or queue:top() == "Get Fruits" or queue:top() == "Fully sphm" or queue:top() == "Fully DeathStep" then
         if not game:GetService("Workspace"):FindFirstChild("LOL") then
             local LOL = Instance.new("Part")
             LOL.Name = "LOL"
@@ -1842,7 +1963,7 @@ end)
 spawn(function()
     pcall(function()
         while wait() do
-            if queue:top() == "Auto Farm Level" or queue:top() == "Auto Farm Saber" or queue:top() == "Get Fruits" or queue:top() == "Fully sphm" then
+            if queue:top() == "Auto Farm Level" or queue:top() == "Fully DeathStep" or queue:top() == "Auto Farm Saber" or queue:top() == "Get Fruits" or queue:top() == "Fully sphm" then
                 if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
                     local Noclip = Instance.new("BodyVelocity")
                     Noclip.Name = "BodyClip"
@@ -1858,7 +1979,7 @@ end)
 spawn(function()
     pcall(function()
         game:GetService("RunService").Stepped:Connect(function()
-            if queue:top() == "Auto Farm Level" or queue:top() == "Auto Farm Saber" or queue:top() == "Get Fruits" or _G.Auto_Bone then
+            if queue:top() == "Auto Farm Level" or queue:top() == "Fully DeathStep" or queue:top() == "Auto Farm Saber" or queue:top() == "Get Fruits" or _G.Auto_Bone then
                 for _, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
                     if v:IsA("BasePart") then
                         v.CanCollide = false    
@@ -2001,12 +2122,14 @@ spawn(function()
             }
             game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
         elseif World2 then
+            wait(0.2)
             local args = {
                 [1] = "AddPoint",
                 [2] = "Melee",
                 [3] = 1
             }
             game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
+            wait(0,2)
             local args = {
                 [1] = "AddPoint",
                 [2] = "Defense",
@@ -2014,18 +2137,21 @@ spawn(function()
             }
             game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
         elseif World3 then
+            wait(0.2)
             local args = {
                 [1] = "AddPoint",
                 [2] = "Melee",
                 [3] = 1
             }
             game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
+            wait(0.2)
             local args = {
                 [1] = "AddPoint",
                 [2] = "Defense",
                 [3] = 1
             }
             game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
+            wait(0.2)
             local args = {
                     [1] = "AddPoint",
                     [2] = "Sword",
@@ -2136,7 +2262,7 @@ function autofarm()
                                             Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
                                             Sex_Tween:Play()
                                         end
-                                    until not queue:top() == "Auto Farm Level" or not v.Parent or v.Humanoid.Health <= 0 or QuestC.Visible == false or not v:FindFirstChild("HumanoidRootPart")
+                                    until queue:top() ~= "Auto Farm Level" or not v.Parent or v.Humanoid.Health <= 0 or QuestC.Visible == false or not v:FindFirstChild("HumanoidRootPart")
                                 end
                             end
                         end
@@ -2269,6 +2395,41 @@ function getsaber()
             end
         end
     end)
+end
+function secondsea()
+    if game.Players.LocalPlayer.Data.Level.Value >= 700 and World1 then
+        if game.Workspace.Map.Ice.Door.CanCollide == true and game.Workspace.Map.Ice.Door.Transparency == 1 then
+            repeat wait() topos(CFrame.new(4851.8720703125, 5.6514348983765, 718.47094726563)) until (CFrame.new(4851.8720703125, 5.6514348983765, 718.47094726563).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 or not queue:top() == "Second Sea"
+            wait(1)
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("DressrosaQuestProgress","Detective")
+            EquipWeapon("Key")
+            local pos2 = CFrame.new(1347.7124, 37.3751602, -1325.6488)
+            repeat wait() topos(pos2) until (pos2.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 or not queue:top() == "Second Sea"
+            wait(3)
+        elseif game.Workspace.Map.Ice.Door.CanCollide == false and game.Workspace.Map.Ice.Door.Transparency == 1 then
+            if game:GetService("Workspace").Enemies:FindFirstChild("Ice Admiral") then
+                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                    if v.Name == "Ice Admiral" and v.Humanoid.Health > 0 then
+                        repeat wait()
+                            AutoHaki()
+                            EquipWeapon(_G.SelectWeapon)
+                            v.HumanoidRootPart.CanCollide = false
+                            v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+                            v.HumanoidRootPart.Transparency = 1
+                            topos(v.HumanoidRootPart.CFrame * MethodFarm)
+                            game:GetService("VirtualUser"):CaptureController()
+                            game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 870),workspace.CurrentCamera.CFrame)
+                        until v.Humanoid.Health <= 0 or not v.Parent or not queue:top() == "Second Sea"
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
+                    end
+                end
+            else
+                topos(CFrame.new(1347.7124, 37.3751602, -1325.6488))
+            end
+        else
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
+        end
+    end
 end
 function tweenfruit()
     if queue:top() == "Get Fruits" then
@@ -2750,6 +2911,56 @@ task.spawn(function()
         end
     end)
 end)
+function fullydeathstep()
+    if (game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman", true) == 1 and game.Players.LocalPlayer.Character:FindFirstChild("Superhuman").Level.Value >= 400) or (game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman", true) == 1 and game.Players.LocalPlayer.Character.Backpack:FindFirstChild("Superhuman").Level.Value >= 400) then
+        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep",true) ~= 1 then
+            if not game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg") or not game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") or not game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Death Step") or not game:GetService("Players").LocalPlayer.Character:FindFirstChild("Death Step") then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
+            end				
+            if game:GetService("Workspace").Map.IceCastle.Hall.LibraryDoor.PhoeyuDoor.Transparency == 0 then  
+                if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Library Key") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Library Key") then
+                    EquipWeapon("Library Key")
+                    repeat wait() topos(CFrame.new(6371.2001953125, 296.63433837890625, -6841.18115234375)) until (CFrame.new(6371.2001953125, 296.63433837890625, -6841.18115234375).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 or queue:top() ~= "Fully DeathStep"
+                    if (CFrame.new(6371.2001953125, 296.63433837890625, -6841.18115234375).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then
+                        wait(1.2)
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep",true)
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
+                        wait(0.5)
+                    end
+                elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg").Level.Value >= 450 or game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Character:FindFirstChild("Black Leg").Level.Value >= 450 then   
+                    if game:GetService("ReplicatedStorage"):FindFirstChild("Awakened Ice Admiral") or game:GetService("Workspace").Enemies:FindFirstChild("Awakened Ice Admiral") then
+                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                if v.Name == "Awakened Ice Admiral" then    
+                                    repeat wait()
+                                        AutoHaki()
+                                        EquipWeapon(_G.Select_Weapon)
+                                        v.Head.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+                                        Sex_Tween = TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,15,0))
+                                        Sex_Tween:Play()
+                                        game:GetService'VirtualUser':CaptureController()
+                                        game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+                                        sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
+                                    until not v.Parent or v.Humanoid.Health <= 0 or queue:top() ~= "Fully DeathStep" or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Library Key") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Library Key")
+                                end
+                            end
+                    else 
+                        queue:pop("Fully DeathStep")
+                    end
+                else queue:pop("Fully DeathStep")
+                end
+            else 
+                if game:GetService("Players")["LocalPlayer"].Data.Beli.Value >= 2500000 and game.Players.LocalPlayer.Data.Fragments.Value >= 5000 then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
+                end
+            end
+        end
+    else 
+        queue:pop("Fully DeathStep")
+    end
+end
 spawn(function()
     while task.wait() do
         if not queue:empty() then
@@ -2761,6 +2972,10 @@ spawn(function()
                 fullysuperhuman()
             elseif queue:top() == "Auto Farm Saber" then
                 getsaber()
+            elseif queue:top() == "Second Sea" then
+                secondsea()
+            elseif queue:top() == "Fully DeathStep" then
+                fullydeathstep()
             end
         end
     end
@@ -2772,7 +2987,12 @@ spawn(function()
             elseif not CheckFruit() then
                 queue:pop("Get Fruits")
             end
-            if not game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman", true) ~= 1 then
+            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman", true) == 1 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep",true) ~= 1 then
+                queue:push("Fully DeathStep", Priority["Fully DeathStep"])
+            else
+                queue:pop("Fully DeathStep")
+            end
+            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman", true) ~= 1 then
                 queue:push("Fully sphm", Priority["Fully sphm"])
             elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman", true) == 1 then
                 queue:pop("Fully sphm")
@@ -2783,6 +3003,11 @@ spawn(function()
             elseif game.Players.LocalPlayer.Data.Level.Value >= 200 and Check_Sword("Saber") and World1 then
                 queue:pop("Auto Farm Saber")
             end
+            if game.Players.LocalPlayer.Data.Level.Value >= 700 and World1 then
+                queue:push("Second Sea", Priority["Second Sea"])
+            elseif game.Players.LocalPlayer.Data.Level.Value >= 700 and not World1 then
+                queue:pop("Second Sea")
+            end 
             queue:push("Auto Farm Level", Priority["Auto Farm Level"])
     end
 end)
