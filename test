@@ -2069,7 +2069,7 @@ spawn(function()
     while task.wait() do
         pcall(function()
             for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                if _G.queue:top() == "Auto Farm Level" and StartMagnet and v.Name == CheckQuest()[4] and (CheckQuest()[4] == "Factory Staff" or CheckQuest()[4] == "Monkey" or CheckQuest()[4] == "Dragon Crew Warrior" or CheckQuest()[4] == "Dragon Crew Archer") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 250 then
+                if queue:top() == "Auto Farm Level" and StartMagnet and v.Name == CheckQuest()[4] and (CheckQuest()[4] == "Factory Staff" or CheckQuest()[4] == "Monkey" or CheckQuest()[4] == "Dragon Crew Warrior" or CheckQuest()[4] == "Dragon Crew Archer") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 250 then
                     v.HumanoidRootPart.Size = Vector3.new(150,150,150)
                     v.HumanoidRootPart.CFrame = PosMon
                     v.Humanoid:ChangeState(14)
@@ -2079,7 +2079,7 @@ spawn(function()
                         v.Humanoid.Animator:Destroy()
                     end
                     sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
-                elseif _G.queue:top() == "Auto Farm Level" and StartMagnet and v.Name == CheckQuest()[4] and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= _G.BringMode then
+                elseif queue:top() == "Auto Farm Level" and StartMagnet and v.Name == CheckQuest()[4] and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= _G.BringMode then
                     v.HumanoidRootPart.Size = Vector3.new(150,150,150)
                     v.HumanoidRootPart.CFrame = PosMon
                     v.Humanoid:ChangeState(14)
@@ -2741,8 +2741,8 @@ function fullysuperhuman()
                     [1] = "BuyBlackLeg"
                 }
                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-            
-            elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg").Level.Value >= 300 then
+            end
+            if game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg").Level.Value >= 300 then
                 local args = {
                     [1] = "BuyElectro"
                 }
@@ -2753,8 +2753,10 @@ function fullysuperhuman()
                     [1] = "BuyElectro"
                 }
                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-            
-            elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Electro") and game.Players.LocalPlayer.Backpack:FindFirstChild("Electro").Level.Value >= 300 then
+            else 
+                queue:pop("Fully sphm")
+            end
+            if game.Players.LocalPlayer.Backpack:FindFirstChild("Electro") and game.Players.LocalPlayer.Backpack:FindFirstChild("Electro").Level.Value >= 300 then
                 local args = {
                     [1] = "BuyFishmanKarate"
                 }
@@ -2765,15 +2767,17 @@ function fullysuperhuman()
                     [1] = "BuyFishmanKarate"
                 }
                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-            
-            elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate") and game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate").Level.Value >= 300  then
+            else   
+                queue:pop("Fully sphm")
+            end
+            if game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate") and game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate").Level.Value >= 300  then
                 local args = {
                     [1] = "BlackbeardReward",
                     [2] = "DragonClaw",
                     [3] = "2"
                 }
                 HaveDragonClaw = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-                if queue:top() == "Fully sphm" and game.Players.LocalPlayer.Data.Fragments.Value <= 1500 and HaveDragonClaw == 0 then
+                if queue:top() == "Fully sphm" and game.Players.LocalPlayer.Data.Fragments.Value <= 1500 and HaveDragonClaw ~= 1 then
                     if game.Players.LocalPlayer.Data.Level.Value > 1100 then
                         _G.Raidsphm = true
                     end
@@ -2813,7 +2817,10 @@ function fullysuperhuman()
                     _G.Raidsphm = false
                     
                 end
-            elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw") and game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw").Level.Value >= 300 then
+            else 
+                queue:pop("Fully sphm")
+            end
+            if game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw") and game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw").Level.Value >= 300 then
                 
                 local args = {
                     [1] = "BuySuperhuman"
@@ -2825,7 +2832,8 @@ function fullysuperhuman()
                     [1] = "BuySuperhuman"
                 }
                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-            else queue:pop("Fully sphm")
+            else 
+                queue:pop("Fully sphm")
             end 
         end
     end
