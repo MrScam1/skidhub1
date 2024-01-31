@@ -1,3 +1,6 @@
+
+getgenv().Team = "Marines" -- Pirates/Marines
+loadstring(game:HttpGet("https://raw.githubusercontent.com/verudous/Xero-Hub/main/main.lua"))()
 getgenv().nokey = '{}'
 getgenv().premium = '{"hwid":"AB57E02C23E74EC1A5E61A57E8A2B75D", "key":"389a75fcd54143518577c5ff160e35f7"}'
 getgenv().abc = 'a9d41039483d880a88f26d57cce4db29401d025256f6be9fa2a68cced989ce73485715900a9fc19c0d5630d5108dfdd7fff03bd0766a9d27a0c85746fa0cf4f4'
@@ -31,5 +34,3 @@ oldfunc = hookfunction(game.HttpGet , function(...)
     
     return oldfunc(...)
 end)
-getgenv().Team = "Marines" -- Pirates/Marines
-loadstring(game:HttpGet("https://raw.githubusercontent.com/verudous/Xero-Hub/main/main.lua"))()
