@@ -2747,8 +2747,8 @@ function fullysuperhuman()
                     [1] = "BuyBlackLeg"
                 }
                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-            end
-            if game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg").Level.Value >= 300 then
+            
+            elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg").Level.Value >= 300 then
                 local args = {
                     [1] = "BuyElectro"
                 }
@@ -2759,10 +2759,8 @@ function fullysuperhuman()
                     [1] = "BuyElectro"
                 }
                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-            else 
-                queue:pop("Fully sphm")
-            end
-            if game.Players.LocalPlayer.Backpack:FindFirstChild("Electro") and game.Players.LocalPlayer.Backpack:FindFirstChild("Electro").Level.Value >= 300 then
+            
+            elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Electro") and game.Players.LocalPlayer.Backpack:FindFirstChild("Electro").Level.Value >= 300 then
                 local args = {
                     [1] = "BuyFishmanKarate"
                 }
@@ -2773,17 +2771,15 @@ function fullysuperhuman()
                     [1] = "BuyFishmanKarate"
                 }
                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-            else   
-                queue:pop("Fully sphm")
-            end
-            if game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate") and game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate").Level.Value >= 300  then
+            
+            elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate") and game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate").Level.Value >= 300  then
                 local args = {
                     [1] = "BlackbeardReward",
                     [2] = "DragonClaw",
                     [3] = "2"
                 }
                 HaveDragonClaw = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-                if queue:top() == "Fully sphm" and game.Players.LocalPlayer.Data.Fragments.Value <= 1500 and HaveDragonClaw ~= 1 then
+                if queue:top() == "Fully sphm" and game.Players.LocalPlayer.Data.Fragments.Value <= 1500 and HaveDragonClaw == 0 then
                     if game.Players.LocalPlayer.Data.Level.Value > 1100 then
                         _G.Raidsphm = true
                     end
@@ -2823,10 +2819,7 @@ function fullysuperhuman()
                     _G.Raidsphm = false
                     
                 end
-            else 
-                queue:pop("Fully sphm")
-            end
-            if game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw") and game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw").Level.Value >= 300 then
+            elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw") and game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw").Level.Value >= 300 then
                 
                 local args = {
                     [1] = "BuySuperhuman"
@@ -2838,8 +2831,7 @@ function fullysuperhuman()
                     [1] = "BuySuperhuman"
                 }
                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-            else 
-                queue:pop("Fully sphm")
+            else queue:pop("Fully sphm")
             end 
         end
     end
