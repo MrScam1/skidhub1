@@ -2812,23 +2812,23 @@ spawn(function()
     while task.wait() do
         if not queue:empty() then
             if queue:top() == "Auto Farm Level" then
-               -- print("lv")
+               print("lv")
                 autofarm()
             elseif queue:top() == "Get Fruits" then
-               -- print("tween fruit")
+               print("tween fruit")
                 tweenfruit()
             elseif queue:top() == "Fully sphm" then
                 fullysuperhuman()
-                --print("sup")
+                print("sup")
             elseif queue:top() == "Auto Farm Saber" then
                 getsaber()
-                --print("saber")
+                print("saber")
             elseif queue:top() == "Second Sea" then
                 secondsea()
-                --print("second sea")
+                print("second sea")
             elseif queue:top() == "Fully DeathStep" then
                 fullydeathstep()
-                --print("death step")
+                print("death step")
             end
         end
     end
